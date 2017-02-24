@@ -39,11 +39,11 @@
       self._navigator = (typeof window !== 'undefined' && window.navigator) ? window.navigator : null;
 
       // Public properties.
-      self.masterGain = true;
+      self.masterGain = null;
       self.noAudio = false;
       self.usingWebAudio = true;
       self.autoSuspend = true;
-      self.ctx = true;
+      self.ctx = null;
 
       // Set to false to disable the auto iOS enabler.
       self.mobileAutoEnable = true;

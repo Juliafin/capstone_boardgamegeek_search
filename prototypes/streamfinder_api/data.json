@@ -1,0 +1,181 @@
+{
+  "cached": "false",
+  "do": "genre_search",
+  "total_results": 77,
+  "result_start": 1,
+  "result_end": 11,
+  "gid": "42",
+  "genre_name": "Alternative Rock",
+  "kw": null,
+  "tag": null,
+  "city": null,
+  "country": null,
+  "station_list": {
+    "1": {
+      "number": 1,
+      "sid": "6235",
+      "name": "Wild West Radio",
+      "www": "wildwestradio.com",
+      "streams": {
+        "stream_url": "http:\/\/s7.viastreaming.net:7430\/listen.pls",
+        "stream_format": "9",
+        "stream_format_string": ".MP3\/.M3U Playlist",
+        "stream_bitrate": "5",
+        "stream_bitrate_string": "128 kbps",
+        "now_playing": "",
+        "test_up": 0
+      }
+    },
+    "2": {
+      "number": 2,
+      "sid": "25965",
+      "name": "R",
+      "www": "www.systembrasil.xpg.com.br",
+      "streams": {
+        "stream_url": "http:\/\/systembrasil.xpg.com.br\/virtualdj.mp3",
+        "stream_format": "9",
+        "stream_format_string": ".MP3\/.M3U Playlist",
+        "stream_bitrate": "4",
+        "stream_bitrate_string": "96 kbps",
+        "now_playing": "",
+        "test_up": 0
+      }
+    },
+    "3": {
+      "number": 3,
+      "sid": "25966",
+      "name": "R",
+      "www": "www.systembrasil.xpg.com.br",
+      "streams": {
+        "stream_url": "http:\/\/systembrasil.xpg.com.br\/virtualdj.mp3",
+        "stream_format": "9",
+        "stream_format_string": ".MP3\/.M3U Playlist",
+        "stream_bitrate": "4",
+        "stream_bitrate_string": "96 kbps",
+        "now_playing": "",
+        "test_up": 0
+      }
+    },
+    "4": {
+      "number": 4,
+      "sid": "35834",
+      "name": "Radio-Sonline",
+      "www": "www.Radio-Sonline.es.tl",
+      "streams": {
+        "stream_url": "http:\/\/www.Radio-Sonline.es.tl",
+        "stream_format": "9",
+        "stream_format_string": ".MP3\/.M3U Playlist",
+        "stream_bitrate": "3",
+        "stream_bitrate_string": "64 kbps",
+        "now_playing": "",
+        "test_up": 0
+      }
+    },
+    "5": {
+      "number": 5,
+      "sid": "2271",
+      "name": "KOKOMO WebRadio",
+      "www": "kokomo.fr",
+      "streams": {
+        "stream_url": "http:\/\/kokomo.fr\/streams\/stream.m3u",
+        "stream_format": "9",
+        "stream_format_string": ".MP3\/.M3U Playlist",
+        "stream_bitrate": "5",
+        "stream_bitrate_string": "128 kbps",
+        "now_playing": "",
+        "test_up": 0
+      }
+    },
+    "6": {
+      "number": 6,
+      "sid": "30503",
+      "name": "Radio Free Vermont",
+      "www": "www.freevermontradio.org",
+      "streams": {
+        "stream_url": "http:\/\/www.freevermontradio.org\/streams\/playlist.m3u",
+        "stream_format": "9",
+        "stream_format_string": ".MP3\/.M3U Playlist",
+        "stream_bitrate": "5",
+        "stream_bitrate_string": "128 kbps",
+        "now_playing": "",
+        "test_up": 0
+      }
+    },
+    "7": {
+      "number": 7,
+      "sid": "39268",
+      "name": "Radio Classic Rock",
+      "www": "www.radioclassicrock.com",
+      "streams": {
+        "stream_url": "http:\/\/www.radioclassicrock.com\/live.m3u",
+        "stream_format": "9",
+        "stream_format_string": ".MP3\/.M3U Playlist",
+        "stream_bitrate": "5",
+        "stream_bitrate_string": "128 kbps",
+        "now_playing": "",
+        "test_up": 0
+      }
+    },
+    "8": {
+      "number": 8,
+      "sid": "26749",
+      "name": "MyOpusRadio",
+      "www": "www.myopusradio.com\/",
+      "streams": {
+        "stream_url": "http:\/\/www.myopusradio.com:8000\/myopusradio.m3u",
+        "stream_format": "9",
+        "stream_format_string": ".MP3\/.M3U Playlist",
+        "stream_bitrate": "3",
+        "stream_bitrate_string": "64 kbps",
+        "now_playing": "",
+        "test_up": 0
+      }
+    },
+    "9": {
+      "number": 9,
+      "sid": "44267",
+      "name": "Rockzone Radio",
+      "www": "www.rockzoneradio.nl",
+      "streams": {
+        "stream_url": "http:\/\/listen.radionomy.com\/rockzone-radio.m3u",
+        "stream_format": "9",
+        "stream_format_string": ".MP3\/.M3U Playlist",
+        "stream_bitrate": "5",
+        "stream_bitrate_string": "128 kbps",
+        "now_playing": "",
+        "test_up": 0
+      }
+    },
+    "10": {
+      "number": 10,
+      "sid": "31490",
+      "name": "TuMusicaPRCom Radio",
+      "www": "www.tumusicapr.com",
+      "streams": {
+        "stream_url": "http:\/\/www.tumusicapr.com\/radio\/stream.pls",
+        "stream_format": "9",
+        "stream_format_string": ".MP3\/.M3U Playlist",
+        "stream_bitrate": "3",
+        "stream_bitrate_string": "64 kbps",
+        "now_playing": "",
+        "test_up": 0
+      }
+    },
+    "11": {
+      "number": 11,
+      "sid": "6360",
+      "name": "CBS Radio KITSFM - Alternative Rock",
+      "www": "cbsplayer.streamtheworld.com\/?CALLSIGN=KITSFM",
+      "streams": {
+        "stream_url": "http:\/\/cbsplayer.streamtheworld.com\/?CALLSIGN=KITSFM",
+        "stream_format": "9",
+        "stream_format_string": ".MP3\/.M3U Playlist",
+        "stream_bitrate": "2",
+        "stream_bitrate_string": "32 kbps",
+        "now_playing": "",
+        "test_up": 0
+      }
+    }
+  },
+  "sql": "SELECT listings_stream_links.url AS streamurl, \n\tlistings.id AS sid,\n\tlistings_stream_links.format AS streamformat,\n\tlistings_stream_links.*,listings.* FROM listings_genres,\n\tlistings_stream_links,listings \n\tWHERE \n\t listings_genres.genre_id = '42' \n\tAND listings_genres.listing_id = listings_stream_links.listing_id \n\tAND listings.id = listings_stream_links.listing_id \n\tAND listings_stream_links.status = 1\n\tAND listings_stream_links.format IN (9)"
+}
