@@ -12,13 +12,18 @@ var sound = new Howl({
     ctx: true,
   });
 
-  sound.play();
+  // var id1 = sound.play();
+  // sound.play(id1)
+
+  // playing(id1);
 
   // Create an analyser node in the Howler WebAudio context
 
-var analyser = Howler.ctx.createAnalyser();
-console.log(analyser);
 
+var analyser = Howler.ctx.createAnalyser();
+analyser.maxDecibels = 50;
+analyser.minDecibels = -50;
+console.log(analyser);
   // Connect the masterGain -> analyser (disconnecting masterGain -> destination)
   Howler.masterGain.connect(analyser);
   console.log(Howler.masterGain);
@@ -27,15 +32,35 @@ console.log(analyser);
   console.log(Howler.ctx.destination);
 
   var bufferLength = analyser.frequencyBinCount;
-  console.log(bufferLength)
+  console.log(bufferLength);
+
+function getByteTimeDomainData() {
   var dataArray = new Uint8Array(bufferLength);
   analyser.getByteTimeDomainData(dataArray);
   console.log(dataArray);
+  console.log(analyser.getByteTimeDomainData(dataArray));
+};
 
+function getFreqData() {
+  var dataArray2 = new Uint8Array(bufferLength);
+  analyser.getByteFrequencyData(dataArray2);
+  console.log(dataArray2)
+};
+
+setTimeout(getFreqData, 5000);
+
+setTimeout(getByteTimeDomainData, 5000);
 
   var canvas = $('#canvas').get(0);
 
 var canvasCtx = canvas.getContext('2d');
+
+function colorLoop () {
+  Math.random() * (255-0);
+  }
+
+var rgbString = `rgb(${colorLoop},${colorLoop},${colorLoop})`
+
 
 WIDTH = 200;
 HEIGHT = 200;
