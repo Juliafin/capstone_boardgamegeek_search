@@ -3,10 +3,16 @@
 var audioCtx = new AudioContext();
 var audio = document.querySelector('audio');
 var source = audioCtx.createMediaElementSource(audio);
-var analyser = audioCtx.createAnalyser();
+
 
 // http://stackoverflow.com/questions/31308679/mediaelementaudiosource-outputs-zeros-due-to-cors-access-restrictions-local-mp3
 audio.crossOrigin = "anonymous";
+
+// set the url
+var url = 'http://www.myopusradio.com:8000/myopusradio';
+audio.src = url;
+
+var analyser = audioCtx.createAnalyser();
 
 source.connect(analyser);
 analyser.connect(audioCtx.destination);
@@ -42,6 +48,7 @@ function draw() {
 	if(slowAnim.animationCounter % 50 === 0) {
 	var rgbString1 = `rgb(${colorLoop()},${colorLoop()},${colorLoop()})`;
 	var rgbString2 = `rgb(${colorLoop()},${colorLoop()},${colorLoop()})`;
+	slowAnim.animationCounter = 0
 	};
 	analyser.getByteTimeDomainData(dataArray);
 
