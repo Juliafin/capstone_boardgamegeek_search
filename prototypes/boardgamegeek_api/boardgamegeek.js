@@ -70,10 +70,23 @@ function xmlToJson(xml) {
 // https://www.boardgamegeek.com/xmlapi2//search?parameters&query=agricola
 // http://boardgamegeek.com/xmlapi/search?search=frika
 
+// http://boardgamegeek.com/xmlapi/search?..
+// getting shallow data (name id, publisher)
 
-var BOARDGAMEGEEK_BASE_URL = "http://boardgamegeek.com/xmlapi/"
+// feed shallow into the 2nd call(Bgg api) AND 3rd call(youtube api) for more in depth data
+
+// 2nd api > BGG (gameid) more indepth on those particular games
+// 3rd api > youtube (name) (+ "playthrough") > playthrough
+
+// 4th api call (before anything gets loaded, which is the "hot list" top 50 board games (separate parameters))
+
+// http://boardgamegeek.com/xmlapi/gameId(123874,231834)
+
+
+var BOARDGAMEGEEK_BASE_URL = "http://boardgamegeek.com/xmlapi/";
 function getDataFromBGGApi(callback, search, gameId) { // either search or gameID is optional
 
+	// TODO breakout validation into separate function
 	// guards against both optional parameters being undefined
 	if ((search === undefined) && (gameId === undefined)) {
 		// TODO replace CSLOG with a DOM warning
@@ -107,6 +120,7 @@ function getDataFromBGGApi(callback, search, gameId) { // either search or gameI
 
 var _ = undefined;
 // main function call
+// tested and working
 // getDataFromBGGApi(printData, 'lords of waterdeep');
 // getDataFromBGGApi(saveDataShallowSearch, 'lords of waterdeep');
 
@@ -147,6 +161,7 @@ console.log(BggData);
 
 
 
+// makes string of game ids
 
 function createGameIdString() {
 	var gameString = '';
@@ -163,15 +178,16 @@ function createGameIdString() {
 	return gameString
 }
 
+// 2nd api call to BGG api (deep search using game ids)
 function saveDataDeepSearch(data){
 	// data is not cleared as it is being aggregated from the first api call
 
 	// convert xml to json
-	Bggdeepdata = xmlToJson(data)
+	var Bggdeepdata = xmlToJson(data)
 
 
 	// iterate deep data
-	Bggdeepdata.boardgames.boardgame.forEach(function(element) {
+	Bggdeepdata.boardgames.boardgame.forEach(function(element,index) {
 		console.log ("element:", element)
 		// define data keys
 		var image = element.image['#text'];
@@ -180,17 +196,32 @@ function saveDataDeepSearch(data){
 		var age = element.age['#text'];
 		var description = element.description['#text'];
 		var boardgamepublisher = element.boardgamepublisher['#text'];
-		var boardgamerank = element.statistics.ratings.average ['#text'];
-		console.log(element, element.boardgamemechanic, element.boardgamemechanic.map)
-		var boardgamemechanics = element.boardgamemechanic.map(function(elem) {
-			return elem['#text'];
-		});
+		var boardgameAvgRating = element.statistics.ratings.average ['#text'];
+		var partialboardgameRank = element.statistics.ratings.ranks.rank[0]//['@attributes'].value;
+		console.log('partial boardgame rank: ', partialboardgameRank);
+		var boardgameRank = partialboardgameRank['@attributes'].value;
+		console.log('full boardgame rank: ' , boardgameRank)
 
+		// Inconsistent data handling of boardgamemechanics
+		// element.boardgamemechanic will be mapped to an array (which along with other keys will return into an object)
+		// console.log(element, element.boardgamemechanic, element.boardgamemechanic.map)
+		if (Array.isArray(element.boardgamemechanic)) {
+			var boardgamemechanics = element.boardgamemechanic.map(function(elem) {
+				console.log('elem is an array, and this is the mechanic: ' + elem['#text'])
+				return elem['#text'];
+			});
+		} else if ( (typeof(element.boardgamemechanic) === 'object') && (element.boardgamemechanic !== null) ) {
+			//  object keys, iterate over keys, send into array
+				var boardgamemechanics = element.boardgamemechanic['#text']
+				console.log ('elem is an object, and this is the mechanic: ' + boardgamemechanics);
+			} else if (!element.boardgamemechanic) {
+				var boardgamemechanics = 'N/A';
+			};
 
+			// Corrections on description and playing time
 		if (description === "This page does not exist. You can edit this page to create it.") {
 			description = "This item does not have a description.";
 		};
-
 		if (playingtime === "0 minutes") {
 			playingtime = "N/A"
 		};
@@ -202,19 +233,25 @@ function saveDataDeepSearch(data){
 		console.log("age: " + age);
 		console.log("board game publisher: " + boardgamepublisher);
 		console.log("description: " + description);
-		console.log("board game rank: " + boardgamerank);
-		console.log("board game mechanics: " + boardgamemechanics);
+		console.log("board game rank: " + boardgameRank);
+		console.log("board game mechanics: " + boardgamemechanics)
+		console.log("board game avg rating: " + boardgameAvgRating);
+;
 
 
 
 
 
 		// feed keys into global object TODO test for now
-		BggDataTest.boardGameImage = image;
-		BggDataTest.players = players;
-		BggDataTest.playingTime = playingtime;
-		BggDataTest.age = age;
-		BggDataTest.description = description;
+		BggDataTest[index].boardGameImage = image;
+		BggDataTest[index].players = players;
+		BggDataTest[index].playingTime = playingtime;
+		BggDataTest[index].age = age;
+		BggDataTest[index].boardgamepublisher;
+		BggDataTest[index].description = description;
+		BggDataTest[index].boardgameAvgRating = boardgameAvgRating;
+		BggDataTest[index].boardgamemechanics = boardgamemechanics;
+		BggDataTest[index].boardgameRank = boardgameRank;
 		})
 	console.log(Bggdeepdata);
 	console.log(BggDataTest);

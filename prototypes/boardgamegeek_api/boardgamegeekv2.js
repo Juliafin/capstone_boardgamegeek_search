@@ -129,6 +129,11 @@ bggShallow.then(saveDataShallowCall, error) {
 
 };
 
+// 1st api call generates hot list without user intervention (on page load)
+// 2nd api call (bgg shallow) collects data including name gameid and publisher
+// 3rd - 4th calls (bgg deep, youtube) both of these start when 2nd call ends
+
+
 
 // example code
 
