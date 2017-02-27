@@ -197,12 +197,18 @@ function saveDataDeepSearch(data){
 		var description = element.description['#text'];
 		var boardgamepublisher = element.boardgamepublisher['#text'];
 		var boardgameAvgRating = element.statistics.ratings.average ['#text'];
-		var partialboardgameRank = element.statistics.ratings.ranks.rank[0]//['@attributes'].value;
-		console.log('partial boardgame rank: ', partialboardgameRank);
-		var boardgameRank = partialboardgameRank['@attributes'].value;
-		console.log('full boardgame rank: ' , boardgameRank)
 
-		// Inconsistent data handling of boardgamemechanics
+		// Inconsistent data handling for board game rank
+		if (Array.isArray(element.statistics.ratings.ranks.rank)) {
+			var boardgameRank = element.statistics.ratings.ranks.rank[0]['@attributes'].value;
+			console.log('full boardgame rank: ' , boardgameRank);
+		} else if (typeof(element.statistics.ratings.ranks.rank) === 'object'){
+			var boardgameRank = element.statistics.ratings.ranks.rank['@attributes'].value;
+		} else {
+			var boardgameRank = 'Not Ranked';
+		}
+
+		// Inconsistent data handling of board game mechanics
 		// element.boardgamemechanic will be mapped to an array (which along with other keys will return into an object)
 		// console.log(element, element.boardgamemechanic, element.boardgamemechanic.map)
 		if (Array.isArray(element.boardgamemechanic)) {
