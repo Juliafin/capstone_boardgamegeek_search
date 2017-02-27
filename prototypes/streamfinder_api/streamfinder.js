@@ -25,7 +25,7 @@ function getDataFromStreamfinderApi(callback) {
 
 }
 
-function printData(){
+function printData(data){
   console.log(data);
 }
 

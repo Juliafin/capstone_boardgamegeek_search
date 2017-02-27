@@ -1,0 +1,778 @@
+{
+   "@termsofuse": "http://boardgamegeek.com/xmlapi/termsofuse",
+   "boardgame": {
+      "@objectid": "110327",
+      "yearpublished": "2012",
+      "minplayers": "2",
+      "maxplayers": "5",
+      "playingtime": "120",
+      "minplaytime": "60",
+      "maxplaytime": "120",
+      "age": "12",
+      "name": {
+         "@primary": "true",
+         "@sortindex": "1",
+         "#text": "Lords of Waterdeep"
+      },
+      "description": "Game description from the publisher:&lt;br/&gt;&lt;br/&gt;Waterdeep, the City of Splendors &ndash; the most resplendent jewel in the Forgotten Realms, and a den of political intrigue and shady back-alley dealings. In this game, the players are powerful lords vying for control of this great city. Its treasures and resources are ripe for the taking, and that which cannot be gained through trickery and negotiation must be taken by force!&lt;br/&gt;&lt;br/&gt;In Lords of Waterdeep, a strategy board game for 2-5 players, you take on the role of one of the masked Lords of Waterdeep, secret rulers of the city. Through your agents, you recruit adventurers to go on quests on your behalf, earning rewards and increasing your influence over the city. Expand the city by purchasing new buildings that open up new actions on the board, and hinder &ndash; or help &ndash; the other lords by playing Intrigue cards to enact your carefully laid plans.&lt;br/&gt;&lt;br/&gt;During the course of play, you may gain points or resources through completing quests, constructing buildings, playing intrigue cards or having other players utilize the buildings you have constructed.  At the end of 8 rounds of play, the player who has accrued the most points wins the game.&lt;br/&gt;&lt;br/&gt;",
+      "thumbnail": "//cf.geekdo-images.com/images/pic1116080_t.jpg",
+      "image": "//cf.geekdo-images.com/images/pic1116080.jpg",
+      "boardgamepublisher": {
+         "@objectid": "13",
+         "#text": "Wizards of the Coast"
+      },
+      "boardgamepodcastepisode": [
+         {
+            "@objectid": "164314",
+            "#text": "10 – The Family Gamers Podcast – Gamification – and Contest!"
+         },
+         {
+            "@objectid": "182224",
+            "#text": "10. Devon Dice are joined Christoph from Meeples&#039; Corner shop"
+         },
+         {
+            "@objectid": "177302",
+            "#text": "7. Devon Dice Podcast, Quadropolis Review"
+         },
+         {
+            "@objectid": "142044",
+            "#text": "BGA Ep. 67 - Gamer FAQ: Game Designers"
+         },
+         {
+            "@objectid": "177525",
+            "#text": "BGA Episode 100 - Top 100 Games of All Time"
+         },
+         {
+            "@objectid": "86184",
+            "#text": "BGTG 122 - SR &amp; Feedback (Würfel Bohnanza &amp; Lords of Waterdeep)"
+         },
+         {
+            "@objectid": "83147",
+            "#text": "Carnagecast 30: Lords of Waterdeep"
+         },
+         {
+            "@objectid": "78642",
+            "#text": "Carnagecast Extrasode 5: A Dark and Stormy Night"
+         },
+         {
+            "@objectid": "78244",
+            "#text": "D6G Ep 101: Kickstarter &amp; Lords of Waterdeep Detailed Review"
+         },
+         {
+            "@objectid": "98556",
+            "#text": "DdJ 016. Los juegos de Protos y Tipos. Finde Naranja."
+         },
+         {
+            "@objectid": "107985",
+            "#text": "DTS002 - Dice Tower Showdown, Episode # 2"
+         },
+         {
+            "@objectid": "145764",
+            "#text": "Ep. 22 – Matt Wolfe and Pooping Wombats | Podcast of Nonsensical Gamers"
+         },
+         {
+            "@objectid": "151209",
+            "#text": "Ep. 6 Components"
+         },
+         {
+            "@objectid": "189847",
+            "#text": "Episode 11 - For Shame!"
+         },
+         {
+            "@objectid": "196208",
+            "#text": "Episode 11: The one about our 10x10 Challenge"
+         },
+         {
+            "@objectid": "165315",
+            "#text": "Episode 14: Fighting Games"
+         },
+         {
+            "@objectid": "116425",
+            "#text": "Episode 17 -- This Ever Expanding Universe"
+         },
+         {
+            "@objectid": "82461",
+            "#text": "Episode 18: It&#039;s All About The New!"
+         },
+         {
+            "@objectid": "114245",
+            "#text": "Episode 19 - D&amp;D Board Games Pit Fight"
+         },
+         {
+            "@objectid": "80312",
+            "#text": "Episode 19: Lords of Waterdeep, Pathfinder MMO, Business Games and Character Dealth"
+         },
+         {
+            "@objectid": "80407",
+            "#text": "Episode 2 - Malifaux FAQ/Errata and Lords of Waterdeep"
+         },
+         {
+            "@objectid": "119710",
+            "#text": "Episode 23: Lords of Waterdeep/Never Will I Ever"
+         },
+         {
+            "@objectid": "181556",
+            "#text": "Episode 26: Star Wars Rebellion Review - Brawlers Maul"
+         },
+         {
+            "@objectid": "77825",
+            "#text": "Episode 3 Geek Rage"
+         },
+         {
+            "@objectid": "93957",
+            "#text": "Episode 3 – Lords of “Balls Deep”"
+         },
+         {
+            "@objectid": "123650",
+            "#text": "Episode 31 -- Send Your Complaints to Brian Williams c/o NBC News"
+         },
+         {
+            "@objectid": "170086",
+            "#text": "Episode 3: Thrash&#039;n Roll and Overrated Games"
+         },
+         {
+            "@objectid": "129146",
+            "#text": "Episode 42 -- It&#039;s Not Your Game, It&#039;s Our Deficiency"
+         },
+         {
+            "@objectid": "161917",
+            "#text": "Episode 55 - Lords Of Waterdeep"
+         },
+         {
+            "@objectid": "116714",
+            "#text": "Episode 74 Talking to Jason Kotarski and &quot;So you want to playtest games&quot;"
+         },
+         {
+            "@objectid": "121411",
+            "#text": "Episode 78-- Star Studded Origins 2014 Wrap Up"
+         },
+         {
+            "@objectid": "78289",
+            "#text": "Episode 82 - A Glorious Ending!"
+         },
+         {
+            "@objectid": "83287",
+            "#text": "ET42: Innovando en Verano y las TDN 2012"
+         },
+         {
+            "@objectid": "115415",
+            "#text": "Game Spotlight: Lords of Waterdeep"
+         },
+         {
+            "@objectid": "107449",
+            "#text": "Garrett&#039;s Games 383 - Lords of Waterdeep Expansions and Essen Used Games"
+         },
+         {
+            "@objectid": "97313",
+            "#text": "I&#039;ve Been Diced! episode 43: A Descent into frustration, and a belated best/worst of 2012 list"
+         },
+         {
+            "@objectid": "103961",
+            "#text": "I&#039;ve Been Diced! episode 47: Ignoble successes and serious SF games"
+         },
+         {
+            "@objectid": "100697",
+            "#text": "Lords of Waterdeep"
+         },
+         {
+            "@objectid": "95978",
+            "#text": "Ludology Episode 50 - 50 for 50, Part 1"
+         },
+         {
+            "@objectid": "82526",
+            "#text": "OBG 86: We&#039;re All His Vassals"
+         },
+         {
+            "@objectid": "94943",
+            "#text": "OBG 99: Teach Me Obi-Don"
+         },
+         {
+            "@objectid": "174077",
+            "#text": "OOG - EP19 - Gaming Resolutions, Lords of Waterdeep &amp; All Things Chris"
+         },
+         {
+            "@objectid": "128622",
+            "#text": "Planeta de Juegos 27 - Novedades de la Gen Con 2014"
+         },
+         {
+            "@objectid": "112062",
+            "#text": "Podcast #069 - ¿Criticamos con sinceridad a los autores españoles?"
+         },
+         {
+            "@objectid": "187278",
+            "#text": "Podcast EP04 – Eurogame"
+         },
+         {
+            "@objectid": "164578",
+            "#text": "RJ52: S&#039;albira DAU 2015, Game Studies a la URV i un Victus all nite long!"
+         },
+         {
+            "@objectid": "170253",
+            "#text": "RJ54: Devir Fest 2015 + Meeple Gear Solid"
+         },
+         {
+            "@objectid": "86402",
+            "#text": "Session Impressions: Lords of Waterdeep"
+         },
+         {
+            "@objectid": "192545",
+            "#text": "Strange Assembly 202 - Underrated Games"
+         },
+         {
+            "@objectid": "107122",
+            "#text": "TDT - Episode # 325 - Relaxing Games"
+         },
+         {
+            "@objectid": "179950",
+            "#text": "The Broken Meeple - Episode 43 - Dry As A Bone"
+         },
+         {
+            "@objectid": "105377",
+            "#text": "The Dice Section 17: Star Wars: X-Wing Miniatures Game"
+         },
+         {
+            "@objectid": "105376",
+            "#text": "The Dice Section 18: Lords of Waterdeep: Scoundrels of Skullport"
+         },
+         {
+            "@objectid": "106491",
+            "#text": "The Dice Section 19: Last Night on Earth"
+         },
+         {
+            "@objectid": "109353",
+            "#text": "The Dice Section 21: Eldritch Horror"
+         },
+         {
+            "@objectid": "196103",
+            "#text": "The Dice Section 34: Colt Express"
+         },
+         {
+            "@objectid": "76801",
+            "#text": "The Gaming Gang Episode 38: Lords of Waterdeep, Hibernia, War of the Ring, and Marvel Heroic Roleplaying"
+         },
+         {
+            "@objectid": "132913",
+            "#text": "The Long View: Lords of Waterdeep"
+         },
+         {
+            "@objectid": "77933",
+            "#text": "The Short One About PAX East 2012"
+         },
+         {
+            "@objectid": "129912",
+            "#text": "The Very Sixth SU&amp;SD Podcast"
+         },
+         {
+            "@objectid": "77808",
+            "#text": "This Board Game Life Episode #007 – TableCon 2012 Part One"
+         },
+         {
+            "@objectid": "79093",
+            "#text": "This Board Game Life Episode #009 – Secret Service Secrets"
+         },
+         {
+            "@objectid": "80894",
+            "#text": "This Board Game Life Episode #013 &ndash; Avengers, Chips &amp; Digital Boardgames"
+         },
+         {
+            "@objectid": "83142",
+            "#text": "This Board Game Life Episode #018 – Feedback Attack"
+         },
+         {
+            "@objectid": "182383",
+            "#text": "Vox Republica 118: A Quarriors Qretrospective"
+         },
+         {
+            "@objectid": "96884",
+            "#text": "Wooden Cubes &amp; Iron Soldiers: “Viking and Mouse Attack…” Episode 13"
+         }
+      ],
+      "boardgamehonor": [
+         {
+            "@objectid": "23071",
+            "#text": "2012 Charles S. Roberts Best Science-Fiction or Fantasy Board Wargame Nominee"
+         },
+         {
+            "@objectid": "20205",
+            "#text": "2012 ENnie for Best RPG Related Product Nominee"
+         },
+         {
+            "@objectid": "20204",
+            "#text": "2012 ENnie for Best RPG Related Product Silver Winner"
+         },
+         {
+            "@objectid": "20118",
+            "#text": "2012 Golden Geek Best Board Game Artwork/Presentation Nominee"
+         },
+         {
+            "@objectid": "20122",
+            "#text": "2012 Golden Geek Best Family Board Game Nominee"
+         },
+         {
+            "@objectid": "20126",
+            "#text": "2012 Golden Geek Best Strategy Board Game Nominee"
+         },
+         {
+            "@objectid": "19749",
+            "#text": "2012 Guldbrikken Special Jury Prize Winner"
+         },
+         {
+            "@objectid": "22750",
+            "#text": "2012 Meeples&#039; Choice Nominee"
+         },
+         {
+            "@objectid": "22013",
+            "#text": "2013 Origins Awards Best Board Game Nominee"
+         },
+         {
+            "@objectid": "22766",
+            "#text": "2013 Origins Awards Best Board Game Winner"
+         }
+      ],
+      "boardgameartist": [
+         {
+            "@objectid": "19626",
+            "#text": "Eric Belisle"
+         },
+         {
+            "@objectid": "14936",
+            "#text": "Steven Belledin"
+         },
+         {
+            "@objectid": "19412",
+            "#text": "Zoltan Boros"
+         },
+         {
+            "@objectid": "50887",
+            "#text": "Noah Bradley"
+         },
+         {
+            "@objectid": "15019",
+            "#text": "Eric Deschamps"
+         },
+         {
+            "@objectid": "14937",
+            "#text": "Wayne England"
+         },
+         {
+            "@objectid": "43532",
+            "#text": "Tony Foti"
+         },
+         {
+            "@objectid": "18780",
+            "#text": "Todd Harris"
+         },
+         {
+            "@objectid": "14202",
+            "#text": "Ralph Horsley"
+         },
+         {
+            "@objectid": "28288",
+            "#text": "Tyler Jacobson"
+         },
+         {
+            "@objectid": "14299",
+            "#text": "Ron Lemen"
+         },
+         {
+            "@objectid": "15368",
+            "#text": "Howard Lyon"
+         },
+         {
+            "@objectid": "14940",
+            "#text": "Warren Mahy"
+         },
+         {
+            "@objectid": "12065",
+            "#text": "Patrick McEvoy"
+         },
+         {
+            "@objectid": "47312",
+            "#text": "Jim Nelson"
+         },
+         {
+            "@objectid": "13976",
+            "#text": "William O&#039;Connor"
+         },
+         {
+            "@objectid": "24268",
+            "#text": "Adam Paquette"
+         },
+         {
+            "@objectid": "15025",
+            "#text": "Lucio Parrillo"
+         },
+         {
+            "@objectid": "14278",
+            "#text": "Dave Rapoza"
+         },
+         {
+            "@objectid": "14961",
+            "#text": "Richard Sardinha"
+         },
+         {
+            "@objectid": "16907",
+            "#text": "Mike Schley"
+         },
+         {
+            "@objectid": "24846",
+            "#text": "Andrew Silver"
+         },
+         {
+            "@objectid": "13054",
+            "#text": "Anne Stokes"
+         },
+         {
+            "@objectid": "19413",
+            "#text": "Gábor Szikszai"
+         },
+         {
+            "@objectid": "29693",
+            "#text": "Matias Tapia"
+         },
+         {
+            "@objectid": "14949",
+            "#text": "Kevin Walker"
+         },
+         {
+            "@objectid": "11990",
+            "#text": "Tyler Walpole"
+         },
+         {
+            "@objectid": "15022",
+            "#text": "Eva Widermann"
+         },
+         {
+            "@objectid": "18461",
+            "#text": "Eric Williams (I)"
+         },
+         {
+            "@objectid": "1857",
+            "#text": "Matt Wilson"
+         },
+         {
+            "@objectid": "14691",
+            "#text": "Sam Wood"
+         },
+         {
+            "@objectid": "16453",
+            "#text": "Ben Wootten"
+         },
+         {
+            "@objectid": "14955",
+            "#text": "James Zhang"
+         }
+      ],
+      "boardgamecategory": [
+         {
+            "@objectid": "1029",
+            "#text": "City Building"
+         },
+         {
+            "@objectid": "1010",
+            "#text": "Fantasy"
+         }
+      ],
+      "boardgamefamily": [
+         {
+            "@objectid": "7307",
+            "#text": "Dungeons & Dragons"
+         },
+         {
+            "@objectid": "7757",
+            "#text": "From RPG books to board games"
+         }
+      ],
+      "boardgamedesigner": [
+         {
+            "@objectid": "15913",
+            "#text": "Peter Lee"
+         },
+         {
+            "@objectid": "13261",
+            "#text": "Rodney Thompson"
+         }
+      ],
+      "videogamebg": {
+         "@objectid": "151172",
+         "#text": "Lords of Waterdeep"
+      },
+      "boardgameaccessory": [
+         {
+            "@objectid": "145782",
+            "#text": "Lords of Waterdeep: Character Meeples"
+         },
+         {
+            "@objectid": "186602",
+            "#text": "Lords of Waterdeep: Labels for Character Meeples"
+         }
+      ],
+      "boardgameexpansion": [
+         {
+            "@objectid": "122996",
+            "#text": "Lords of Waterdeep: Inevitable Betrayal Promo Card"
+         },
+         {
+            "@objectid": "146704",
+            "#text": "Lords of Waterdeep: Rapid Expansion Promo Card"
+         },
+         {
+            "@objectid": "134342",
+            "#text": "Lords of Waterdeep: Scoundrels of Skullport"
+         }
+      ],
+      "boardgamemechanic": [
+         {
+            "@objectid": "2004",
+            "#text": "Set Collection"
+         },
+         {
+            "@objectid": "2686",
+            "#text": "Take That"
+         },
+         {
+            "@objectid": "2082",
+            "#text": "Worker Placement"
+         }
+      ],
+      "boardgamesubdomain": {
+         "@objectid": "5497",
+         "#text": "Strategy Games"
+      },
+      "boardgameversion": {
+         "@objectid": "130603",
+         "#text": "Wizards of the Coast English First Edition"
+      },
+      "poll": [
+         {
+            "@name": "suggested_numplayers",
+            "@title": "User Suggested Number of Players",
+            "@totalvotes": "451",
+            "results": [
+               {
+                  "@numplayers": "1",
+                  "result": [
+                     {
+                        "@value": "Best",
+                        "@numvotes": "1"
+                     },
+                     {
+                        "@value": "Recommended",
+                        "@numvotes": "8"
+                     },
+                     {
+                        "@value": "Not Recommended",
+                        "@numvotes": "228"
+                     }
+                  ]
+               },
+               {
+                  "@numplayers": "2",
+                  "result": [
+                     {
+                        "@value": "Best",
+                        "@numvotes": "55"
+                     },
+                     {
+                        "@value": "Recommended",
+                        "@numvotes": "243"
+                     },
+                     {
+                        "@value": "Not Recommended",
+                        "@numvotes": "77"
+                     }
+                  ]
+               },
+               {
+                  "@numplayers": "3",
+                  "result": [
+                     {
+                        "@value": "Best",
+                        "@numvotes": "227"
+                     },
+                     {
+                        "@value": "Recommended",
+                        "@numvotes": "170"
+                     },
+                     {
+                        "@value": "Not Recommended",
+                        "@numvotes": "5"
+                     }
+                  ]
+               },
+               {
+                  "@numplayers": "4",
+                  "result": [
+                     {
+                        "@value": "Best",
+                        "@numvotes": "244"
+                     },
+                     {
+                        "@value": "Recommended",
+                        "@numvotes": "138"
+                     },
+                     {
+                        "@value": "Not Recommended",
+                        "@numvotes": "7"
+                     }
+                  ]
+               },
+               {
+                  "@numplayers": "5",
+                  "result": [
+                     {
+                        "@value": "Best",
+                        "@numvotes": "71"
+                     },
+                     {
+                        "@value": "Recommended",
+                        "@numvotes": "208"
+                     },
+                     {
+                        "@value": "Not Recommended",
+                        "@numvotes": "58"
+                     }
+                  ]
+               },
+               {
+                  "@numplayers": "5+",
+                  "result": [
+                     {
+                        "@value": "Best",
+                        "@numvotes": "2"
+                     },
+                     {
+                        "@value": "Recommended",
+                        "@numvotes": "19"
+                     },
+                     {
+                        "@value": "Not Recommended",
+                        "@numvotes": "167"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "@name": "language_dependence",
+            "@title": "Language Dependence",
+            "@totalvotes": "92",
+            "results": [
+               {
+                  "@level": "1",
+                  "@value": "No necessary in-game text",
+                  "@numvotes": "0"
+               },
+               {
+                  "@level": "2",
+                  "@value": "Some necessary text - easily memorized or small crib sheet",
+                  "@numvotes": "8"
+               },
+               {
+                  "@level": "3",
+                  "@value": "Moderate in-game text - needs crib sheet or paste ups",
+                  "@numvotes": "67"
+               },
+               {
+                  "@level": "4",
+                  "@value": "Extensive use of text - massive conversion needed to be playable",
+                  "@numvotes": "17"
+               },
+               {
+                  "@level": "5",
+                  "@value": "Unplayable in another language",
+                  "@numvotes": "0"
+               }
+            ]
+         },
+         {
+            "@name": "suggested_playerage",
+            "@title": "User Suggested Player Age",
+            "@totalvotes": "101",
+            "results": [
+               {
+                  "@value": "2",
+                  "@numvotes": "0"
+               },
+               {
+                  "@value": "3",
+                  "@numvotes": "0"
+               },
+               {
+                  "@value": "4",
+                  "@numvotes": "1"
+               },
+               {
+                  "@value": "5",
+                  "@numvotes": "0"
+               },
+               {
+                  "@value": "6",
+                  "@numvotes": "1"
+               },
+               {
+                  "@value": "8",
+                  "@numvotes": "19"
+               },
+               {
+                  "@value": "10",
+                  "@numvotes": "44"
+               },
+               {
+                  "@value": "12",
+                  "@numvotes": "31"
+               },
+               {
+                  "@value": "14",
+                  "@numvotes": "5"
+               },
+               {
+                  "@value": "16",
+                  "@numvotes": "0"
+               },
+               {
+                  "@value": "18",
+                  "@numvotes": "0"
+               },
+               {
+                  "@value": "21 and up",
+                  "@numvotes": "0"
+               }
+            ]
+         }
+      ],
+      "statistics": {
+         "@page": "1",
+         "ratings": {
+            "usersrated": "27944",
+            "average": "7.79726",
+            "bayesaverage": "7.68228",
+            "ranks": [
+               {
+                  "@id": "1",
+                  "@name": "boardgame",
+                  "@friendlyname": "Board Game Rank",
+                  "@value": "45",
+                  "@bayesaverage": "7.68228"
+               },
+               {
+                  "@id": "5497",
+                  "@name": "strategygames",
+                  "@friendlyname": "Strategy Game Rank",
+                  "@value": "43",
+                  "@bayesaverage": "7.65009"
+               }
+            ],
+            "stddev": "1.2547",
+            "median": "0",
+            "owned": "34063",
+            "trading": "349",
+            "wanting": "1150",
+            "wishing": "6180",
+            "numcomments": "5075",
+            "numweights": "1724",
+            "averageweight": "2.5081"
+         }
+      }
+   }
+}
