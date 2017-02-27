@@ -1,5 +1,12 @@
 // State object for API data
 var BggData = [];
+//TODO remove test later
+var BggDataTest = [
+	{gameId: ''},
+	{gameId: ''},
+	{gameId: ''},
+	{gameId: ''},
+	];
 
 
 // Changes XML to JSON
@@ -101,10 +108,11 @@ function getDataFromBGGApi(callback, search, gameId) { // either search or gameI
 var _ = undefined;
 // main function call
 // getDataFromBGGApi(printData, 'lords of waterdeep');
-getDataFromBGGApi(saveDataShallowCall, 'lords of waterdeep');
+// getDataFromBGGApi(saveDataShallowSearch, 'lords of waterdeep');
 
 // getDataFromBGGApi(printData);
 getDataFromBGGApi(printData, _ , '110327, 122996, 146704, 134342');
+getDataFromBGGApi(saveDataDeepSearch, _ , '110327, 122996, 146704, 134342');
 
 // testing ajax data
 function printData(data) {
@@ -114,7 +122,7 @@ function printData(data) {
 }
 
 // save data to State => BggData
-function saveDataShallowCall(data) {
+function saveDataShallowSearch(data) {
 
 	// Clear previous data
 	BggData.length = 0;
@@ -142,11 +150,75 @@ console.log(BggData);
 
 function createGameIdString() {
 	var gameString = '';
-	var comma = ' , ';
-	BggData.forEach(function(elem){
-		gameString = gameString + comma + elem;
+	var comma = ', ';
+	BggData.forEach(function(elem, index){
+		if (index === BggData.length - 1) {
+			gameString += elem.gameId;
+		} else {
+		var gameidstr =  elem.gameId + comma;
+		gameString += gameidstr;
+	}
 	});
 	console.log(gameString);
 	return gameString
+}
+
+function saveDataDeepSearch(data){
+	// data is not cleared as it is being aggregated from the first api call
+
+	// convert xml to json
+	Bggdeepdata = xmlToJson(data)
+
+
+	// iterate deep data
+	Bggdeepdata.boardgames.boardgame.forEach(function(element) {
+		console.log ("element:", element)
+		// define data keys
+		var image = element.image['#text'];
+		var players = element.minplayers['#text'] + ' - ' + element.maxplayers['#text'];
+		var playingtime = element.playingtime['#text'] + ' minutes';
+		var age = element.age['#text'];
+		var description = element.description['#text'];
+		var boardgamepublisher = element.boardgamepublisher['#text'];
+		var boardgamerank = element.statistics.ratings.average ['#text'];
+		console.log(element, element.boardgamemechanic, element.boardgamemechanic.map)
+		var boardgamemechanics = element.boardgamemechanic.map(function(elem) {
+			return elem['#text'];
+		});
+
+
+		if (description === "This page does not exist. You can edit this page to create it.") {
+			description = "This item does not have a description.";
+		};
+
+		if (playingtime === "0 minutes") {
+			playingtime = "N/A"
+		};
+
+		// console.logs to test keys
+		console.log("image: " + image);
+		console.log("players: " + players);
+		console.log("playing time: " + playingtime);
+		console.log("age: " + age);
+		console.log("board game publisher: " + boardgamepublisher);
+		console.log("description: " + description);
+		console.log("board game rank: " + boardgamerank);
+		console.log("board game mechanics: " + boardgamemechanics);
+
+
+
+
+
+		// feed keys into global object TODO test for now
+		BggDataTest.boardGameImage = image;
+		BggDataTest.players = players;
+		BggDataTest.playingTime = playingtime;
+		BggDataTest.age = age;
+		BggDataTest.description = description;
+		})
+	console.log(Bggdeepdata);
+	console.log(BggDataTest);
+
+
 }
 //   https://www.boardgamegeek.com/xmlapi2//search?parameters&query=agricola

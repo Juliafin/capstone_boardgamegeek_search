@@ -62,7 +62,7 @@ function xmlToJson(xml) {
 
 
 var BOARDGAMEGEEK_BASE_URL = "http://boardgamegeek.com/xmlapi/"
-function getDataFromBGGApi(callback, search, gameId) { // either search or gameID is optional
+function getDataFromBGGApi(search, gameId) { // either search or gameID is optional
 
 	// guards against both optional parameters being undefined
 	if ((search === undefined) && (gameId === undefined)) {
@@ -118,16 +118,24 @@ function getDataFromBGGApi(callback, search, gameId) { // either search or gameI
   console.log(BggData);
   }
 
+  function error(reason) {
+      // one of the ajax calls failed (we don't care which)
+      console.error("Ajax call failed because: " + reason);
+
+// returns a promise on the first api call
 var bggShallow = getDataFromBGGApi();
 
-bggShallow.then(...)
+bggShallow.then(saveDataShallowCall, error) {
+
+};
 
 
-// can be simpler here! $.ajax in jquery already returns a promise
+// example code
 
-//
-// then you can just go ...
-//
-// `var bggShallow = getDataFromBGGApi();` and `bggShallow.then( … )`
-//
-// you won't need to create an extra promise to wrap around it
+// var promise1 = getDataFromBGGApi(saveDataShallowCall, 'lords of waterdeep');
+// var promise2 = getDataFromBGGApi(printData, _ , '110327, 122996, 146704, 134342');
+// $.when(promise1, promise2)
+// .then(function (result1, result2) {
+// console.log(result1); // result from first ajax request
+// console.log(result2); // result from second ajax request
+// });
