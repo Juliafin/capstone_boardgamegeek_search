@@ -1,0 +1,34 @@
+
+shallow search
+
+Bggshallowdata.boardgames.boardgame (array)
+iterate!
+element.@attributes.objectid (id number of game)
+
+element.name.#text (name of game)
+element.yearpublished.#text (year published)
+````````DONE`````````
+
+
+
+
+
+
+deep search
+boardgames.boardgame(array).image = (image of game)
+boardgames.boardgame.minplayers +
+boardgames.boardgame.maxplayers (concat these)
+
+boardgames.boardgame.playingtime(how long the game plays)
+
+boardgames.boardgame.age (recommended age)
+
+boardgames.boardgame.description (long description of the game)
+
+
+
+boardgames.boardgame.statistics.ratings.ranks.rank[0].@attributes.value (rank of board game)
+
+boardgames.boardgame.statistics.ratings.average.#text (average user rating)
+
+boardgames.boardgame.boardgamemechanic(for each on this)  > element.#text(Game mechanics: push these into an array)

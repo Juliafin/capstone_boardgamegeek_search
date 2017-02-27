@@ -60,9 +60,6 @@ function xmlToJson(xml) {
     };
 })();
 
-// https://www.boardgamegeek.com/xmlapi2//search?parameters&query=agricola
-// http://boardgamegeek.com/xmlapi/search?search=frika
-
 
 var BOARDGAMEGEEK_BASE_URL = "http://boardgamegeek.com/xmlapi/"
 function getDataFromBGGApi(callback, search, gameId) { // either search or gameID is optional
@@ -83,7 +80,8 @@ function getDataFromBGGApi(callback, search, gameId) { // either search or gameI
     	},
     	dataType: 'xml',
     	type: 'GET',
-    	success: callback
+      error: reject,
+      success: resolve
   	};
 		if (search !== undefined) {
 			boardgamegeekSearchSetting.url = BOARDGAMEGEEK_BASE_URL + 'search/';
@@ -94,59 +92,42 @@ function getDataFromBGGApi(callback, search, gameId) { // either search or gameI
 			boardgamegeekSearchSetting.data.stats = '1';
 		};
 
-  	$.ajax(boardgamegeekSearchSetting);
+  	 return $.ajax(boardgamegeekSearchSetting);
 	}
 
+  function saveDataShallowCall(data) {
 
-var _ = undefined;
-// main function call
-// getDataFromBGGApi(printData, 'lords of waterdeep');
-getDataFromBGGApi(saveDataShallowCall, 'lords of waterdeep');
+  	// Clear previous data
+  	BggData.length = 0;
 
-// getDataFromBGGApi(printData);
-getDataFromBGGApi(printData, _ , '110327, 122996, 146704, 134342');
+  	// convert from xml to JSON
+  	var Bggshallowdata = xmlToJson(data);
 
-// testing ajax data
-function printData(data) {
-	console.log(data);
- 	var Bggshallowdata = xmlToJson(data);
-  console.log(Bggshallowdata.boardgames.boardgame);
-}
+  	// iterate array of objects
+  	BggData = Bggshallowdata.boardgames.boardgame.map(function(element,index) {
+  		var bgObj = {};
+  		// console.log(element['@attributes'].objectid);
+  		bgObj.gameId = element['@attributes'].objectid;
+  		// console.log(BggData.gameId);
+  		bgObj.boardGameName = element.name['#text'];
+  		bgObj.yearpublished = element.yearpublished['#text'];
+  		// console.log(bgObj);
+  		return bgObj
 
-// save data to State => BggData
-function saveDataShallowCall(data) {
+  	})
+  console.log(BggData);
+  }
 
-	// Clear previous data
-	BggData.length = 0;
+var bggShallow = getDataFromBGGApi();
 
-	// convert from xml to JSON
-	var Bggshallowdata = xmlToJson(data);
-
-	// iterate array of objects
-	BggData = Bggshallowdata.boardgames.boardgame.map(function(element,index) {
-		var bgObj = {};
-		// console.log(element['@attributes'].objectid);
-		bgObj.gameId = element['@attributes'].objectid;
-		// console.log(BggData.gameId);
-		bgObj.boardGameName = element.name['#text'];
-		bgObj.yearpublished = element.yearpublished['#text'];
-		// console.log(bgObj);
-		return bgObj
-
-	})
-console.log(BggData);
-}
+bggShallow.then(...)
 
 
+// can be simpler here! $.ajax in jquery already returns a promise
 
-
-function createGameIdString() {
-	var gameString = '';
-	var comma = ' , ';
-	BggData.forEach(function(elem){
-		gameString = gameString + comma + elem;
-	});
-	console.log(gameString);
-	return gameString
-}
-//   https://www.boardgamegeek.com/xmlapi2//search?parameters&query=agricola
+//
+// then you can just go ...
+//
+// `var bggShallow = getDataFromBGGApi();` and `bggShallow.then( … )`
+//
+// you won't need to create an extra promise to wrap around it
