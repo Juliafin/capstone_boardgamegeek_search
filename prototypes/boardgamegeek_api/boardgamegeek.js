@@ -130,11 +130,14 @@ var _ = undefined;
 // main function calls for testing
 // tested and working
 // getDataFromBGGApi(printData, 'lords of waterdeep');
-getDataFromBGGApi(saveDataShallowSearch, 'lords of waterdeep');
 // getDataFromBGGApi(printData);
 // getDataFromBGGApi(printData, _, '110327, 122996, 146704, 134342');
+
+
+getDataFromBGGApi(saveDataHotlist);
+getDataFromBGGApi(saveDataShallowSearch, 'lords of waterdeep');
 getDataFromBGGApi(saveDataDeepSearch, _ , '110327, 122996, 146704, 134342');
-// getDataFromBGGApi(saveDataHotlist);
+
 
 
 var YOUTUBE_BASE_URL = "https://www.googleapis.com/youtube/v3/search"
@@ -226,14 +229,19 @@ function saveDataShallowSearch(data) {
     var bgObj = {};
     // console.log(element['@attributes'].objectid);
     bgObj.gameId = element['@attributes'].objectid;
-    // console.log(BggData.gameId);
     bgObj.boardGameName = element.name['#text'];
     bgObj.yearpublished = element.yearpublished['#text'];
+    // console.log(BggData.gameId);
+
+		// pushes the board game name as youtube search term into state
+		BggData.youtubeSearchterms[index] = element.name['#text'] + " walkthrough";
+
     // console.log(bgObj);
     return bgObj
 
   })
-  console.log(BggData);
+  console.log("Bgg data, shallow search done", BggData);
+	console.log("Youtube search terms: ", BggData.youtubeSearchterms)
 }
 
 // makes string of game ids from game ids at global object
@@ -259,10 +267,11 @@ function saveDataDeepSearch(data) {
 
   // convert xml to json
   var Bggdeepdata = xmlToJson(data)
+	// console.log(Bggdeepdata);
 
   // iterate deep data
   Bggdeepdata.boardgames.boardgame.forEach(function(element, index) {
-    console.log("element:", element)
+    // console.log("element:", element)
     // define data keys
     var image = element.image['#text'];
     var players = element.minplayers['#text'] + ' - ' + element.maxplayers['#text'];
@@ -275,7 +284,7 @@ function saveDataDeepSearch(data) {
     // Inconsistent data handling for board game rank
     if (Array.isArray(element.statistics.ratings.ranks.rank)) {
       var boardgameRank = element.statistics.ratings.ranks.rank[0]['@attributes'].value;
-      console.log('full boardgame rank: ', boardgameRank);
+      // console.log('full boardgame rank: ', boardgameRank);
     } else if (typeof(element.statistics.ratings.ranks.rank) === 'object') {
       var boardgameRank = element.statistics.ratings.ranks.rank['@attributes'].value;
     } else {
@@ -287,13 +296,13 @@ function saveDataDeepSearch(data) {
     // console.log(element, element.boardgamemechanic, element.boardgamemechanic.map)
     if (Array.isArray(element.boardgamemechanic)) {
       var boardgamemechanics = element.boardgamemechanic.map(function(elem) {
-        console.log('elem is an array, and this is the mechanic: ' + elem['#text'])
+        // console.log('elem is an array, and this is the mechanic: ' + elem['#text'])
         return elem['#text'];
       });
     } else if ((typeof(element.boardgamemechanic) === 'object') && (element.boardgamemechanic !== null)) {
       //  object keys, iterate over keys, send into array
       var boardgamemechanics = element.boardgamemechanic['#text']
-      console.log('elem is an object, and this is the mechanic: ' + boardgamemechanics);
+      // console.log('elem is an object, and this is the mechanic: ' + boardgamemechanics);
     } else if (!element.boardgamemechanic) {
       var boardgamemechanics = 'N/A';
     };
@@ -327,6 +336,5 @@ function saveDataDeepSearch(data) {
     BggData.mainData[index].boardgamemechanics = boardgamemechanics;
     BggData.mainData[index].boardgameRank = boardgameRank;
   })
-  console.log(Bggdeepdata);
-  console.log(BggData.mainData);
+  console.log("Bgg main data written: ", BggData.mainData);
 }
