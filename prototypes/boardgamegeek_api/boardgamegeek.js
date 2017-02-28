@@ -1,5 +1,12 @@
 // State object for API data
-var BggData = [];
+var BggData = {
+	hotlist: [],
+	mainData: [],
+	youtubeSearchterms: [],
+}
+
+
+;
 //TODO remove test later
 var BggDataTest = [{
     gameId: ''
@@ -101,18 +108,18 @@ function getDataFromBGGApi(callback, search, gameId) {
   };
 
   // TODO breakout validation into separate function
-  // guards against both optional parameters being undefined
-  if ((search === undefined) && (gameId === undefined)) {
-    // TODO replace CSLOG with a DOM warning
-    // console.log('Please enter either a search term or a gameId');
-    boardgamegeekSearchSetting.url = BOARDGAMEGEEK_HOTLIST_URL;
 
+
+  if ((!search) && (!gameId)) {
+
+    boardgamegeekSearchSetting.url = BOARDGAMEGEEK_HOTLIST_URL;
+		console.log("Ajax: Hotlist");
   } else if (search !== undefined) {
     boardgamegeekSearchSetting.url = BOARDGAMEGEEK_SEARCH_URL;
-
+		console.log("Ajax: Bgg search")
   } else {
     boardgamegeekSearchSetting.url = BOARDGAMEGEEK_GAMEID_URL + gameId;
-    console.log('This is the ajax request: ' + boardgamegeekSearchSetting);
+    console.log('Ajax: Bgg gameid ' + boardgamegeekSearchSetting);
     boardgamegeekSearchSetting.data.stats = '1';
   };
   $.ajax(boardgamegeekSearchSetting);
@@ -120,20 +127,89 @@ function getDataFromBGGApi(callback, search, gameId) {
 
 
 var _ = undefined;
-// main function call
+// main function calls for testing
 // tested and working
 // getDataFromBGGApi(printData, 'lords of waterdeep');
 getDataFromBGGApi(saveDataShallowSearch, 'lords of waterdeep');
 // getDataFromBGGApi(printData);
-getDataFromBGGApi(printData, _, '110327, 122996, 146704, 134342');
-// getDataFromBGGApi(saveDataDeepSearch, _ , '110327, 122996, 146704, 134342');
-getDataFromBGGApi(printData);
+// getDataFromBGGApi(printData, _, '110327, 122996, 146704, 134342');
+getDataFromBGGApi(saveDataDeepSearch, _ , '110327, 122996, 146704, 134342');
+// getDataFromBGGApi(saveDataHotlist);
 
-// testing ajax data
+
+var YOUTUBE_BASE_URL = "https://www.googleapis.com/youtube/v3/search"
+function getDataFromYoutubeApi(callback) {
+
+  var youtubeSendSetting = {
+    url: YOUTUBE_BASE_URL,
+    data: {
+      q: BggData.youtubeSearchterms[0],
+      part: 'snippet',
+      key: 'AIzaSyCpcsrpsW5YrXga0kp0tg241mPPwhsxwvA',
+      r: 'json',
+      maxResults: 1,
+      type: 'video'
+
+    },
+    dataType: 'json',
+    type: 'GET',
+    success: callback
+  };
+  $.ajax(youtubeSendSetting);
+}
+
+
+// testing youtube api call
+// getDataFromYoutubeApi(printData);
+
+
+function saveYTdata(data) {
+	var youtubeUrl = "https://www.youtube.com/watch?v=" + data.items.id.videoId;
+	return youtubeUrl;
+}
+
+
+// testing ajax and conversion to JSON
 function printData(data) {
-  console.log(data);
-  var Bggshallowdata = xmlToJson(data);
-  console.log(Bggshallowdata);
+  console.log("Youtube data: " , data);
+  // var Bggshallowdata = xmlToJson(data);
+  // console.log("This is the raw json conversion: ", Bggshallowdata);
+}
+
+function saveDataHotlist(data){
+
+	// convert to JSON
+	var hotlist = xmlToJson(data);
+	// console.log(hotlist);
+
+	hotlist.items.item.forEach(function(element, index){
+		// create keys
+		var hotlistData = {};
+		var hotlistRank = element['@attributes'].rank;
+		var hotlistGameId = element['@attributes'].id;
+		var hotlistGameName = element.name['@attributes'].value;
+		var hotlistThumbnail = element.thumbnail['@attributes'].value;
+		var hotlistYearPublished = element.yearpublished['@attributes'].value;
+
+		// push keys to object
+		hotlistData.hotlistRank = hotlistRank;
+		hotlistData.hotlistGameId = hotlistGameId;
+		hotlistData.hotlistGameName = hotlistGameName;
+		hotlistData.hotlistThumbnail = hotlistThumbnail;
+		hotlistData.hotlistYearPublished = hotlistYearPublished;
+
+		// push to global object
+		BggData.hotlist[index] = hotlistData;
+
+		// test variables
+		// console.log(hotlistRank);
+		// console.log(hotlistGameId);
+		// console.log(hotlistGameName);
+		// console.log(hotlistThumbnail);
+		// console.log(hotlistYearPublished);
+
+	});
+	// console.log(BggData.hotlist);
 }
 
 // save data to State => BggData
@@ -146,7 +222,7 @@ function saveDataShallowSearch(data) {
   var Bggshallowdata = xmlToJson(data);
 
   // iterate array of objects
-  BggData = Bggshallowdata.boardgames.boardgame.map(function(element, index) {
+  BggData.mainData = Bggshallowdata.boardgames.boardgame.map(function(element, index) {
     var bgObj = {};
     // console.log(element['@attributes'].objectid);
     bgObj.gameId = element['@attributes'].objectid;
@@ -165,7 +241,7 @@ function saveDataShallowSearch(data) {
 function createGameIdString() {
   var gameString = '';
   var comma = ', ';
-  BggData.forEach(function(elem, index) {
+  BggData.mainData.forEach(function(elem, index) {
     if (index === BggData.length - 1) {
       gameString += elem.gameId;
     } else {
@@ -231,27 +307,26 @@ function saveDataDeepSearch(data) {
     };
 
     // console.logs to test keys
-    console.log("image: " + image);
-    console.log("players: " + players);
-    console.log("playing time: " + playingtime);
-    console.log("age: " + age);
-    console.log("board game publisher: " + boardgamepublisher);
-    console.log("description: " + description);
-    console.log("board game rank: " + boardgameRank);
-    console.log("board game mechanics: " + boardgamemechanics)
-    console.log("board game avg rating: " + boardgameAvgRating);
+    // console.log("image: " + image);
+    // console.log("players: " + players);
+    // console.log("playing time: " + playingtime);
+    // console.log("age: " + age);
+    // console.log("board game publisher: " + boardgamepublisher);
+    // console.log("description: " + description);
+    // console.log("board game rank: " + boardgameRank);
+    // console.log("board game mechanics: " + boardgamemechanics)
+    // console.log("board game avg rating: " + boardgameAvgRating);
 
-    // feed keys into global object TODO test for now
-    BggDataTest[index].boardGameImage = image;
-    BggDataTest[index].players = players;
-    BggDataTest[index].playingTime = playingtime;
-    BggDataTest[index].age = age;
-    BggDataTest[index].boardgamepublisher;
-    BggDataTest[index].description = description;
-    BggDataTest[index].boardgameAvgRating = boardgameAvgRating;
-    BggDataTest[index].boardgamemechanics = boardgamemechanics;
-    BggDataTest[index].boardgameRank = boardgameRank;
+    BggData.mainData[index].boardGameImage = image;
+    BggData.mainData[index].players = players;
+    BggData.mainData[index].playingTime = playingtime;
+    BggData.mainData[index].age = age;
+    BggData.mainData[index].boardgamepublisher;
+    BggData.mainData[index].description = description;
+    BggData.mainData[index].boardgameAvgRating = boardgameAvgRating;
+    BggData.mainData[index].boardgamemechanics = boardgamemechanics;
+    BggData.mainData[index].boardgameRank = boardgameRank;
   })
   console.log(Bggdeepdata);
-  console.log(BggDataTest);
+  console.log(BggData.mainData);
 }
