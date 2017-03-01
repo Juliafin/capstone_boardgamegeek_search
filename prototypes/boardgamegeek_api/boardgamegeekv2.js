@@ -153,3 +153,32 @@ bggShallow.then(saveDataShallowCall, error) {
 //
 // id = getid();
 // promise.then(alterDOM.bind(null, id);
+
+// $.ajax( "example.php" ) .done(function() { console.log( "DO YOUR MAIN CALLBACK" ); }) .always(function() { console.log( "PASS THE NEXT CALL IN LINE" ); });
+
+
+
+// var p1 = $.ajax(getDataFromBGGApi(saveDataHotlist));
+// var p2 = $.ajax(getDataFromBGGApi(saveDataDeepSearch, _, '110327, 122996, 146704, 134342'));
+// var error = Promise.reject(new Error("I am a fake error!"));
+//
+// Promise.all([error, p1, p2])
+// .then(values => {
+//  console.log(values); // [3, 1337, "foo"]
+// }).catch(function(error){
+//  console.log('There was error');
+//  console.log(error);
+// });
+//
+// ---------------------
+// function foo() {
+//  return new Promise(function (resolve, reject) {
+//
+//    resolve($.ajax(getDataFromBGGApi(saveDataHotlist)));
+//
+//  }).then($.ajax(getDataFromBGGApi(saveDataShallowSearch, 'lords of waterdeep')))
+//    .then($.ajax(getDataFromBGGApi(saveDataDeepSearch, _, '110327, 122996, 146704, 134342')))
+//    .then(searchAllYoutubeTerms());
+// }
+//
+// foo();

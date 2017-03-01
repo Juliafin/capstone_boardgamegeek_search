@@ -99,7 +99,7 @@ function getDataFromBGGApi(callback, search, gameId) {
   var boardgamegeekSearchSetting = {
     url: '',
     data: {
-      search: search,
+      search: search || undefined,
       stats: ''
     },
     dataType: 'xml',
@@ -143,6 +143,10 @@ $.ajax(getDataFromBGGApi(saveDataHotlist)).then(function(){
 	$.ajax(getDataFromBGGApi(saveDataDeepSearch, _ , '110327, 122996, 146704, 134342'))
 }).then(searchAllYoutubeTerms());
 
+
+var gameIdsearch = createGameIdString();
+console.log("Contains the commma separated game ids: " + gameIdsearch);
+$.ajax(getDataFromBGGApi(saveDataDeepSearch, _, gameIdsearch))
 
 // getDataFromBGGApi(saveDataShallowSearch, 'lords of waterdeep'); // search term = BggData.searchTerm
 // getDataFromBGGApi(saveDataDeepSearch, _ , '110327, 122996, 146704, 134342');
@@ -357,7 +361,7 @@ function saveDataDeepSearch(data) {
       BggData.mainData[index].players = players;
       BggData.mainData[index].playingTime = playingtime;
       BggData.mainData[index].age = age;
-      BggData.mainData[index].boardgamepublisher;
+      BggData.mainData[index].boardgamepublisher = boardgamepublisher;
       BggData.mainData[index].description = description;
       BggData.mainData[index].boardgameAvgRating = boardgameAvgRating;
       BggData.mainData[index].boardgamemechanics = boardgamemechanics;
@@ -461,17 +465,17 @@ function saveDataDeepSearch(data) {
     BggData.mainData[0].players = players;
     BggData.mainData[0].playingTime = playingtime;
     BggData.mainData[0].age = age;
-    BggData.mainData[0].boardgamepublisher;
+    BggData.mainData[0].boardgamepublisher = boardgamepublisher;
     BggData.mainData[0].description = description;
     BggData.mainData[0].boardgameAvgRating = boardgameAvgRating;
     BggData.mainData[0].boardgamemechanics = boardgamemechanics;
     BggData.mainData[0].boardgameRank = boardgameRank;
 
-    	// clears youtube search terms from main object and replaces it with just the single boardgame searched
-			BggData.youtubeSearchterms = [];
-    	var boardgameName = element.name['#text'] + " walkthrough";
-			BggData.youtubeSearchterms[0] = boardgameName;
-			console.log("Youtube search results", BggData.youtubeSearchterms)
+  	// clears youtube search terms from main object and replaces it with just the single boardgame searched
+		BggData.youtubeSearchterms = [];
+  	var boardgameName = element.name['#text'] + " walkthrough";
+		BggData.youtubeSearchterms[0] = boardgameName;
+		console.log("Youtube search results", BggData.youtubeSearchterms)
 
   }; // closes main else if
 	console.log ("This is the bggdeepdata", Bggdeepdata);
