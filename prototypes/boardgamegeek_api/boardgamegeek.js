@@ -2,7 +2,7 @@
 var BggData = {
 	hotlist: [],
 	mainData: [],
-	youtubeSearchterms: [],
+	youtubeSearchterms: ["Lords of Waterdeep: Inevitable Betrayal Promo Card walkthrough"],
 }
 
 
@@ -113,13 +113,13 @@ function getDataFromBGGApi(callback, search, gameId) {
   if ((!search) && (!gameId)) {
 
     boardgamegeekSearchSetting.url = BOARDGAMEGEEK_HOTLIST_URL;
-		console.log("Ajax: Hotlist");
+		// console.log("Ajax: Hotlist");
   } else if (search !== undefined) {
     boardgamegeekSearchSetting.url = BOARDGAMEGEEK_SEARCH_URL;
-		console.log("Ajax: Bgg search")
+		// console.log("Ajax: Bgg search")
   } else {
     boardgamegeekSearchSetting.url = BOARDGAMEGEEK_GAMEID_URL + gameId;
-    console.log('Ajax: Bgg gameid ' + boardgamegeekSearchSetting);
+    // console.log('Ajax: Bgg gameid ' , boardgamegeekSearchSetting);
     boardgamegeekSearchSetting.data.stats = '1';
   };
   $.ajax(boardgamegeekSearchSetting);
@@ -140,19 +140,20 @@ getDataFromBGGApi(saveDataDeepSearch, _ , '110327, 122996, 146704, 134342');
 
 
 
+
 var YOUTUBE_BASE_URL = "https://www.googleapis.com/youtube/v3/search"
-function getDataFromYoutubeApi(callback) {
+function getDataFromYoutubeApi(callback, index) {
 
   var youtubeSendSetting = {
     url: YOUTUBE_BASE_URL,
     data: {
-      q: BggData.youtubeSearchterms[0],
+      q: BggData.youtubeSearchterms[index],
       part: 'snippet',
       key: 'AIzaSyCpcsrpsW5YrXga0kp0tg241mPPwhsxwvA',
       r: 'json',
       maxResults: 1,
-      type: 'video'
-
+      type: 'video',
+			videoEmbeddable: 'true',
     },
     dataType: 'json',
     type: 'GET',
@@ -167,8 +168,18 @@ function getDataFromYoutubeApi(callback) {
 
 
 function saveYTdata(data) {
+	if(data.items.length === 0){
+		return;
+	}
 	var youtubeUrl = "https://www.youtube.com/watch?v=" + data.items.id.videoId;
 	return youtubeUrl;
+}
+
+
+function searchAllYoutubeTerms (){
+	BggData.youtubeSearchterms.forEach(function(element, index){
+		getDataFromYoutubeApi(saveYTdata, index);
+	})
 }
 
 
@@ -218,12 +229,13 @@ function saveDataHotlist(data){
 // save data to State => BggData
 function saveDataShallowSearch(data) {
 
+console.log("Youtube search terms before expansion filtered:" , BggData.youtubeSearchterms);
+
   // Clear previous data
   BggData.length = 0;
 
   // convert from xml to JSON
   var Bggshallowdata = xmlToJson(data);
-
   // iterate array of objects
   BggData.mainData = Bggshallowdata.boardgames.boardgame.map(function(element, index) {
     var bgObj = {};
@@ -242,6 +254,8 @@ function saveDataShallowSearch(data) {
   })
   console.log("Bgg data, shallow search done", BggData);
 	console.log("Youtube search terms: ", BggData.youtubeSearchterms)
+
+	// TODO temporary call
 }
 
 // makes string of game ids from game ids at global object
@@ -264,10 +278,9 @@ function createGameIdString() {
 // 2nd api call to BGG api (deep search using game ids)
 function saveDataDeepSearch(data) {
   // data is not cleared as it is being aggregated from the first api call
-
   // convert xml to json
   var Bggdeepdata = xmlToJson(data)
-	// console.log(Bggdeepdata);
+	console.log("Raw deep data:", Bggdeepdata);
 
   // iterate deep data
   Bggdeepdata.boardgames.boardgame.forEach(function(element, index) {
@@ -335,6 +348,47 @@ function saveDataDeepSearch(data) {
     BggData.mainData[index].boardgameAvgRating = boardgameAvgRating;
     BggData.mainData[index].boardgamemechanics = boardgamemechanics;
     BggData.mainData[index].boardgameRank = boardgameRank;
+
+
+		// Eliminate board games from the youtube search that are expansions (and will not return a valid result from the api call, limiting the number of necessary youtube calls). Test whether element.boardgamecategory has a (nested) value of "expansion". If it does, filter out the matching game name for the element from the state object bggdata.youtubeSearchterms
+
+			// boardgamecategory is an array
+		if (Array.isArray(element.boardgamecategory)) {
+
+				var boardgameCategoryArr = element.boardgamecategory.map(function(element){
+					return element['#text'];
+				}).join().replace(/,/g, ' ').split(' ');
+				console.log (boardgameCategoryArr);
+
+				if( boardgameCategoryArr.indexOf('Expansion') !== -1) {
+					var expansionName = element.name['#text'] + " walkthrough";
+					var expansionIndex = BggData.youtubeSearchterms.indexOf(expansionName);
+					BggData.youtubeSearchterms.splice(expansionIndex, 1);
+				};
+
+				// boardgamecategory is an object
+		} else if ( ( typeof (element.boardgamecategory) === 'object') && (element.boardgamecategory !== null ) ) {
+			var boardgamecategoryStr = element.boardgamecategory['#text'];
+			console.log (boardgamecategoryStr);
+			var boardgamecategoryArr = boardgamecategoryStr.split(' ');
+			console.log (boardgamecategoryArr);
+				if (boardgamecategoryArr.indexOf('Expansion') !== -1) {
+					var expansionName = element.name['#text'] + " walkthrough";
+					var expansionIndex = BggData.youtubeSearchterms.indexOf(expansionName);
+					BggData.youtubeSearchterms.splice(expansionIndex, 1);
+				};
+		};
+
+		// if (element.hasOwnProperty('boardgameexpansion')) {
+		// 	var expansionName = element.name + " walkthrough";
+		// 	// console.log("Youtube search terms before expansion filtered:" , BggData.youtubeSearchterms)
+		// 	var expansionIndex = BggData.youtubeSearchterms.indexOf(expansionName);
+		// 	BggData.youtubeSearchterms.splice(expansionIndex, 1);
+		// 	// console.log("Youtube search terms after being filtered at the current index:" , BggData.youtubeSearchterms);
+		// 	console.log(BggData.youtubeSearchterms);
+
+		// }
   })
+	console.log("Bggdata youtube search terms" , BggData.youtubeSearchterms);
   console.log("Bgg main data written: ", BggData.mainData);
 }

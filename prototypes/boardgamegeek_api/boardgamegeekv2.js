@@ -103,7 +103,7 @@ function getDataFromBGGApi(search, gameId) { // either search or gameID is optio
   	// convert from xml to JSON
   	var Bggshallowdata = xmlToJson(data);
 
-  	// iterate array of objects
+  	// iterate array of objects, returning objects with the board game data into each index
   	BggData = Bggshallowdata.boardgames.boardgame.map(function(element,index) {
   		var bgObj = {};
   		// console.log(element['@attributes'].objectid);
@@ -144,3 +144,12 @@ bggShallow.then(saveDataShallowCall, error) {
 // console.log(result1); // result from first ajax request
 // console.log(result2); // result from second ajax request
 // });
+
+
+// more psuedocode
+// alterDOM(id, data) {
+// alter dom code goes here
+// }
+//
+// id = getid();
+// promise.then(alterDOM.bind(null, id);
