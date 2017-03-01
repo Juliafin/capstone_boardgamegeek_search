@@ -227,7 +227,7 @@ function saveDataHotlist(data) {
 		// push to global object
 		BggData.hotlist[index] = hotlistData;
 
-		// test variables
+		// test keys
 		// console.log(hotlistRank);
 		// console.log(hotlistGameId);
 		// console.log(hotlistGameName);
@@ -293,7 +293,6 @@ function saveDataDeepSearch(data) {
   // convert xml to json
   var Bggdeepdata = xmlToJson(data)
   console.log("Raw deep data:", Bggdeepdata);
-
 
   // if the first key of the raw data is an array!
   if (Array.isArray(Bggdeepdata.boardgames.boardgame)) {
@@ -394,16 +393,8 @@ function saveDataDeepSearch(data) {
         };
       };
 
-      // if (element.hasOwnProperty('boardgameexpansion')) {
-      // 	var expansionName = element.name + " walkthrough";
-      // 	// console.log("Youtube search terms before expansion filtered:" , BggData.youtubeSearchterms)
-      // 	var expansionIndex = BggData.youtubeSearchterms.indexOf(expansionName);
-      // 	BggData.youtubeSearchterms.splice(expansionIndex, 1);
-      // 	// console.log("Youtube search terms after being filtered at the current index:" , BggData.youtubeSearchterms);
-      // 	console.log(BggData.youtubeSearchterms);
+    }); //ends forEach function (iterating boardgame.boardgames)
 
-      // }
-    })
     console.log("Bggdata youtube search terms", BggData.youtubeSearchterms);
     console.log("Bgg main data written: ", BggData.mainData);
     console.log("Bgg state object", BggData);
@@ -456,15 +447,15 @@ function saveDataDeepSearch(data) {
     };
 
     // console.logs to test keys
-    console.log("image: " + image);
-    console.log("players: " + players);
-    console.log("playing time: " + playingtime);
-    console.log("age: " + age);
-    console.log("board game publisher: " + boardgamepublisher);
-    console.log("description: " + description);
-    console.log("board game rank: " + boardgameRank);
-    console.log("board game mechanics: " + boardgamemechanics)
-    console.log("board game avg rating: " + boardgameAvgRating);
+    // console.log("image: " + image);
+    // console.log("players: " + players);
+    // console.log("playing time: " + playingtime);
+    // console.log("age: " + age);
+    // console.log("board game publisher: " + boardgamepublisher);
+    // console.log("description: " + description);
+    // console.log("board game rank: " + boardgameRank);
+    // console.log("board game mechanics: " + boardgamemechanics)
+    // console.log("board game avg rating: " + boardgameAvgRating);
 
     BggData.mainData[0].boardGameImage = image;
     BggData.mainData[0].players = players;
