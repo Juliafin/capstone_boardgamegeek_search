@@ -304,7 +304,7 @@ function saveDataDeepSearch(data) {
     Bggdeepdata.boardgames.boardgame.forEach(function(element, index) {
       // console.log("element:", element)
       // define data keys
-      var image = element.image['#text'];
+      var image = 'http:' + element.image['#text'];
       var players = element.minplayers['#text'] + ' - ' + element.maxplayers['#text'];
       var playingtime = element.playingtime['#text'] + ' minutes';
       var age = element.age['#text'];
@@ -408,7 +408,7 @@ function saveDataDeepSearch(data) {
     // top layer equivalent to "element" when boardgames.boardgame is an array
     var element = Bggdeepdata.boardgames.boardgame;
 
-    var image = element.image['#text'];
+    var image = 'http:' + element.image['#text'];
     var players = element.minplayers['#text'] + ' - ' + element.maxplayers['#text'];
     var playingtime = element.playingtime['#text'] + ' minutes';
     var age = element.age['#text'];
