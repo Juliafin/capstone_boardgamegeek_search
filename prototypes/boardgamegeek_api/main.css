@@ -3,18 +3,14 @@
 }
 
 body {
-    /* background-color: #556a61; */
-    background: linear-gradient(#586f65, #82a092);
-    blur: 19px;
+    background-color: #556a61;
 }
 
 section {
     border: 1px solid grey;
     padding: 2%;
     border-radius: 9px;
-    background-color: #93c7b2;
-    background: linear-gradient(#6eac91, #566b61);
-
+    background-color: #81ffcc;
 }
 
 form.search {
@@ -35,6 +31,7 @@ button#submitbutton {
 }
 
 .playersandplaytime {
+  font-family: Alegreya Sans;
     display: inline-block;
     width: 28%;
     /* position: relative; */
@@ -44,22 +41,30 @@ button#submitbutton {
 
 .boardgameimage {
     display: inline-block;
-    width: 93px;
+    width: 131px;
     float: right;
     position: relative;
-    top: 15%;
+    top: -25%;
+    height: 194px;
+    padding-top: 38px;
+    z-index: 1;
 }
 
 img {
-    width: 80%;
+    height: 10px;
+    width: 103%;
     display: block;
     float: right;
-    height: 103px;
+    height: 189px;
     margin-right: 20px;
-    border-radius: 14px;
+    border-radius: 3px;
+    position: absolute;
+    top: 18px;
+    right: -5px;
 }
 
 .boardgamemechanics {
+  font-family: Alegreya Sans;
     display: inline-block;
     font-size: 1em;
     position: relative;
@@ -68,6 +73,7 @@ img {
 }
 
 h2.boardgamename {
+  font-family: Lobster Two;
     display: inline-block;
     padding-left: 0.5em;
     padding-top: 0;
@@ -77,14 +83,18 @@ h2.boardgamename {
 }
 
 article {
-    border-radius: 28px;
-    height: 148px;
+    border-radius: 2px;
+    height: 151px;
     border: solid 1px grey;
-    margin-bottom: 21px;
+    margin-bottom: 80px;
+    margin-top: 34px;
     -webkit-transition: background-color 1s ease-out;
     -moz-transition: background-color 1s ease-out;
     -o-transition: background-color 1s ease-out;
     transition: background-color 1s ease-out;
+    background-color: bisque;
+    /* position: absolute; */
+    /* z-index: 0; */
 }
 
 

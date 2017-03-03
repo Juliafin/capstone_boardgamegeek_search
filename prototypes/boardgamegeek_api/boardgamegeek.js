@@ -481,4 +481,14 @@ function saveDataDeepSearch(data) {
 	console.log ("This is the bggdeepdata", Bggdeepdata);
 	console.log ("This is the BggData", BggData);
 
+} // closes deep search
+
+
+function getSearchTerm () {
+
+$('#boardgamesearch').submit(function(event){
+	event.preventDefault();
+	var boardgamesearchterm = $('#boardgameterm').val();
+		console.log(boardgamesearchterm);
+})
 }
