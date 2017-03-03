@@ -41,7 +41,7 @@ input[type="text"] {
 button#submitbutton {
     outline: none;
     height: 1.0em;
-    width: 17%;
+    width: auto;
     height: 26px;
     margin-top: 0px;
     font-size: small;

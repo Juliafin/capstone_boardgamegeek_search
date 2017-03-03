@@ -2,7 +2,7 @@
 var BggData = {
 	hotlist: [],
 	mainData: [],
-	youtubeSearchterms: ["Lords of Waterdeep: Inevitable Betrayal Promo Card walkthrough"],
+	youtubeSearchterms: [],
 }
 
 
@@ -137,11 +137,11 @@ var _ = undefined;
 // getDataFromBGGApi(printData, '110327, 122996, 146704, 134342');
 
 // Main calls for now!
-// $.ajax(getDataFromBGGApi(saveDataHotlist)).then(function(){
-// 	$.ajax(getDataFromBGGApi(saveDataShallowSearch, 'lords of waterdeep'))
-// }).then(function(){
-// 	$.ajax(getDataFromBGGApi(saveDataDeepSearch, _ , '110327, 122996, 146704, 134342'))
-// }).then(searchAllYoutubeTerms());
+$.ajax(getDataFromBGGApi(saveDataHotlist)).then(function(){
+	$.ajax(getDataFromBGGApi(saveDataShallowSearch, _, 'lords of waterdeep'))
+}).then(function(){
+	$.ajax(getDataFromBGGApi(saveDataDeepSearch, '110327, 122996, 146704, 134342'))
+}).then(searchAllYoutubeTerms());
 //
 //
 // var gameIdsearch = createGameIdString();
@@ -188,6 +188,7 @@ function saveYTdata(data) {
 		return;
 	}
 	var youtubeUrl = "https://www.youtube.com/watch?v=" + data.items.id.videoId;
+	console.log("This is the youtube url: ", youtubeUrl)
 	return youtubeUrl;
 }
 
@@ -219,14 +220,19 @@ function saveDataHotlist(data) {
 		var hotlistGameId = element['@attributes'].id;
 		var hotlistGameName = element.name['@attributes'].value;
 		var hotlistThumbnail = element.thumbnail['@attributes'].value;
-		var hotlistYearPublished = element.yearpublished['@attributes'].value;
+
+		if ("yearpublished" in element) {
+		hotlistData.hotlistYearPublished = element.yearpublished['@attributes'].value;
+		console.log(hotlistData.hotlistYearPublished);
+		};
+
 
 		// push keys to object
 		hotlistData.hotlistRank = hotlistRank;
 		hotlistData.hotlistGameId = hotlistGameId;
 		hotlistData.hotlistGameName = hotlistGameName;
 		hotlistData.hotlistThumbnail = hotlistThumbnail;
-		hotlistData.hotlistYearPublished = hotlistYearPublished;
+		// hotlistData.hotlistYearPublished = hotlistYearPublished;
 
 		// push to global object
 		BggData.hotlist[index] = hotlistData;
