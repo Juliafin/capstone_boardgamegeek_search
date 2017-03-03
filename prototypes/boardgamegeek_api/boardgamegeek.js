@@ -93,7 +93,7 @@ var BOARDGAMEGEEK_HOTLIST_URL = "http://boardgamegeek.com/xmlapi2/hot?type=board
 // search and gameID not provided, returns hot list
 // search provided, returns shallow search of games,
 // game id provided, returns deep search of games
-function getDataFromBGGApi(callback, search, gameId) {
+function getDataFromBGGApi(callback, gameId, search) {
 
   // parameters for Boardgameapi, plus changes depending on search conditions
   var boardgamegeekSearchSetting = {
@@ -134,19 +134,19 @@ var _ = undefined;
 // Calls for testing
 // tested and working
 // getDataFromBGGApi(printData);
-// getDataFromBGGApi(printData, _, '110327, 122996, 146704, 134342');
+// getDataFromBGGApi(printData, '110327, 122996, 146704, 134342');
 
 // Main calls for now!
-$.ajax(getDataFromBGGApi(saveDataHotlist)).then(function(){
-	$.ajax(getDataFromBGGApi(saveDataShallowSearch, 'lords of waterdeep'))
-}).then(function(){
-	$.ajax(getDataFromBGGApi(saveDataDeepSearch, _ , '110327, 122996, 146704, 134342'))
-}).then(searchAllYoutubeTerms());
-
-
-var gameIdsearch = createGameIdString();
-console.log("Contains the commma separated game ids: " + gameIdsearch);
-$.ajax(getDataFromBGGApi(saveDataDeepSearch, _, gameIdsearch))
+// $.ajax(getDataFromBGGApi(saveDataHotlist)).then(function(){
+// 	$.ajax(getDataFromBGGApi(saveDataShallowSearch, 'lords of waterdeep'))
+// }).then(function(){
+// 	$.ajax(getDataFromBGGApi(saveDataDeepSearch, _ , '110327, 122996, 146704, 134342'))
+// }).then(searchAllYoutubeTerms());
+//
+//
+// var gameIdsearch = createGameIdString();
+// console.log("Contains the commma separated game ids: " + gameIdsearch);
+// $.ajax(getDataFromBGGApi(saveDataDeepSearch, _, gameIdsearch))
 
 // getDataFromBGGApi(saveDataShallowSearch, 'lords of waterdeep'); // search term = BggData.searchTerm
 // getDataFromBGGApi(saveDataDeepSearch, _ , '110327, 122996, 146704, 134342');
@@ -484,11 +484,77 @@ function saveDataDeepSearch(data) {
 } // closes deep search
 
 
+//  Collects board game from form submit
 function getSearchTerm () {
 
-$('#boardgamesearch').submit(function(event){
-	event.preventDefault();
-	var boardgamesearchterm = $('#boardgameterm').val();
-		console.log(boardgamesearchterm);
-})
+	$('#boardgamesearch').submit(function(event){
+		event.preventDefault();
+		var boardgamesearchterm = $('#boardgameterm').val();
+			console.log(boardgamesearchterm);
+	});
 }
+
+
+getSearchTerm();
+
+
+function renderSearchHtml () {
+
+
+	BggData.mainData.forEach(function(element, index){
+
+		// create the html element from state
+		var html = `<article class="${element.gameId} hidden" id="index${index}">
+				<h2 class="boardgamename">${element.age}</h2>
+				<div class="boardgameimage" id="imageindex${index}">
+						<img class= "imagethumbnail" src="${element.boardgameimage}" alt="">
+				</div>
+				<div class="playersandplaytime">
+						<ul>
+								<li>Playing time: ${element.playingTime}</li>
+								<li>Number of players: ${element.yearpublished}</li>
+						</ul>
+				</div>
+				<div class="boardgamemechanics">
+						<ul>
+								<li id="boardgamemechanics${index} "class="boardgamemechanics">Board game mechanics:
+								</li>
+						</ul>
+				</div>
+		</article>`;
+
+			// append to DOM
+			$('#searchresults').append(html);
+
+			// creates the list for board game mechanics
+			 var boardgamemechanicsList = '';
+			element.boardgamemechanics.forEach(function(mechanic) {
+
+				var boardgamemechanicsHTML = `<li>${mechanic}</li>`;
+				boardgamemechanicsList += boardgamemechanicsHTML;
+			});
+
+			var boardgamemechanicsSelector = "#boardgamechanics" + index;
+			// append mechanicws list to the class specific to the main index
+			$(boardgamemechanicsSelector).append(boardgamemechanicsList)
+
+			// add even and odd classes to control image floats in html
+			if (index % 2 === 0) {
+				var evenSelector = "#imageindex" + index;
+				$(evenSelector).addClass('even');
+			} else {
+				var oddSelector = "#imageindex" + index;
+				$(oddSelector).addClass('odd');
+			};
+
+			// With a delay, reveal each element
+			setTimeout(function () {
+
+				var showElementSelector = "#index" + index;
+				$(showElementSelector).removeClass('hidden');
+
+			}, 150
+		);
+
+		}); // ends main forEach
+	} // ends the render function
