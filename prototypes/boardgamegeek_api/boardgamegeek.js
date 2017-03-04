@@ -137,13 +137,13 @@ var _ = undefined;
 // getDataFromBGGApi(printData, '110327, 122996, 146704, 134342');
 
 // Main calls for now!
-$.ajax(getDataFromBGGApi(saveDataHotlist)).then(function(){
-	$.ajax(getDataFromBGGApi(saveDataShallowSearch, _, 'lords of waterdeep'))
-}).then(function(){
-	$.ajax(getDataFromBGGApi(saveDataDeepSearch, '110327, 122996, 146704, 134342'))
-}).then(searchAllYoutubeTerms());
-//
-//
+// $.ajax(getDataFromBGGApi(saveDataHotlist)).then(function(){
+// 	$.ajax(getDataFromBGGApi(saveDataShallowSearch, _, 'lords of waterdeep'))
+// }).then(function(){
+// 	$.ajax(getDataFromBGGApi(saveDataDeepSearch, '110327, 122996, 146704, 134342'))
+// })
+// .then(searchAllYoutubeTerms());
+
 // var gameIdsearch = createGameIdString();
 // console.log("Contains the commma separated game ids: " + gameIdsearch);
 // $.ajax(getDataFromBGGApi(saveDataDeepSearch, _, gameIdsearch))
@@ -151,7 +151,7 @@ $.ajax(getDataFromBGGApi(saveDataHotlist)).then(function(){
 // getDataFromBGGApi(saveDataShallowSearch, 'lords of waterdeep'); // search term = BggData.searchTerm
 // getDataFromBGGApi(saveDataDeepSearch, _ , '110327, 122996, 146704, 134342');
 // Testing single call:
-// $.ajax(getDataFromBGGApi(saveDataShallowSearch, 'lords of waterdeep')).then($.ajax(getDataFromBGGApi(saveDataDeepSearch, _ , '110327')));
+// $.ajax(getDataFromBGGApi(saveDataShallowSearch, _, 'lords of waterdeep')).then($.ajax(getDataFromBGGApi(saveDataDeepSearch, '110327')));
 
 // searchAllYoutubeTerms();
 
@@ -188,7 +188,7 @@ function saveYTdata(data) {
 		return;
 	}
 	var youtubeUrl = "https://www.youtube.com/watch?v=" + data.items.id.videoId;
-	console.log("This is the youtube url: ", youtubeUrl)
+	// console.log("This is the youtube url: ", youtubeUrl)
 	return youtubeUrl;
 }
 
@@ -204,7 +204,7 @@ function searchAllYoutubeTerms () {
 function printData(data) {
   // console.log("Youtube data: " , data);
   var Bggrawdata = xmlToJson(data);
-  console.log("This is the raw json conversion: ", Bggrawdata);
+  // console.log("This is the raw json conversion: ", Bggrawdata);
 }
 
 function saveDataHotlist(data) {
@@ -223,7 +223,7 @@ function saveDataHotlist(data) {
 
 		if ("yearpublished" in element) {
 		hotlistData.hotlistYearPublished = element.yearpublished['@attributes'].value;
-		console.log(hotlistData.hotlistYearPublished);
+		// console.log(hotlistData.hotlistYearPublished);
 		};
 
 
@@ -282,20 +282,52 @@ console.log("Youtube search terms before expansion filtered:" , BggData.youtubeS
 
 // makes string of game ids from game ids at global object
 
+// function createGameIdString() {
+//   var gameString = '';
+//   var comma = ', ';
+//   BggData.mainData.forEach(function(elem, index) {
+//     if (index === BggData.length - 1) {
+//       gameString += elem.gameId;
+//     } else {
+//       var gameidstr = elem.gameId + comma;
+//       gameString += gameidstr;
+//     }
+//   });
+//   console.log(gameString);
+//   return gameString
+// }
+
+
+
 function createGameIdString() {
-  var gameString = '';
-  var comma = ', ';
-  BggData.mainData.forEach(function(elem, index) {
-    if (index === BggData.length - 1) {
-      gameString += elem.gameId;
-    } else {
-      var gameidstr = elem.gameId + comma;
-      gameString += gameidstr;
-    }
-  });
-  console.log(gameString);
-  return gameString
+  return new Promise(function(resolve, reject) {
+    var gameString = '';
+    var comma = ', ';
+    BggData.mainData.forEach(function(elem, index) {
+      if (index === BggData.length - 1) {
+        gameString += elem.gameId;
+      } else {
+        var gameidstr = elem.gameId + comma;
+        gameString += gameidstr;
+      }
+    });
+    console.log(gameString);
+    resolve(gameString)
+  })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // 2nd api call to BGG api (deep search using game ids)
 function saveDataDeepSearch(data) {
@@ -496,7 +528,30 @@ function getSearchTerm () {
 	$('#boardgamesearch').submit(function(event){
 		event.preventDefault();
 		var boardgamesearchterm = $('#boardgameterm').val();
-			console.log(boardgamesearchterm);
+		console.log(boardgamesearchterm);
+
+		var _ = undefined;
+		var shallowsearch =	$.ajax(getDataFromBGGApi(saveDataShallowSearch, _ , boardgamesearchterm)).then(function(){
+			createGameIdString().then(function(){
+				$.ajax(getDataFromBGGApi(saveDataDeepSearch)).then(function(){
+					renderSearchHtml();
+				})
+			})
+		})
+		// var gameids = createGameIdString();
+		// var deepsearch = $.ajax(getDataFromBGGApi(saveDataDeepSearch, gameids));
+
+		// shallowsearch.then(gameids).then(deepsearch);
+
+		// var shallowPromise = $.ajax(getDataFromBGGApi(saveDataShallowSearch, _, boardgamesearchterm));
+		// var gameids = createGameIdString();
+		// var deepPromise = $.ajax(getDataFromBGGApi(saveDataDeepSearch, gameids));
+		// var error = Promise.reject(new Error("Something went wrong"));
+		//
+		// Promise.all([shallowPromise, gameids, saveDataDeepSearch]).then(renderSearchHtml)
+
+
+
 	});
 }
 
