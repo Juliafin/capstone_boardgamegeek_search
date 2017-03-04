@@ -93,7 +93,7 @@ var BOARDGAMEGEEK_HOTLIST_URL = "http://boardgamegeek.com/xmlapi2/hot?type=board
 // search and gameID not provided, returns hot list
 // search provided, returns shallow search of games,
 // game id provided, returns deep search of games
-function getDataFromBGGApi(callback, gameId, search) {
+function getDataFromBGGApi(gameId, search) {
 
   // parameters for Boardgameapi, plus changes depending on search conditions
   var boardgamegeekSearchSetting = {
@@ -104,7 +104,6 @@ function getDataFromBGGApi(callback, gameId, search) {
     },
     dataType: 'xml',
     type: 'GET',
-    success: callback
   };
 
   // TODO breakout validation into separate function
@@ -282,39 +281,39 @@ console.log("Youtube search terms before expansion filtered:" , BggData.youtubeS
 
 // makes string of game ids from game ids at global object
 
-// function createGameIdString() {
-//   var gameString = '';
-//   var comma = ', ';
-//   BggData.mainData.forEach(function(elem, index) {
-//     if (index === BggData.length - 1) {
-//       gameString += elem.gameId;
-//     } else {
-//       var gameidstr = elem.gameId + comma;
-//       gameString += gameidstr;
-//     }
-//   });
-//   console.log(gameString);
-//   return gameString
-// }
-
-
-
 function createGameIdString() {
-  return new Promise(function(resolve, reject) {
-    var gameString = '';
-    var comma = ', ';
-    BggData.mainData.forEach(function(elem, index) {
-      if (index === BggData.length - 1) {
-        gameString += elem.gameId;
-      } else {
-        var gameidstr = elem.gameId + comma;
-        gameString += gameidstr;
-      }
-    });
-    console.log(gameString);
-    resolve(gameString)
-  })
+  var gameString = '';
+  var comma = ', ';
+  BggData.mainData.forEach(function(elem, index) {
+    if (index === BggData.length - 1) {
+      gameString += elem.gameId;
+    } else {
+      var gameidstr = elem.gameId + comma;
+      gameString += gameidstr;
+    }
+  });
+  console.log(gameString);
+  return gameString
 }
+
+
+
+// function createGameIdString() {
+//   return new Promise(function(resolve, reject) {
+//     var gameString = '';
+//     var comma = ', ';
+//     BggData.mainData.forEach(function(elem, index) {
+//       if (index === BggData.length - 1) {
+//         gameString += elem.gameId;
+//       } else {
+//         var gameidstr = elem.gameId + comma;
+//         gameString += gameidstr;
+//       }
+//     });
+//     console.log(gameString);
+//     resolve(gameString)
+//   })
+// }
 
 
 
@@ -342,7 +341,12 @@ function saveDataDeepSearch(data) {
     Bggdeepdata.boardgames.boardgame.forEach(function(element, index) {
       // console.log("element:", element)
       // define data keys
-      var image = 'http:' + element.image['#text'];
+
+			// corrects if image doesn't exist
+			if ('image' in element) {
+			var image = 'http:' + element.image['#text'];
+			}
+
       var players = element.minplayers['#text'] + ' - ' + element.maxplayers['#text'];
       var playingtime = element.playingtime['#text'] + ' minutes';
       var age = element.age['#text'];
@@ -433,7 +437,9 @@ function saveDataDeepSearch(data) {
           var expansionIndex = BggData.youtubeSearchterms.indexOf(expansionName);
           BggData.youtubeSearchterms.splice(expansionIndex, 1);
         };
-      };
+      } else if (element.boardgamecategory === undefined) {
+				return
+			}
 
     }); //ends forEach function (iterating boardgame.boardgames)
 
@@ -529,15 +535,21 @@ function getSearchTerm () {
 		event.preventDefault();
 		var boardgamesearchterm = $('#boardgameterm').val();
 		console.log(boardgamesearchterm);
+		// var gameIDs = '';
+		var _;
+	$.ajax(getDataFromBGGApi(_ , boardgamesearchterm)).then(function(response){
+	saveDataShallowSearch(response);
+	var gameIDs = createGameIdString();
+	$.ajax(getDataFromBGGApi(gameIDs)).then(function(response){
+			saveDataDeepSearch(response);
+			renderSearchHtml();
+			});
+	});
 
-		var _ = undefined;
-		var shallowsearch =	$.ajax(getDataFromBGGApi(saveDataShallowSearch, _ , boardgamesearchterm)).then(function(){
-			createGameIdString().then(function(){
-				$.ajax(getDataFromBGGApi(saveDataDeepSearch)).then(function(){
-					renderSearchHtml();
-				})
-			})
-		})
+
+
+
+
 		// var gameids = createGameIdString();
 		// var deepsearch = $.ajax(getDataFromBGGApi(saveDataDeepSearch, gameids));
 
