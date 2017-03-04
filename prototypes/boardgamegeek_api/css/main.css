@@ -52,11 +52,11 @@ button#submitbutton {
 
 .playersandplaytime {
   font-family: Alegreya Sans;
-    display: inline-block;
-    width: 28%;
-    /* position: relative; */
-    top: -24px;
-    font-size: 1em;
+  display: inline-block;
+  width: 28%;
+  position: relative;
+  top: -10px;
+  font-size: 1em;
 }
 
 .boardgameimage {
@@ -83,11 +83,19 @@ img {
 
 .boardgamemechanics {
   font-family: Alegreya Sans;
-    display: inline-block;
-    font-size: 1em;
-    position: relative;
-    top: 3px;
-    line-height: 18px;
+  display: inline-block;
+  font-size: 1em;
+  position: relative;
+  top: 3px;
+  height: 70%;
+  width: 50%;
+  left: 41px;
+}
+
+ul {
+  margin: 0;
+  /* list-style: none; */
+  list-style-image: url("../boardgame_icon4.png");
 }
 
 h2.boardgamename {

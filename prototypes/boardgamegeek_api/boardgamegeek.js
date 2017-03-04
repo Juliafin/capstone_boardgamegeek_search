@@ -623,25 +623,35 @@ function renderSearchHtml () {
 				</div>
 				<div class="boardgamemechanics">
 						<ul>
-								<li id="boardgamemechanics${index} "class="boardgamemechanics">Board game mechanics:
+								<li id="boardgamemechanics${index}" "class="boardgamemechanics">Board game mechanics:
 								</li>
 						</ul>
 				</div>
 		</article>`;
 
-			// append to DOM
+			// append main element to DOM
 			$('#searchresults').append(html);
 
 			// creates the list for board game mechanics
+			var boardgamemechanicsSelector = '#boardgamemechanics' + index
 
 			if (typeof(element.boardgamemechanics) === 'string' ) {
-				var boardgamemechanicsList = `<li>${element}</li>`;
-				console.log("Boardgames mechanics is a string at index: " + index);
-				console.log(boardgamemechanicsList);
-				var boardgamemechanicsSelector = "#boardgamemechanics" + index;
-				console.log(boardgamemechanicsSelector);
+				var boardgamemechanicsList = `<li>${element.boardgamemechanics}</li>`;
+
+
+				// Testing if the selector exists
+				// console.log("Boardgames mechanics is a string at index: " + index);
+				// console.log(boardgamemechanicsList);
+				// console.log(boardgamemechanicsSelector);
+				// if ($(boardgamemechanicsSelector).length > 0) {
+				// 	console.log("The board game mechanics selector exists")
+				// } else {
+				// 	console.log ("The board games mechanics selector does not exist")
+				// };
+
+				// append to boardgamemechanics + index
 				$(boardgamemechanicsSelector).append(boardgamemechanicsList);
-				
+
 			} else {
 			 var boardgamemechanicsList = '';
 				element.boardgamemechanics.forEach(function(mechanic) {
@@ -651,12 +661,20 @@ function renderSearchHtml () {
 					console.log(boardgamemechanicsList);
 				});
 
-				var boardgamemechanicsSelector = "#boardgamemechanics" + index;
-				console.log(boardgamemechanicsSelector);
-				console.log(boardgamemechanicsList);
+				// testing whether the selector exists
+				// console.log(boardgamemechanicsSelector);
+				// console.log(boardgamemechanicsList);
+				// if ($(boardgamemechanicsSelector).length > 0) {
+				// 	console.log("The board game mechanics selector exists")
+				// } else {
+				// 	console.log ("The board games mechanics selector does not exist")
+				// };
+
 				// append mechanicws list to the class specific to the main index
 				$(boardgamemechanicsSelector).append(boardgamemechanicsList);
-			}
+
+			}; // closes else on boardgamemechanics being an array (forEach)
+
 			// add even and odd classes to control image floats in html
 			if (index % 2 === 0) {
 				var evenSelector = "#imageindex" + index;
