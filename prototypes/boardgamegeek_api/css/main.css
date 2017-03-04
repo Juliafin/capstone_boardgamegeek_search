@@ -10,14 +10,39 @@ user-select: none;
 }
 
 body {
-    background-color: rgba(1, 222, 127, 0.31);
+    background-color: rgb(255, 255, 255);
+}
+
+
+img.maintitle {
+    background-size: contain;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    opacity: 1;
+}
+
+.background {
+    background-color: white;
+    position: relative;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    height: 100%;
+}
+
+form#boardgamesearch {
+    z-index: 100;
+    margin-top: 100px;
 }
 
 section {
     border: 1px solid grey;
     padding: 2%;
     border-radius: 9px;
-    background-color: rgba(129, 255, 204, 0.19);
+    background-color: rgba(129, 255, 241, 0.52);
+    margin-top: 2%;
 }
 
 form.search {
@@ -27,15 +52,15 @@ form.search {
 }
 
 input[type="text"] {
-    width: 30%;
-    height: 30px;
-    font-size: 10px;
-    margin-left: 33%;
-    padding-left: 10px;
-    margin-top: 3em;
-    margin-bottom: 4em;
-    background-color: #d7fff2;
-    border: none;
+  width: 30%;
+  height: 50px;
+  font-size: 15px;
+  margin-left: 33%;
+  padding-left: 10px;
+  margin-top: 3em;
+  margin-bottom: 4em;
+  background-color: #dbffe6;
+  border: none;
 }
 
 button#submitbutton {
@@ -43,11 +68,12 @@ button#submitbutton {
     height: 1.0em;
     width: auto;
     height: 26px;
-    margin-top: 0px;
+    margin-top: 3px;
     font-size: small;
     color: #106960;
     background-color: #d0e4f5;
     border: none;
+    margin-left: 38px;
 }
 
 .playersandplaytime {
@@ -70,7 +96,7 @@ button#submitbutton {
     z-index: 1;
 }
 
-img {
+img.imagethumbnail {
     width: 103%;
     display: block;
     float: right;
@@ -95,7 +121,7 @@ img {
 ul {
   margin: 0;
   /* list-style: none; */
-  list-style-image: url("../boardgame_icon4.png");
+  list-style-image: url("../images/boardgame_icon4.png");
 }
 
 h2.boardgamename {
