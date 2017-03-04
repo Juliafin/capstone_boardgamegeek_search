@@ -347,7 +347,15 @@ function saveDataDeepSearch(data) {
 			var image = 'http:' + element.image['#text'];
 			}
 
-      var players = element.minplayers['#text'] + ' - ' + element.maxplayers['#text'];
+			// correcting when players is zero
+			if ( (element.maxplayers != 0) && (element.minplayers != 0)) {
+	    var players = element.minplayers['#text'] + ' - ' + element.maxplayers['#text'];
+		} else if (element.maxplayers === element.minplayers) {
+			var players = element.maxplayers;
+		} else {
+			var players = "N/A";
+		};
+
       var playingtime = element.playingtime['#text'] + ' minutes';
       var age = element.age['#text'];
       var description = element.description['#text'];
@@ -452,8 +460,21 @@ function saveDataDeepSearch(data) {
     // top layer equivalent to "element" when boardgames.boardgame is an array
     var element = Bggdeepdata.boardgames.boardgame;
 
-    var image = 'http:' + element.image['#text'];
+		// corrects if image doesn't exist
+		if ('image' in element) {
+		var image = 'http:' + element.image['#text'];
+		}
+
+		// correcting when players is zero
+		if ( (element.maxplayers != 0) && (element.minplayers != 0)) {
     var players = element.minplayers['#text'] + ' - ' + element.maxplayers['#text'];
+	} else if (element.maxplayers === element.minplayers) {
+		var players = element.maxplayers;
+	} else {
+		var players = "N/A";
+	};
+
+
     var playingtime = element.playingtime['#text'] + ' minutes';
     var age = element.age['#text'];
     var description = element.description['#text'];
@@ -532,7 +553,9 @@ function saveDataDeepSearch(data) {
 function getSearchTerm () {
 
 	$('#boardgamesearch').submit(function(event){
+
 		event.preventDefault();
+
 		var boardgamesearchterm = $('#boardgameterm').val();
 		console.log(boardgamesearchterm);
 		// var gameIDs = '';
@@ -573,19 +596,22 @@ getSearchTerm();
 
 function renderSearchHtml () {
 
+// clear existing html
+
+	$('section#searchresults').empty()
 
 	BggData.mainData.forEach(function(element, index){
 
 		// create the html element from state
 		var html = `<article class="${element.gameId} hidden" id="index${index}">
-				<h2 class="boardgamename">${element.age}</h2>
+				<h2 class="boardgamename">${element.boardGameName}</h2>
 				<div class="boardgameimage" id="imageindex${index}">
-						<img class= "imagethumbnail" src="${element.boardgameimage}" alt="">
+						<img class= "imagethumbnail" src="${element.boardGameImage}" alt="">
 				</div>
 				<div class="playersandplaytime">
 						<ul>
 								<li>Playing time: ${element.playingTime}</li>
-								<li>Number of players: ${element.yearpublished}</li>
+								<li>Number of players: ${element.players}</li>
 						</ul>
 				</div>
 				<div class="boardgamemechanics">
@@ -600,17 +626,26 @@ function renderSearchHtml () {
 			$('#searchresults').append(html);
 
 			// creates the list for board game mechanics
+
+			if (typeof(element.boardgamemechanics) === 'string' ) {
+				var boardgamemechanicsList = `<li>${element}</li>`
+			} else {
+
+
+
 			 var boardgamemechanicsList = '';
 			element.boardgamemechanics.forEach(function(mechanic) {
 
 				var boardgamemechanicsHTML = `<li>${mechanic}</li>`;
 				boardgamemechanicsList += boardgamemechanicsHTML;
+				console.log(boardgamemechanicsList);
 			});
 
 			var boardgamemechanicsSelector = "#boardgamechanics" + index;
+			console.log(boardgamemechanicsList);
 			// append mechanicws list to the class specific to the main index
 			$(boardgamemechanicsSelector).append(boardgamemechanicsList)
-
+			}
 			// add even and odd classes to control image floats in html
 			if (index % 2 === 0) {
 				var evenSelector = "#imageindex" + index;
