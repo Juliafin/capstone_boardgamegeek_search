@@ -263,8 +263,15 @@ console.log("Youtube search terms before expansion filtered:" , BggData.youtubeS
     // console.log(element['@attributes'].objectid);
     bgObj.gameId = element['@attributes'].objectid;
     bgObj.boardGameName = element.name['#text'];
+
+		// if the year published doesn't exist, make the key N/A
+		if ('yearpublished' in element) {
     bgObj.yearpublished = element.yearpublished['#text'];
-    // console.log(BggData.gameId);
+		} else {
+			bgObj.yearpublished = "N/A"
+		}
+
+		// console.log(BggData.gameId);
 
 		// pushes the board game name as youtube search term into state
 		BggData.youtubeSearchterms[index] = element.name['#text'] + " walkthrough";
@@ -628,23 +635,27 @@ function renderSearchHtml () {
 			// creates the list for board game mechanics
 
 			if (typeof(element.boardgamemechanics) === 'string' ) {
-				var boardgamemechanicsList = `<li>${element}</li>`
-			} else {
-
-
-
-			 var boardgamemechanicsList = '';
-			element.boardgamemechanics.forEach(function(mechanic) {
-
-				var boardgamemechanicsHTML = `<li>${mechanic}</li>`;
-				boardgamemechanicsList += boardgamemechanicsHTML;
+				var boardgamemechanicsList = `<li>${element}</li>`;
+				console.log("Boardgames mechanics is a string at index: " + index);
 				console.log(boardgamemechanicsList);
-			});
+				var boardgamemechanicsSelector = "#boardgamemechanics" + index;
+				console.log(boardgamemechanicsSelector);
+				$(boardgamemechanicsSelector).append(boardgamemechanicsList);
+				
+			} else {
+			 var boardgamemechanicsList = '';
+				element.boardgamemechanics.forEach(function(mechanic) {
 
-			var boardgamemechanicsSelector = "#boardgamechanics" + index;
-			console.log(boardgamemechanicsList);
-			// append mechanicws list to the class specific to the main index
-			$(boardgamemechanicsSelector).append(boardgamemechanicsList)
+					var boardgamemechanicsHTML = `<li>${mechanic}</li>`;
+					boardgamemechanicsList += boardgamemechanicsHTML;
+					console.log(boardgamemechanicsList);
+				});
+
+				var boardgamemechanicsSelector = "#boardgamemechanics" + index;
+				console.log(boardgamemechanicsSelector);
+				console.log(boardgamemechanicsList);
+				// append mechanicws list to the class specific to the main index
+				$(boardgamemechanicsSelector).append(boardgamemechanicsList);
 			}
 			// add even and odd classes to control image floats in html
 			if (index % 2 === 0) {

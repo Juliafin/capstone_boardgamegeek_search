@@ -112,9 +112,7 @@ article {
     -moz-transition: background-color 1s ease-out;
     -o-transition: background-color 1s ease-out;
     transition: background-color 1s ease-out;
-    background-color: rgba(150, 240, 109, 0.47);
-    /* position: absolute; */
-    /* z-index: 0; */
+    background-color: rgba(235, 249, 255, 0.95);
     width: 1000px;
     margin-left: 7%;
 }
