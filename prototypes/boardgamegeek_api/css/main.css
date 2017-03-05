@@ -1,18 +1,18 @@
 * {
-  box-sizing: border-box;
-  -webkit-touch-callout: none;
--webkit-user-select: none;
--khtml-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
--o-user-select: none;
-user-select: none;
+    box-sizing: border-box;
+    /* Disables text selection*/
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 body {
     background-color: rgb(255, 255, 255);
 }
-
 
 img.maintitle {
     background-size: contain;
@@ -20,6 +20,37 @@ img.maintitle {
     width: 100%;
     z-index: 1;
     opacity: 1;
+}
+
+
+h1 {
+    font-family: Libre Franklin;
+    position: absolute;
+    top: 86px;
+    right: 0;
+    left: 0;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-weight: 500;
+    font-size: 4em;
+}
+
+p.subtitle {
+    position: absolute;
+    top: 100px;
+    right: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    font-family: Dosis;
+    font-weight: 600;
+}
+
+li.boardgamemechanics {
+    left: -39%;
 }
 
 .background {
@@ -52,15 +83,36 @@ form.search {
 }
 
 input[type="text"] {
-  width: 30%;
-  height: 50px;
-  font-size: 15px;
-  margin-left: 33%;
-  padding-left: 10px;
-  margin-top: 3em;
-  margin-bottom: 4em;
-  background-color: #dbffe6;
-  border: none;
+    width: 30%;
+    height: 50px;
+    font-size: 15px;
+    margin-left: 33%;
+    padding-left: 10px;
+    margin-top: 3em;
+    margin-bottom: 4em;
+    background-color: #dbffe6;
+    border: none;
+}
+
+input#boardgameterm:placeholder-shown {
+    border: rgb(88, 157, 67) 1px solid;
+    color: black;
+}
+
+input#boardgameterm::-webkit-input-placeholder {
+    color: #5a9a5a;
+}
+
+input#boardgameterm::-moz-placeholder { /* Firefox 19+ */
+  color: #5a9a5a;
+}
+
+input#boardgameterm::-ms-input-placeholder { /* IE 10+ */
+  color: #5a9a5a;
+}
+
+input#boardgameterm::-moz-placeholder { /* Firefox 18- */
+  color: #5a9a5a;
 }
 
 button#submitbutton {
@@ -77,12 +129,13 @@ button#submitbutton {
 }
 
 .playersandplaytime {
-  font-family: Alegreya Sans;
-  display: inline-block;
-  width: 28%;
-  position: relative;
-  top: -10px;
-  font-size: 1em;
+    font-family: Alegreya Sans;
+    display: inline-block;
+    width: 21%;
+    position: relative;
+    top: -38%;
+    font-size: 1em;
+    margin-left: 59px;
 }
 
 .boardgameimage {
@@ -108,32 +161,32 @@ img.imagethumbnail {
 }
 
 .boardgamemechanics {
-  font-family: Alegreya Sans;
-  display: inline-block;
-  font-size: 1em;
-  position: relative;
-  top: 3px;
-  height: 70%;
-  width: 50%;
-  left: 41px;
+    font-family: Alegreya Sans;
+    display: inline-block;
+    font-size: 1em;
+    position: relative;
+    top: 3px;
+    height: 70%;
+    width: 50%;
+    left: 37px;
 }
 
 ul {
-  margin: 0;
-  /* list-style: none; */
-  list-style-image: url("../images/boardgame_icon4.png");
+    margin: 0;
+    /* list-style: none; */
+    list-style-image: url("../images/boardgame_icon4.png");
 }
 
 h2.boardgamename {
-  font-family: Lobster Two;
-  display: inline-block;
-  padding-left: 0.5em;
-  padding-top: 10px;
-  margin-top: 0;
-  margin-bottom: 0px;
-  position: relative;
-  width: 70%;
-  text-align: center;
+    font-family: Lobster Two;
+    display: inline-block;
+    padding-left: 0.5em;
+    padding-top: 10px;
+    margin-top: 0;
+    margin-bottom: 0px;
+    position: relative;
+    width: 70%;
+    text-align: center;
 }
 
 article {
@@ -147,16 +200,15 @@ article {
     -o-transition: background-color 1s ease-out;
     transition: background-color 1s ease-out;
     background-color: rgba(235, 249, 255, 0.95);
-    width: 1000px;
+    width: 90%;
     margin-left: 7%;
 }
 
-
 article:hover {
-  filter: brightness(140%);
-  transition-duration: 400ms;
-  background-color: #f79d9f;
-  top: 100px;
+    filter: brightness(140%);
+    transition-duration: 400ms;
+    background-color: #f79d9f;
+    top: 100px;
 }
 
 .even {
@@ -172,16 +224,41 @@ button#submitbutton:hover {
     filter: brightness(115%);
 }
 
+button#submitbutton:active {
+  filter: brightness(90%);
+}
+
 .hidden {
-  display: none;
+    display: none;
 }
 
 canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-          }
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.loadingcontainer {
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    position: fixed;
+    opacity: 0.8;
+    background-color: rgba(250, 235, 215, 0.4);
+}
+
+img.loading {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    border: 1px grey solid;
+}

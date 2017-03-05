@@ -182,3 +182,38 @@ bggShallow.then(saveDataShallowCall, error) {
 // }
 //
 // foo();
+
+
+// function createGameIdString() {
+//   return new Promise(function(resolve, reject) {
+//     var gameString = '';
+//     var comma = ', ';
+//     BggData.mainData.forEach(function(elem, index) {
+//       if (index === BggData.length - 1) {
+//         gameString += elem.gameId;
+//       } else {
+//         var gameidstr = elem.gameId + comma;
+//         gameString += gameidstr;
+//       }
+//     });
+//     console.log(gameString);
+//     resolve(gameString)
+//   })
+// }
+
+
+
+
+
+
+    // var gameids = createGameIdString();
+    // var deepsearch = $.ajax(getDataFromBGGApi(saveDataDeepSearch, gameids));
+
+    // shallowsearch.then(gameids).then(deepsearch);
+
+    // var shallowPromise = $.ajax(getDataFromBGGApi(saveDataShallowSearch, _, boardgamesearchterm));
+    // var gameids = createGameIdString();
+    // var deepPromise = $.ajax(getDataFromBGGApi(saveDataDeepSearch, gameids));
+    // var error = Promise.reject(new Error("Something went wrong"));
+    //
+    // Promise.all([shallowPromise, gameids, saveDataDeepSearch]).then(renderSearchHtml)

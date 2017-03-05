@@ -7,14 +7,18 @@
     <meta description="Stats and walkthroughs for your favorite board games">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" type="text/css"
-          href="https://fonts.googleapis.com/css?family=Lobster+Two|Alegreya+Sans">
+          href="https://fonts.googleapis.com/css?family=Lobster+Two|Alegreya+Sans|Dosis|Libre+Franklin">
     <link rel="stylesheet" href="css/main.css">
     <title>Boardgame Stats and walkthrough main page</title>
 </head>
 
 <body>
+
     <div class="background">
-      <img class="maintitle" src="images/main_title.png" alt="">
+      <img class="maintitle" src="images/main_title.jpg" alt="">
+      <h1>Boardgame Search</h1>
+      <p class="subtitle">Powered by BoardgameGeek and Youtube Apis</p>
+
     </div>
 
     <canvas id="canvas"></canvas>
@@ -69,7 +73,7 @@
     <form id="boardgamesearch" method="post">
 
         <label for="BGGapiSearch"></label>
-        <input id= "boardgameterm" type="text" name="BggapiSearch" placeholder="Search for your favorite boardgame here">
+        <input id= "boardgameterm" type="text" name="BggapiSearch" placeholder="Search for your favorite boardgame here" required>
 
         <label for="submitbutton"></label>
         <button id="submitbutton" type="submitbutton" name="submitbutton">Search Boardgames</button>
