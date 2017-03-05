@@ -770,8 +770,10 @@ $('.boardgame').click(function(event){
 
 	console.log("This is the index matching the gameid: " , gameidIndex);
 	console.log(typeof(gameidIndex));
+	renderAndDisplayFullBoardgame(gameidIndex);
 
-});
+
+}); // ends click event listener
 
 }
 
@@ -788,12 +790,16 @@ function renderAndDisplayFullBoardgame (index) {
 		var playingTime = BggData.mainData[index].playingTime;
 		var yearpublished = BggData.mainData[index].yearpublished;
 		var image = BggData.mainData[index].boardGameImage;
+		var boardgamemechanicshtml =		BggData.mainData.map(function(element){
+			 return `<li>${element.boardgamemechanics}</li>`
+		}).join();
+
 		var gameLightboxHtml = `
 
 		<div class="lightbox">
 		    <h2 class="boardgamenameLB">${gamename}</h2>
 		    <div class="boardgameimageLB">
-		        <img class="imagethumbnailLB" src="${image}" alt="${image}">
+		        <img class="imagethumbnailLB" src="${image}" alt="${gamename}">
 		    </div>
 		    <div class="statsLB">Game Stats
 		        <ul>
@@ -810,14 +816,25 @@ function renderAndDisplayFullBoardgame (index) {
 		        <p>${description}</p>
 		    </div>
 		    <div class="boardgamemechanicsLB">
-		        <ul id="boardgamemechanicsOne${index}" class="boardgamemechanics">
-		            <li>Board game mechanics:</li>
+		        <ul id="boardgamemechanics${index}" class="boardgamemechanics">
+		            <li>Board game mechanics:</li>${boardgamemechanicshtml}
 		        </ul>
-
 		    </div>
+		    <button class="backbutton" type="button" name="button">Back</button>
 
 		</div>
 		`;
 
+
+		$('body').prepend(gameLightboxHtml);
+
+
+
+		// Stop scroll on main window
+		$('html, body').css('overflow', 'hidden');
+
+
+		// disable submit clicks and clicks on additional elements
+	  $('#submitbutton, article').css("pointer-events", "none");
 
 }
