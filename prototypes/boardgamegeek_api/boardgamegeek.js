@@ -622,10 +622,10 @@ function renderSearchHtml() {
 
     // create the html element from state
     var html =
-		`<article class="${element.gameId} hidden" id="index${index}">
+		`<article class="hidden boardgame" id="index${index}" gameid="${element.gameId}">
 			<h2 class="boardgamename">${element.boardGameName}</h2>
 			<div class="boardgameimage" id="imageindex${index}">
-				<img class= "imagethumbnail" src="${element.boardGameImage}" alt="">
+				<img class= "imagethumbnail" src="${element.boardGameImage}" alt="${element.boardGameName}">
 			</div>
 			<div class="playersandplaytime">
 				<ul>
@@ -729,6 +729,9 @@ function renderSearchHtml() {
   // remove loader
   $('.loadingcontainer').remove();
 
+	// starts listener listening for clicks on articles
+	boardgameArticleListener();
+
 } // ends the render function
 
 
@@ -746,5 +749,33 @@ function renderLoader() {
 
 function boardgameArticleListener() {
 
+$('.boardgame').click(function(event){
+
+	event.preventDefault();
+
+	// get the game id from element clicked
+	var gameid = $(this).attr('gameid');
+	console.log("The game id clicked is: " + gameid);
+
+	// find index of currently clicked gameid
+	var gameidIndex = BggData.mainData.map(function(element,index){
+		if (gameid == element.gameId) {
+			return index
+		} else {
+			var emptystring = '';
+			return emptystring
+		}
+
+	}).join().replace(/,+/g, '').replace(/\s+/g, '')
+
+	console.log("This is the index matching the gameid: " , gameidIndex);
+	console.log(typeof(gameidIndex));
+
+});
+
+}
+
+
+function renderAndDisplayFullBoardgame (index) {
 
 }
