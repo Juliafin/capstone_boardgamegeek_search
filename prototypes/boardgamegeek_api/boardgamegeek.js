@@ -870,3 +870,11 @@ function backbuttonListener () {
 
 	})
 }
+
+
+// TODO Finish styling lightbox
+// Fix board game mechanics content on main page
+// Invoke youtube api for iframes
+// Add iframes
+// Add error correction and update to promises
+// Add hotlist (probably below all elements)
