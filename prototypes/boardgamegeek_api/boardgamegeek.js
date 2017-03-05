@@ -646,12 +646,12 @@ function renderSearchHtml() {
     $('#searchresults').append(html);
 
     // creates the list for board game mechanics
-    var boardgamemechanicsSelector = '#boardgamemechanics' + index;
-		var boardgamemechanicsSelectorTwo = '#boardgamemechanicsTwo' + index;
+    // var boardgamemechanicsSelector = '#boardgamemechanics' + index;
+		// var boardgamemechanicsSelectorTwo = '#boardgamemechanicsTwo' + index;
 
 		// If the element is a string (containing only one mechanic)
-    if (typeof(element.boardgamemechanics) === 'string') {
-      var boardgamemechanicsList = `<li>${element.boardgamemechanics}</li>`;
+    // if (typeof(element.boardgamemechanics) === 'string') {
+    //   var boardgamemechanicsList = `<li>${element.boardgamemechanics}</li>`;
 
 
       // Testing if the selector exists
@@ -665,27 +665,27 @@ function renderSearchHtml() {
       // };
 
       // append to boardgamemechanics + index
-      $(boardgamemechanicsSelector).append(boardgamemechanicsList);
-
-    } else {
-      var boardgamemechanicsList = '';
-			var boardgamemechanicsListTwo = '';
-			var listcounter = 0;
-      element.boardgamemechanics.forEach(function(mechanic) {
-
-        if (listcounter > 4) {
-          var boardgamemechanicsTwoHTML = `<li>${mechanic}</li>`;
-          boardgamemechanicsListTwo += boardgamemechanicsHTML;
-          // console.log(boardgamemechanicsList);
-          listcounter++;
-
-        } else {
-          var boardgamemechanicsHTML = `<li>${mechanic}</li>`;
-          boardgamemechanicsList += boardgamemechanicsHTML;
-          // console.log(boardgamemechanicsList);
-          listcounter++;
-        };
-      });
+    //   $(boardgamemechanicsSelector).append(boardgamemechanicsList);
+		//
+    // } else {
+    //   var boardgamemechanicsList = '';
+		// 	var boardgamemechanicsListTwo = '';
+		// 	var listcounter = 0;
+    //   element.boardgamemechanics.forEach(function(mechanic) {
+		//
+    //     if (listcounter > 4) {
+    //       var boardgamemechanicsTwoHTML = `<li>${mechanic}</li>`;
+    //       boardgamemechanicsListTwo += boardgamemechanicsHTML;
+    //       // console.log(boardgamemechanicsList);
+    //       listcounter++;
+		//
+    //     } else {
+    //       var boardgamemechanicsHTML = `<li>${mechanic}</li>`;
+    //       boardgamemechanicsList += boardgamemechanicsHTML;
+    //       // console.log(boardgamemechanicsList);
+    //       listcounter++;
+    //     };
+    //   });
 
       // testing whether the selector exists
       // console.log(boardgamemechanicsSelector);
@@ -697,13 +697,13 @@ function renderSearchHtml() {
       // };
 
       // append mechanicws list to the class specific to the main index
-      $(boardgamemechanicsSelector).append(boardgamemechanicsList);
+      // $(boardgamemechanicsSelector).append(boardgamemechanicsList);
+			//
+			// if (boardgamemechanicsListTwo !== '') {
+			// 	$(boardgamemechanicsSelectorTwo).append(boardgamemechanicsListTwo);
+			// }
 
-			if (boardgamemechanicsListTwo !== '') {
-				$(boardgamemechanicsSelectorTwo).append(boardgamemechanicsListTwo);
-			}
-
-    }; // closes else on boardgamemechanics being an array (forEach)
+    //}; // closes else on boardgamemechanics being an array (forEach)
 
     // add even and odd classes to control image floats in html
     if (index % 2 === 0) {
@@ -790,9 +790,17 @@ function renderAndDisplayFullBoardgame (index) {
 		var playingTime = BggData.mainData[index].playingTime;
 		var yearpublished = BggData.mainData[index].yearpublished;
 		var image = BggData.mainData[index].boardGameImage;
-		var boardgamemechanicshtml =		BggData.mainData.map(function(element){
-			 return `<li>${element.boardgamemechanics}</li>`
+
+		if (Array.isArray(BggData.mainData[index].boardgamemechanics)) {
+		var boardgamemechanicshtml =		BggData.mainData[index].boardgamemechanics.map(function(element){
+			 return `<li>${element}</li>`
 		}).join();
+
+		} else if (!('boardgamemechanics' in BggData.mainData[index])) {
+			return
+		} else {
+			var boardgamemechanicshtml = BggData.mainData[index].boardgamemechanics;
+		}
 
 		var gameLightboxHtml = `
 
