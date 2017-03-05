@@ -796,7 +796,7 @@ function renderAndDisplayFullBoardgame (index) {
 
 		var gameLightboxHtml = `
 
-		<div class="lightbox">
+		<div class="lightbox hidden">
 		    <h2 class="boardgamenameLB">${gamename}</h2>
 		    <div class="boardgameimageLB">
 		        <img class="imagethumbnailLB" src="${image}" alt="${gamename}">
@@ -837,4 +837,28 @@ function renderAndDisplayFullBoardgame (index) {
 		// disable submit clicks and clicks on additional elements
 	  $('#submitbutton, article').css("pointer-events", "none");
 
+		// listener for the backbutton
+		backbuttonListener();
+
+		// fade the lightbox in (default 0 opacity)
+		$('.lightbox').fadeIn();
+}
+
+
+function backbuttonListener () {
+
+	$('.backbutton').click(function(event){
+		event.preventDefault();
+
+		// Re-allow click events on the main page
+		$('#submitbutton, article').css("pointer-events", "auto");
+
+		// Re-Allow scrolling on the body
+		$('html, body').css('overflow', 'auto');
+
+		// fade out lightbox
+		$('.lightbox').fadeOut();
+		$('.lightbox').remove();
+
+	})
 }
