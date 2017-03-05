@@ -778,4 +778,46 @@ $('.boardgame').click(function(event){
 
 function renderAndDisplayFullBoardgame (index) {
 
+	// get keys from mainData state at the index matching gameid
+		var gamename = BggData.mainData[index].boardGameName;
+		var averagerating = BggData.mainData[index].boardgameAvgRating;
+		var rank = BggData.mainData[index].boardgameRank;
+		var gamepublisher = BggData.mainData[index].boardgamepublisher;
+		var description = BggData.mainData[index].description;
+		var players = BggData.mainData[index].players;
+		var playingTime = BggData.mainData[index].playingTime;
+		var yearpublished = BggData.mainData[index].yearpublished;
+		var image = BggData.mainData[index].boardGameImage;
+		var gameLightboxHtml = `
+
+		<div class="lightbox">
+		    <h2 class="boardgamenameLB">${gamename}</h2>
+		    <div class="boardgameimageLB">
+		        <img class="imagethumbnailLB" src="${image}" alt="${image}">
+		    </div>
+		    <div class="statsLB">Game Stats
+		        <ul>
+		            <li>Playing time: ${playingTime}</li>
+		            <li>Number of players: ${players}</li>
+		            <li>Game publisher: ${gamepublisher}</li>
+		            <li>Year Published: ${yearpublished}</li>
+		            <li>Rank: ${rank}</li>
+		            <li>Average player rating: ${averagerating}</li>
+		        </ul>
+		    </div>
+		    <div class="description">
+		        <h3>description</h3>
+		        <p>${description}</p>
+		    </div>
+		    <div class="boardgamemechanicsLB">
+		        <ul id="boardgamemechanicsOne${index}" class="boardgamemechanics">
+		            <li>Board game mechanics:</li>
+		        </ul>
+
+		    </div>
+
+		</div>
+		`;
+
+
 }
