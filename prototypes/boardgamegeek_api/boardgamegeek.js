@@ -159,7 +159,7 @@ function getDataFromYoutubeApi(callback, index) {
   var youtubeSendSetting = {
     url: YOUTUBE_BASE_URL,
     data: {
-      q: BggData.youtubeSearchterms[index],
+      q: BggData.mainData[index].youtubeSearchterm,
       part: 'snippet',
       key: 'AIzaSyCpcsrpsW5YrXga0kp0tg241mPPwhsxwvA',
       r: 'json',
@@ -179,13 +179,15 @@ function getDataFromYoutubeApi(callback, index) {
 // getDataFromYoutubeApi(printData);
 
 
-function saveYTdata(data) {
+function appendYTdata(data) {
   if (data.items.length === 0) {
+		console.log("This video does not exist on youtube");
     return;
   }
-  var youtubeUrl = "https://www.youtube.com/watch?v=" + data.items.id.videoId;
+	console.log("youtube raw data", data.items);
+  var youtubeUrl = "https://www.youtube.com/embed/" + data.items[0].id.videoId;
   // console.log("This is the youtube url: ", youtubeUrl)
-  return youtubeUrl;
+  $('#youtubevideo').attr('src', youtubeUrl);
 }
 
 
@@ -846,6 +848,9 @@ function renderAndDisplayFullBoardgame (index) {
 		        </ul>
 		    </div>
 		    <button class="backbutton" type="button" name="button">Back</button>
+				<iframe id="youtubevideo" width="420" height="315"
+		src="">
+		</iframe>
 
 		</div>
 		`;
@@ -867,7 +872,10 @@ function renderAndDisplayFullBoardgame (index) {
 
 		// fade the lightbox in (default 0 opacity)
 		$('.lightbox').fadeIn();
-}
+
+		getDataFromYoutubeApi(appendYTdata, index);
+
+} // end renderAndDisplayFullBoardgame
 
 
 function backbuttonListener () {
@@ -920,7 +928,7 @@ function renderAndDisplayHotlist () {
 				</div>
 			</article>`;
 
-			console.log(html);
+			// console.log(html);
 
 			// append to DOM
 			$('.hotlistcontainer').append(html);
@@ -942,6 +950,5 @@ function renderAndDisplayHotlist () {
 renderAndDisplayHotlist();
 
 // TODO
-// Invoke youtube api for iframes
-// Add iframes
-// Add error correction and update to promises
+
+// update to promises for error correction?
