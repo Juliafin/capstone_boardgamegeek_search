@@ -917,8 +917,7 @@ function renderAndDisplayHotlist () {
 
 renderAndDisplayHotlist();
 
-// TODO Finish styling lightbox
+// TODO
 // Invoke youtube api for iframes
 // Add iframes
 // Add error correction and update to promises
-// Add hotlist (probably below all elements)

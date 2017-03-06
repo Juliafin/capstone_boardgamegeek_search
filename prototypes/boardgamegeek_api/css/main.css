@@ -136,7 +136,7 @@ p.searchinstructions {
     font-size: 1.8em;
 }
 
-.playersandplaytime {
+.playersandplaytime, .rankandyearpublished {
     font-family: Alegreya Sans;
     display: inline-block;
     width: 21%;
