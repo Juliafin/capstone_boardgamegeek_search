@@ -2,7 +2,6 @@
 var BggData = {
   hotlist: [],
   mainData: [],
-  youtubeSearchterms: [],
 }
 
 
@@ -193,13 +192,6 @@ function saveYTdata(data) {
 }
 
 
-function searchAllYoutubeTerms() {
-  BggData.youtubeSearchterms.forEach(function(element, index) {
-    getDataFromYoutubeApi(saveYTdata, index);
-  });
-}
-
-
 // testing ajax and conversion to JSON
 function printData(data) {
   // console.log("Youtube data: " , data);
@@ -275,7 +267,7 @@ function saveDataShallowSearch(data) {
     // console.log(BggData.gameId);
 
     // pushes the board game name as youtube search term into state
-    BggData.youtubeSearchterms[index] = element.name['#text'] + " walkthrough";
+    bgObj.youtubeSearchterm = element.name['#text'] + " walkthrough";
 
     // console.log(bgObj);
     return bgObj
@@ -423,41 +415,9 @@ function saveDataDeepSearch(data) {
       BggData.mainData[index].boardgamemechanics = boardgamemechanics;
       BggData.mainData[index].boardgameRank = boardgameRank;
 
-      // Eliminate board games from the youtube search that are expansions (and will not return a valid result from the api call, limiting the number of necessary youtube calls). Test whether element.boardgamecategory has a (nested) value of "expansion". If it does, filter out the matching game name for the element from the state object bggdata.youtubeSearchterms
-
-      // boardgamecategory is an array
-      if (Array.isArray(element.boardgamecategory)) {
-
-        var boardgameCategoryArr = element.boardgamecategory.map(function(element) {
-          return element['#text'];
-        }).join().replace(/,/g, ' ').split(' ');
-        // console.log(boardgameCategoryArr);
-
-        if (boardgameCategoryArr.indexOf('Expansion') !== -1) {
-          var expansionName = element.name['#text'] + " walkthrough";
-          var expansionIndex = BggData.youtubeSearchterms.indexOf(expansionName);
-          BggData.youtubeSearchterms.splice(expansionIndex, 1);
-          // console.log(boardgameCategoryArr);
-        };
-
-        // boardgamecategory is an object
-      } else if ((typeof(element.boardgamecategory) === 'object') && (element.boardgamecategory !== null)) {
-        var boardgamecategoryStr = element.boardgamecategory['#text'];
-        // console.log(boardgamecategoryStr);
-        var boardgamecategoryArr = boardgamecategoryStr.split(' ');
-        // console.log(boardgamecategoryArr);
-        if (boardgamecategoryArr.indexOf('Expansion') !== -1) {
-          var expansionName = element.name['#text'] + " walkthrough";
-          var expansionIndex = BggData.youtubeSearchterms.indexOf(expansionName);
-          BggData.youtubeSearchterms.splice(expansionIndex, 1);
-        };
-      } else if (element.boardgamecategory === undefined) {
-        return
-      }
 
     }); //ends forEach function (iterating boardgame.boardgames)
 
-    console.log("Bggdata youtube search terms", BggData.youtubeSearchterms);
     console.log("Bgg main data written: ", BggData.mainData);
     console.log("Bgg state object", BggData);
 
@@ -569,11 +529,6 @@ function saveDataDeepSearch(data) {
     BggData.mainData[0].boardgamemechanics = boardgamemechanics;
     BggData.mainData[0].boardgameRank = boardgameRank;
 
-    // clears youtube search terms from main object and replaces it with just the single boardgame searched
-    BggData.youtubeSearchterms = [];
-    var boardgameName = element.name['#text'] + " walkthrough";
-    BggData.youtubeSearchterms[0] = boardgameName;
-    console.log("Youtube search results", BggData.youtubeSearchterms)
 
   }; // closes main else if
   console.log("This is the bggdeepdata", Bggdeepdata);
@@ -780,6 +735,9 @@ $('.boardgame').click(function(event){
 
 function renderAndDisplayFullBoardgame (index) {
 
+	// remove any previous lightbox
+	$('.lightbox').remove();
+
 	// get keys from mainData state at the index matching gameid
 		var gamename = BggData.mainData[index].boardGameName;
 		var averagerating = BggData.mainData[index].boardgameAvgRating;
@@ -841,6 +799,8 @@ function renderAndDisplayFullBoardgame (index) {
 		// Stop scroll on main window
 		$('html, body').css('overflow', 'hidden');
 
+		// hide main body but not canvas keeps mouse position in the same place (instead of display:none)
+		$('.background, #boardgamesearch, #searchresults').css('opacity', 0);
 
 		// disable submit clicks and clicks on additional elements
 	  $('#submitbutton, article').css("pointer-events", "none");
@@ -864,9 +824,11 @@ function backbuttonListener () {
 		// Re-Allow scrolling on the body
 		$('html, body').css('overflow', 'auto');
 
+		// hide main body but not canvas
+		$('.background, #boardgamesearch, #searchresults').css('opacity', 1);
+
 		// fade out lightbox
-		$('.lightbox').fadeOut();
-		$('.lightbox').remove();
+		$('.lightbox').fadeOut(300);
 
 	})
 }
