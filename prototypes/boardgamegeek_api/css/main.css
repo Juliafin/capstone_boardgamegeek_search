@@ -332,6 +332,7 @@ button.backbutton {
     width: 16%;
     background-color: rgba(201, 255, 106, 0.53);
     font-family: Dosis;
+    font-size: 2em;
     border: 1px solid darkgrey;
     position: absolute;
     top: 10%;
@@ -339,6 +340,7 @@ button.backbutton {
     right: 0;
     margin-left: auto;
     margin-right: auto;
+    font-weight: bold;
 }
 
 section.hotlistcontainer {
@@ -349,4 +351,11 @@ section.hotlistcontainer {
 div > .hotlistheader {
     text-align: center;
     font-family: Righteous;
+}
+
+div#noresultserror {
+    text-align: center;
+    color: red;
+    font-family: serif;
+    font-size: 1.2em;
 }

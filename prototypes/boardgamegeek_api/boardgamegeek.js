@@ -245,33 +245,53 @@ function saveDataShallowSearch(data) {
 
   // convert from xml to JSON
   var Bggshallowdata = xmlToJson(data);
-  // iterate array of objects
-  BggData.mainData = Bggshallowdata.boardgames.boardgame.map(function(element, index) {
-    var bgObj = {};
-    // console.log(element['@attributes'].objectid);
-    bgObj.gameId = element['@attributes'].objectid;
-    bgObj.boardGameName = element.name['#text'];
 
-    // if the year published doesn't exist, make the key N/A
-    if ('yearpublished' in element) {
-      bgObj.yearpublished = element.yearpublished['#text'];
-    } else {
-      bgObj.yearpublished = "N/A"
-    }
+	// error correction if the ajax data returned is bad (no results)
+	if (!('boardgame' in Bggshallowdata.boardgames)) {
+		console.log("There are no search results!!");
 
-    // console.log(BggData.gameId);
+		var errorhtml = `<div id="noresultserror">
+		<p>There are zero results for your search. Please try again. </p></div>`
 
-    // pushes the board game name as youtube search term into state
-    bgObj.youtubeSearchterm = element.name['#text'] + " walkthrough";
+		$('#boardgamesearch').append(errorhtml);
 
-    // console.log(bgObj);
-    return bgObj
+		// restore pointer events on submit
+	  $('#submitbutton').css("pointer-events", "auto");
 
-  })
-  // console.log("Bgg data, shallow search done", BggData);
-  // console.log("Youtube search terms: ", BggData.youtubeSearchterms)
+	  // remove loader
+	  $('.loadingcontainer').remove();
 
-  // TODO temporary call
+		return
+
+
+	} else {
+		// iterate array of objects
+	  BggData.mainData = Bggshallowdata.boardgames.boardgame.map(function(element, index) {
+	    var bgObj = {};
+	    // console.log(element['@attributes'].objectid);
+	    bgObj.gameId = element['@attributes'].objectid;
+	    bgObj.boardGameName = element.name['#text'];
+
+	    // if the year published doesn't exist, make the key N/A
+	    if ('yearpublished' in element) {
+	      bgObj.yearpublished = element.yearpublished['#text'];
+	    } else {
+	      bgObj.yearpublished = "N/A"
+	    }
+
+	    // console.log(BggData.gameId);
+
+	    // pushes the board game name as youtube search term into state
+	    bgObj.youtubeSearchterm = element.name['#text'] + " walkthrough";
+
+	    // console.log(bgObj);
+	    return bgObj
+
+	  })
+	  // console.log("Bgg data, shallow search done", BggData);
+	  // console.log("Youtube search terms: ", BggData.youtubeSearchterms)
+	}
+
 }
 
 // makes string of game ids from game ids at global object
@@ -619,6 +639,10 @@ function getSearchTerm() {
     var boardgamesearchterm = $('#boardgameterm').val();
     console.log(boardgamesearchterm);
 
+		// remove any previous zero reults errors
+		$('#noresultserror').remove();
+
+		// load the loading gif
     renderLoader();
 
     // var gameIDs = '';
