@@ -62,9 +62,9 @@ function xmlToJson(xml) {
 };
 
 // Enable CORS (bypass Bgg api CORS block)
-
+// 'cors-anywhere.herokuapp.com'
 (function() {
-  var cors_api_host = 'cors-anywhere.herokuapp.com';
+  var cors_api_host = 'crossorigin.me';
   var cors_api_url = 'https://' + cors_api_host + '/';
   var slice = [].slice;
   var origin = window.location.protocol + '//' + window.location.host;
@@ -151,9 +151,6 @@ var _ = undefined;
 // Testing single call:
 // $.ajax(getDataFromBGGApi(saveDataShallowSearch, _, 'lords of waterdeep')).then($.ajax(getDataFromBGGApi(saveDataDeepSearch, '110327')));
 
-// searchAllYoutubeTerms();
-
-
 
 var YOUTUBE_BASE_URL = "https://www.googleapis.com/youtube/v3/search"
 
@@ -196,7 +193,7 @@ function saveYTdata(data) {
 function printData(data) {
   // console.log("Youtube data: " , data);
   var Bggrawdata = xmlToJson(data);
-  // console.log("This is the raw json conversion: ", Bggrawdata);
+  console.log("This is the raw json conversion: ", Bggrawdata);
 }
 
 function saveDataHotlist(data) {
@@ -237,7 +234,7 @@ function saveDataHotlist(data) {
     // console.log(hotlistYearPublished);
 
   });
-  // console.log(BggData.hotlist);
+  console.log("This is the hotlist in state: " ,BggData.hotlist);
 }
 
 // save data to State => BggData
@@ -627,11 +624,16 @@ function getSearchTerm() {
     // var gameIDs = '';
     var _;
     $.ajax(getDataFromBGGApi(_, boardgamesearchterm)).then(function(response) {
-      saveDataShallowSearch(response);
-      var gameIDs = createGameIdString();
-      $.ajax(getDataFromBGGApi(gameIDs)).then(function(response) {
-        saveDataDeepSearch(response);
-        renderSearchHtml();
+
+			saveDataShallowSearch(response);
+
+			var gameIDs = createGameIdString();
+
+			$.ajax(getDataFromBGGApi(gameIDs)).then(function(response) {
+
+				saveDataDeepSearch(response);
+
+				renderSearchHtml();
       }); // closes first then
     }); // closes second then
 
@@ -831,7 +833,7 @@ function renderAndDisplayFullBoardgame (index) {
 		$('html, body').css('overflow', 'hidden');
 
 		// hide main body but not canvas keeps mouse position in the same place (instead of display:none)
-		$('.background, #boardgamesearch, #searchresults').css('opacity', 0);
+		$('.background, #boardgamesearch, #searchresults, .hotlist').css('opacity', 0);
 
 		// disable submit clicks and clicks on additional elements
 	  $('#submitbutton, article').css("pointer-events", "none");
@@ -856,7 +858,7 @@ function backbuttonListener () {
 		$('html, body').css('overflow', 'auto');
 
 		// hide main body but not canvas
-		$('.background, #boardgamesearch, #searchresults').css('opacity', 1);
+		$('.background, #boardgamesearch, #searchresults, .hotlist').css('opacity', 1);
 
 		// fade out lightbox
 		$('.lightbox').fadeOut(300);
@@ -864,6 +866,56 @@ function backbuttonListener () {
 	})
 }
 
+function renderAndDisplayHotlist () {
+	$.ajax(getDataFromBGGApi()).then(function(response){
+		saveDataHotlist(response);
+		console.log("Hotlist data in state after save: ",BggData.hotlist);
+
+		BggData.hotlist.forEach(function(element, index) {
+
+			// get keys from state
+			var hotlistGameId = element.hotlistGameId;
+			var hotlistGameName = element.hotlistGameName;
+			var hotlistRank = element.hotlistRank;
+			var hotlistImage = "http://" + element.hotlistThumbnail;
+			var hotlistYearPublished = element.hotlistYearPublished;
+
+			var html =
+
+			`
+			<article class="hotlist" id="index${index}" gameid="${hotlistGameId}">
+				<h2 class="boardgamename">${hotlistGameName}</h2>
+				<div class="boardgameimage hotlistimage" id="imageindex${index}">
+					<img class= "imagethumbnail" src="${hotlistImage}" alt="${hotlistGameName}">
+				</div>
+				<div class="rankandyearpublished">
+					<ul>
+						<li>Hotlist Rank: ${hotlistRank}</li>
+						<li>Year Published: ${hotlistYearPublished}</li>
+					</ul>
+				</div>
+			</article>`;
+
+			console.log(html);
+
+			// append to DOM
+			$('.hotlistcontainer').append(html);
+
+			if (index % 2 === 0) {
+	      var evenSelector = "#imageindex" + index;
+	      $(evenSelector).addClass('even');
+	    } else {
+	      var oddSelector = "#imageindex" + index;
+	      $(oddSelector).addClass('odd');
+	    };
+
+		});
+		// console.log(hotlistHtml);
+	});// closes then / ajax
+
+}
+
+renderAndDisplayHotlist();
 
 // TODO Finish styling lightbox
 // Invoke youtube api for iframes

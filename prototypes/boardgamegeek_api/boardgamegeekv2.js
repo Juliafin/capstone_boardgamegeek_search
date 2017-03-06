@@ -42,10 +42,11 @@ function xmlToJson(xml) {
 };
 
 // Enable CORS (bypass Bgg api CORS block)
-
+// 'cors-anywhere.herokuapp.com'
+// 'https://'
 (function() {
-    var cors_api_host = 'cors-anywhere.herokuapp.com';
-    var cors_api_url = 'https://' + cors_api_host + '/';
+    var cors_api_host = 'corsproxy.' ;
+    var cors_api_url = 'http://' + cors_api_host + '/';
     var slice = [].slice;
     var origin = window.location.protocol + '//' + window.location.host;
     var open = XMLHttpRequest.prototype.open;

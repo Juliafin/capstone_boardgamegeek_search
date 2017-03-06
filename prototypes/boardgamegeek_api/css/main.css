@@ -23,7 +23,7 @@ img.maintitle {
 }
 
 
-h1 {
+h1.boardgamesearchtitle {
     font-family: Libre Franklin;
     position: absolute;
     top: 86px;
@@ -176,6 +176,7 @@ img.imagethumbnail {
     top: 3px;
     height: 70%;
     margin-bottom: 3%;
+    text-align: left;
 }
 
 ul {
@@ -228,13 +229,15 @@ article:hover {
     float: right;
 }
 
-button#submitbutton:hover {
+button#submitbutton:hover, button.backbutton:hover {
     transform: scale(1.05);
     filter: brightness(115%);
 }
 
-button#submitbutton:active {
-  filter: brightness(90%);
+button#submitbutton:active, button.backbutton:active {
+  filter: brightness(80%);
+  box-shadow: 0 0px # 600;
+  transform: translateY(1px);
 }
 
 .hidden {
@@ -291,7 +294,7 @@ img.imagethumbnailLB {
 
 h2.boardgamenameLB {
     text-align: center;
-    margin-top: 87px;
+    margin-top: 15%;
     font-family: Lobster Two;
     font-size: 5em;
     border-top: 1px black solid;
@@ -319,4 +322,31 @@ ul.boardgameawards {
     top: 3px;
     height: 70%;
     margin-bottom: 3%;
+    text-align: left;
+}
+
+button.backbutton {
+    outline: none;
+    margin-bottom: 10%;
+    height: 15%;
+    width: 16%;
+    background-color: rgba(201, 255, 106, 0.53);
+    font-family: Dosis;
+    border: 1px solid darkgrey;
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+section.hotlistcontainer {
+    margin-top: 17%;
+    background-color: rgb(226, 179, 179);
+}
+
+div > .hotlistheader {
+    text-align: center;
+    font-family: Righteous;
 }
