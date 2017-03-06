@@ -317,8 +317,10 @@ function saveDataDeepSearch(data) {
       // correcting when players is zero
       if ((element.maxplayers != 0) && (element.minplayers != 0)) {
         var players = element.minplayers['#text'] + ' - ' + element.maxplayers['#text'];
+
       } else if (element.maxplayers === element.minplayers) {
         var players = element.maxplayers;
+
       } else {
         var players = "N/A";
       };
@@ -326,6 +328,7 @@ function saveDataDeepSearch(data) {
       // corrects playingtime if it doesn't exist
       if ('playingtime' in element) {
         var playingtime = element.playingtime['#text'] + ' minutes';
+
       } else {
         var playingtime = "N/A"
       };
@@ -333,13 +336,15 @@ function saveDataDeepSearch(data) {
       // corrects age if it doesn't exist
       if ('age' in element) {
         var age = element.age['#text'];
+
       } else {
         var age = "N/A"
       };
 
       // corrects description if it doesn't exist
-      if ('description' in element) {
+      if (('description' in element) && (element.description['#text'] !== undefined)) {
         var description = element.description['#text'];
+
       } else {
         var description = "N/A"
       }
@@ -347,6 +352,7 @@ function saveDataDeepSearch(data) {
       // corrects publisher if it doesn't exist
       if ('boardgamepublisher' in element) {
         var boardgamepublisher = element.boardgamepublisher['#text'];
+
       } else {
         var boardgamepublisher = "N/A"
       }
@@ -362,8 +368,10 @@ function saveDataDeepSearch(data) {
       if (Array.isArray(element.statistics.ratings.ranks.rank)) {
         var boardgameRank = element.statistics.ratings.ranks.rank[0]['@attributes'].value;
         // console.log('full boardgame rank: ', boardgameRank);
+
       } else if (typeof(element.statistics.ratings.ranks.rank) === 'object') {
         var boardgameRank = element.statistics.ratings.ranks.rank['@attributes'].value;
+
       } else {
         var boardgameRank = 'Not Ranked';
       }
@@ -376,10 +384,12 @@ function saveDataDeepSearch(data) {
           // console.log('elem is an array, and this is the mechanic: ' + elem['#text'])
           return elem['#text'];
         });
+
       } else if ((typeof(element.boardgamemechanic) === 'object') && (element.boardgamemechanic !== null)) {
         //  object keys, iterate over keys, send into array
         var boardgamemechanics = element.boardgamemechanic['#text']
         // console.log('elem is an object, and this is the mechanic: ' + boardgamemechanics);
+
       } else if (!element.boardgamemechanic) {
         var boardgamemechanics = 'N/A';
       };
@@ -388,9 +398,36 @@ function saveDataDeepSearch(data) {
       if (description === "This page does not exist. You can edit this page to create it.") {
         description = "This item does not have a description.";
       };
+
       if (playingtime === "0 minutes") {
         playingtime = "N/A"
       };
+
+
+			// Corrections on board game family
+			if (Array.isArray(element.boardgamefamily)) {
+				var boardgamefamily = element.boardgamefamily[0]['#text'];
+
+			} else if (typeof(element.boardgamefamily) === 'object') {
+				var boardgamefamily = element.boardgamefamily['#text'];
+
+			} else {
+				var boardgamefamily = "N/A"
+			}
+
+			// Corrections for board game Awards
+			if (Array.isArray(element.boardgamehonor)) {
+				var boardgameawards = element.boardgamehonor.map(function(element){
+					return element['#text']
+				});
+
+			} else if (typeof(element.boardgamehonor) === 'object') {
+				var boardgameawards = element.boardgamehonor['#text'];
+
+			} else {
+				var boardgameawards = "N/A";
+			}
+
 
       // console.logs to test keys
       // console.log("image: " + image);
@@ -403,6 +440,9 @@ function saveDataDeepSearch(data) {
       // console.log("board game mechanics: " + boardgamemechanics)
       // console.log("board game avg rating: " + boardgameAvgRating);
 
+			// write keys to state
+			BggData.mainData[index].boardgameawards = boardgameawards;
+			BggData.mainData[index].boardgamefamily = boardgamefamily
       BggData.mainData[index].boardGameImage = image;
       BggData.mainData[index].players = players;
       BggData.mainData[index].playingTime = playingtime;
@@ -432,8 +472,10 @@ function saveDataDeepSearch(data) {
     // correcting when players is zero
     if ((element.maxplayers != 0) && (element.minplayers != 0)) {
       var players = element.minplayers['#text'] + ' - ' + element.maxplayers['#text'];
+
     } else if (element.maxplayers === element.minplayers) {
       var players = element.maxplayers;
+
     } else {
       var players = "N/A";
     };
@@ -441,6 +483,7 @@ function saveDataDeepSearch(data) {
     // Corrects playtime when it doesn't exist
     if ('playtime' in element) {
       var playingtime = element.playingtime['#text'] + ' minutes';
+
     } else {
       var playingtime = "N/A";
     };
@@ -448,13 +491,15 @@ function saveDataDeepSearch(data) {
     // Corrects age when it doesn't exist
     if ('age' in element) {
       var age = element.age['#text'];
+
     } else {
       var age = "N/A";
     };
 
     // Corrects description when it doesn't exist
-    if ('description' in element) {
+    if (('description' in element) && (element.description['#text'] !== undefined)) {
       var description = element.description['#text'];
+
     } else {
       var description = "N/A"
     };
@@ -462,12 +507,14 @@ function saveDataDeepSearch(data) {
     // Corrects board game publisher when it doesn't exist
     if ('boardgamepublisher' in element) {
       var boardgamepublisher = element.boardgamepublisher['#text'];
+
     } else {
       var boardgamepublisher = "N/A"
     };
 
     if ('statistics.ratings.average' in element) {
       var boardgameAvgRating = element.statistics.ratings.average['#text'];
+
     } else {
       var boardgameAvgRating = "N/A"
     }
@@ -476,8 +523,10 @@ function saveDataDeepSearch(data) {
     if (Array.isArray(element.statistics.ratings.ranks.rank)) {
       var boardgameRank = element.statistics.ratings.ranks.rank[0]['@attributes'].value;
       // console.log('full boardgame rank: ', boardgameRank);
+
     } else if (typeof(element.statistics.ratings.ranks.rank) === 'object') {
       var boardgameRank = element.statistics.ratings.ranks.rank['@attributes'].value;
+
     } else {
       var boardgameRank = 'Not Ranked';
     }
@@ -506,6 +555,32 @@ function saveDataDeepSearch(data) {
       playingtime = "N/A"
     };
 
+		// Corrections on board game family
+		if (Array.isArray(element.boardgamefamily)) {
+			var boardgamefamily = element.boardgamefamily[0]['#text'];
+
+		} else if (typeof(element.boardgamefamily) === 'object') {
+			var boardgamefamily = element.boardgamefamily['#text'];
+
+		} else {
+			var boardgamefamily = "N/A"
+		}
+
+		// Corrections for board game Awards
+		if (Array.isArray(element.boardgamehonor)) {
+			var boardgameawards = element.boardgamehonor.map(function(element){
+				return element['#text']
+			});
+
+		} else if (typeof(element.boardgamehonor) === 'object') {
+			var boardgameawards = element.boardgamehonor['#text'];
+
+		} else {
+			var boardgameawards = "N/A";
+		}
+
+
+
     // console.logs to test keys
     // console.log("image: " + image);
     // console.log("players: " + players);
@@ -517,6 +592,8 @@ function saveDataDeepSearch(data) {
     // console.log("board game mechanics: " + boardgamemechanics)
     // console.log("board game avg rating: " + boardgameAvgRating);
 
+		BggData.mainData[0].boardgameawards = boardgameawards;
+		BggData.mainData[0].boardgamefamily = boardgamefamily;
     BggData.mainData[0].boardGameImage = image;
     BggData.mainData[0].players = players;
     BggData.mainData[0].playingTime = playingtime;
@@ -679,16 +756,35 @@ function renderAndDisplayFullBoardgame (index) {
 		var playingTime = BggData.mainData[index].playingTime;
 		var yearpublished = BggData.mainData[index].yearpublished;
 		var image = BggData.mainData[index].boardGameImage;
+		var boardgamefamily = BggData.mainData[index].boardgamefamily;
 
+		// convert board game mechanics to a list
 		if (Array.isArray(BggData.mainData[index].boardgamemechanics)) {
-		var boardgamemechanicshtml =		BggData.mainData[index].boardgamemechanics.map(function(element){
+		var boardgamemechanicshtml = BggData.mainData[index].boardgamemechanics.map(function(element){
 			 return `<li>${element}</li>`
-		}).join();
+		}).join().replace(/,/g, '');
 
 		} else if (!('boardgamemechanics' in BggData.mainData[index])) {
 			return
+
 		} else {
 			var boardgamemechanicshtml = BggData.mainData[index].boardgamemechanics;
+		}
+
+		console.log(boardgamemechanicshtml);
+
+
+		// convert board game awards to a list
+		if (Array.isArray(BggData.mainData[index].boardgameawards)) {
+		var boardgameawardshtml =		BggData.mainData[index].boardgameawards.map(function(element){
+			 return `<li>${element}</li>`
+		}).join().replace(/,/g, '');
+
+	} else if (!('boardgameawards' in BggData.mainData[index])) {
+			return
+
+		} else {
+			var boardgameawardshtml = BggData.mainData[index].boardgameawards;
 		}
 
 		var gameLightboxHtml = `
@@ -706,6 +802,7 @@ function renderAndDisplayFullBoardgame (index) {
 		            <li>Year Published: ${yearpublished}</li>
 		            <li>Rank: ${rank}</li>
 		            <li>Average player rating: ${averagerating}</li>
+								<li>Board game family: ${boardgamefamily}</li>
 		        </ul>
 		    </div>
 		    <div class="description">
@@ -714,7 +811,12 @@ function renderAndDisplayFullBoardgame (index) {
 		    </div>
 		    <div class="boardgamemechanicsLB">
 		        <ul id="boardgamemechanics${index}" class="boardgamemechanics">
-		            <li>Board game mechanics:</li>${boardgamemechanicshtml}
+		            <p>Board game mechanics:</p>${boardgamemechanicshtml}
+		        </ul>
+		    </div>
+				<div class="boardgameawardsLB">
+		        <ul id="boardgameawards${index}" class="boardgameawards">
+		            <p>Board game awards: </p>${boardgameawardshtml}
 		        </ul>
 		    </div>
 		    <button class="backbutton" type="button" name="button">Back</button>
@@ -724,8 +826,6 @@ function renderAndDisplayFullBoardgame (index) {
 
 
 		$('body').prepend(gameLightboxHtml);
-
-
 
 		// Stop scroll on main window
 		$('html, body').css('overflow', 'hidden');
@@ -766,7 +866,6 @@ function backbuttonListener () {
 
 
 // TODO Finish styling lightbox
-// Fix board game mechanics content on main page
 // Invoke youtube api for iframes
 // Add iframes
 // Add error correction and update to promises

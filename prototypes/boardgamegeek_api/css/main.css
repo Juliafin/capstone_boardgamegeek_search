@@ -141,7 +141,7 @@ p.searchinstructions {
     display: inline-block;
     width: 21%;
     position: relative;
-    top: -38%;
+    top: 10%;
     font-size: 1em;
     margin-left: 59px;
 }
@@ -171,12 +171,11 @@ img.imagethumbnail {
 .boardgamemechanics {
     font-family: Alegreya Sans;
     display: inline-block;
-    font-size: 1em;
+    font-size: 1.2em;
     position: relative;
     top: 3px;
     height: 70%;
-    width: 50%;
-    left: 37px;
+    margin-bottom: 3%;
 }
 
 ul {
@@ -210,6 +209,7 @@ article {
     background-color: rgba(235, 249, 255, 0.95);
     width: 90%;
     margin-left: 7%;
+    text-align: center;
 }
 
 article:hover {
@@ -294,6 +294,7 @@ h2.boardgamenameLB {
     margin-top: 87px;
     font-family: Lobster Two;
     font-size: 5em;
+    border-top: 1px black solid;
 }
 
 .statsLB {
@@ -305,9 +306,17 @@ h2.boardgamenameLB {
     font-size: 1.5em;
 }
 
-p {}
-
 .description {
     font-family: Libre Franklin;
     font-size: 1.2em;
+}
+
+ul.boardgameawards {
+    font-family: Alegreya Sans;
+    display: inline-block;
+    font-size: 1.2em;
+    position: relative;
+    top: 3px;
+    height: 70%;
+    margin-bottom: 3%;
 }
