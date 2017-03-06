@@ -924,8 +924,14 @@ function renderAndDisplayHotlist () {
 			var hotlistGameName = element.hotlistGameName;
 			var hotlistRank = element.hotlistRank;
 			var hotlistImage = "http://" + element.hotlistThumbnail;
+
+      if('hotlistYearPublished' in element) {
 			var hotlistYearPublished = element.hotlistYearPublished;
 
+      } else {
+      var hotlistYearPublished = "N/A"
+      
+      }
 			var html =
 
 			`

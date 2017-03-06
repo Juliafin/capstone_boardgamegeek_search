@@ -24,6 +24,7 @@ img.maintitle {
     width: 100%;
     z-index: 1;
     opacity: 1;
+    box-shadow: 6px -2px 46px;
 }
 
 h1.boardgamesearchtitle {
@@ -108,7 +109,7 @@ input[type="text"] {
 input#boardgameterm:-webkit-autofill {
     background-color: #1c87ab;
     }
-    
+
 input#boardgameterm:placeholder-shown {
     border: rgb(255, 255, 255) 3px solid;
     color: white;
@@ -159,6 +160,8 @@ p.searchinstructions {
     top: 22px;
     font-family: Antic Slab;
     font-size: 1.8em;
+    font-weight: bold;
+    color: #636161;
 }
 
 .playersandplaytime,
