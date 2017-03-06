@@ -186,9 +186,20 @@ function appendYTdata(data) {
     return;
   }
 	console.log("youtube raw data", data.items);
+
+  // remove 404 error
+  $('.error_image_container').remove();
+
+  // get youtube url from state and draw iframe
   var youtubeUrl = "https://www.youtube.com/embed/" + data.items[0].id.videoId;
+  var iframe = `<iframe id="youtubevideo" width="420" height="315"
+src="">
+</iframe>`
+
+  $('.lightbox').append(iframe);
   // console.log("This is the youtube url: ", youtubeUrl)
   $('#youtubevideo').attr('src', youtubeUrl);
+
 }
 
 
@@ -819,6 +830,7 @@ function renderAndDisplayFullBoardgame (index) {
 		var gameLightboxHtml = `
 
 		<div class="lightbox hidden">
+        <button class="backbutton" type="button" name="button">Back</button>
 		    <h2 class="boardgamenameLB">${gamename}</h2>
 		    <div class="boardgameimageLB">
 		        <img class="imagethumbnailLB" src="${image}" alt="${gamename}">
@@ -848,11 +860,9 @@ function renderAndDisplayFullBoardgame (index) {
 		            <p>Board game awards: </p>${boardgameawardshtml}
 		        </ul>
 		    </div>
-		    <button class="backbutton" type="button" name="button">Back</button>
-				<iframe id="youtubevideo" width="420" height="315"
-		src="assets/images/404error.jpg">
-		</iframe>
-
+        <div class="error_image_container">
+          <img class="errorimage" src="assets/images/404error.jpg" alt="404error">
+        </div>
 		</div>
 		`;
 
@@ -883,6 +893,9 @@ function backbuttonListener () {
 
 	$('.backbutton').click(function(event){
 		event.preventDefault();
+
+    // Stop video from playing by removing iframe
+    $('#youtubevideo').remove();
 
 		// Re-allow click events on the main page
 		$('#submitbutton, article').css("pointer-events", "auto");
