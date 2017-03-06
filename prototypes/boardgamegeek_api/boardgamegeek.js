@@ -243,8 +243,6 @@ function saveDataHotlist(data) {
 // save data to State => BggData
 function saveDataShallowSearch(data) {
 
-  // console.log("Youtube search terms before expansion filtered:" , BggData.youtubeSearchterms);
-
   // Clear previous data
   BggData.length = 0;
 
@@ -588,77 +586,10 @@ function renderSearchHtml() {
 					<li>Number of players: ${element.players}</li>
 				</ul>
 			</div>
-			<div class="boardgamemechanics">
-				<ul id="boardgamemechanicsOne${index}" class="boardgamemechanics">
-					<li>Board game mechanics:</li>
-				</ul>
-				<ul id="boardgamemechanicsTwo${index}" class="boardgamemechanics">
-				</ul>
-			</div>
 		</article>`;
 
     // append main element to DOM
     $('#searchresults').append(html);
-
-    // creates the list for board game mechanics
-    // var boardgamemechanicsSelector = '#boardgamemechanics' + index;
-		// var boardgamemechanicsSelectorTwo = '#boardgamemechanicsTwo' + index;
-
-		// If the element is a string (containing only one mechanic)
-    // if (typeof(element.boardgamemechanics) === 'string') {
-    //   var boardgamemechanicsList = `<li>${element.boardgamemechanics}</li>`;
-
-
-      // Testing if the selector exists
-      // console.log("Boardgames mechanics is a string at index: " + index);
-      // console.log(boardgamemechanicsList);
-      // console.log(boardgamemechanicsSelector);
-      // if ($(boardgamemechanicsSelector).length > 0) {
-      // 	console.log("The board game mechanics selector exists")
-      // } else {
-      // 	console.log ("The board games mechanics selector does not exist")
-      // };
-
-      // append to boardgamemechanics + index
-    //   $(boardgamemechanicsSelector).append(boardgamemechanicsList);
-		//
-    // } else {
-    //   var boardgamemechanicsList = '';
-		// 	var boardgamemechanicsListTwo = '';
-		// 	var listcounter = 0;
-    //   element.boardgamemechanics.forEach(function(mechanic) {
-		//
-    //     if (listcounter > 4) {
-    //       var boardgamemechanicsTwoHTML = `<li>${mechanic}</li>`;
-    //       boardgamemechanicsListTwo += boardgamemechanicsHTML;
-    //       // console.log(boardgamemechanicsList);
-    //       listcounter++;
-		//
-    //     } else {
-    //       var boardgamemechanicsHTML = `<li>${mechanic}</li>`;
-    //       boardgamemechanicsList += boardgamemechanicsHTML;
-    //       // console.log(boardgamemechanicsList);
-    //       listcounter++;
-    //     };
-    //   });
-
-      // testing whether the selector exists
-      // console.log(boardgamemechanicsSelector);
-      // console.log(boardgamemechanicsList);
-      // if ($(boardgamemechanicsSelector).length > 0) {
-      // 	console.log("The board game mechanics selector exists")
-      // } else {
-      // 	console.log ("The board games mechanics selector does not exist")
-      // };
-
-      // append mechanicws list to the class specific to the main index
-      // $(boardgamemechanicsSelector).append(boardgamemechanicsList);
-			//
-			// if (boardgamemechanicsListTwo !== '') {
-			// 	$(boardgamemechanicsSelectorTwo).append(boardgamemechanicsListTwo);
-			// }
-
-    //}; // closes else on boardgamemechanics being an array (forEach)
 
     // add even and odd classes to control image floats in html
     if (index % 2 === 0) {
