@@ -16,7 +16,7 @@ body {
 
 img.maintitle {
     background-size: contain;
-    height: 100%;
+    height: 50%;
     width: 100%;
     z-index: 1;
     opacity: 1;
@@ -29,7 +29,7 @@ h1.boardgamesearchtitle {
     top: 86px;
     right: 0;
     left: 0;
-    width: 70%;
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -59,12 +59,12 @@ li.boardgamemechanics {
     right: 0;
     bottom: 0;
     z-index: 100;
-    height: 100%;
 }
 
 form#boardgamesearch {
     z-index: 100;
-    margin-top: 100px;
+    /* margin-top: 100px; */
+    width: 1000px;
 }
 
 section {
@@ -82,61 +82,73 @@ form.search {
 }
 
 input[type="text"] {
-    width: 30%;
+    width: 40%;
     height: 50px;
-    font-size: 15px;
+    font-size: 1em;
+    font-weight: bolder;
     margin-left: 33%;
     padding-left: 10px;
-    margin-top: 3em;
+    margin-top: -3em;
     margin-bottom: 4em;
-    background-color: #dbffe6;
+    background-color: rgba(64, 165, 95, 0.19);
     border: none;
+    position: absolute;
+    z-index: 900;
+    top: 90%;
+    color: white;
 }
 
 input#boardgameterm:placeholder-shown {
-    border: rgb(88, 157, 67) 1px solid;
-    color: black;
+    border: rgb(255, 255, 255) 3px solid;
+    color: white;
 }
 
 input#boardgameterm::-webkit-input-placeholder {
-    color: #5a9a5a;
+    color: #ffffff;
 }
 
 input#boardgameterm::-moz-placeholder { /* Firefox 19+ */
-  color: #5a9a5a;
+  color: #ffffff;
 }
 
 input#boardgameterm::-ms-input-placeholder { /* IE 10+ */
-  color: #5a9a5a;
+  color: #ffffff;
 }
 
 input#boardgameterm::-moz-placeholder { /* Firefox 18- */
-  color: #5a9a5a;
+  color: #ffffff;
 }
 
 button#submitbutton {
     outline: none;
     height: 1.0em;
-    width: auto;
-    height: 26px;
+    width: 17%;
+    height: 9%;
     margin-top: 3px;
-    font-size: small;
-    color: #106960;
-    background-color: #d0e4f5;
+    font-size: 1em;
+    color: #4b7773;
+    background-color: #f2f9ff;
     border: none;
     margin-left: 38px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: 110%;
+    z-index: 900;
 }
 
 
 p.searchinstructions {
     text-align: center;
     position: relative;
-    top: 90px;
+    top: 22px;
     font-family: Antic Slab;
     font-size: 1.8em;
 }
 
-.playersandplaytime, .rankandyearpublished {
+.playersandplaytime {
     font-family: Alegreya Sans;
     display: inline-block;
     width: 21%;
@@ -151,7 +163,6 @@ p.searchinstructions {
     width: 131px;
     /* float: right; */
     position: relative;
-    top: -25%;
     height: 194px;
     padding-top: 38px;
     z-index: 1;
@@ -164,7 +175,7 @@ img.imagethumbnail {
     height: 189px;
     border-radius: 3px;
     position: absolute;
-    top: 18px;
+    top: 0%;
     right: -5px;
 }
 
@@ -332,7 +343,6 @@ button.backbutton {
     width: 16%;
     background-color: rgba(201, 255, 106, 0.53);
     font-family: Dosis;
-    font-size: 2em;
     border: 1px solid darkgrey;
     position: absolute;
     top: 10%;
@@ -340,28 +350,14 @@ button.backbutton {
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    font-weight: bold;
 }
 
 section.hotlistcontainer {
-    margin-top: 17%;
+    margin-top: 10%;
     background-color: rgb(226, 179, 179);
 }
 
 div > .hotlistheader {
     text-align: center;
     font-family: Righteous;
-}
-
-div#noresultserror {
-    text-align: center;
-    color: red;
-    font-family: serif;
-    font-size: 1.2em;
-}
-
-iframe#youtubevideo {
-    width: 60%;
-    height: 90%;
-    margin-bottom: 10%;
 }
