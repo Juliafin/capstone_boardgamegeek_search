@@ -730,7 +730,7 @@ function renderSearchHtml() {
 function renderLoader() {
 
   var loaderhtml = `<div class=loadingcontainer>
-					<img class="loading" src="images/ajax-loader.gif" alt="">
+					<img class="loading" src="assets/images/ajax-loader.gif" alt="">
 					</div>`;
 
   $('body').prepend(loaderhtml);
@@ -850,7 +850,7 @@ function renderAndDisplayFullBoardgame (index) {
 		    </div>
 		    <button class="backbutton" type="button" name="button">Back</button>
 				<iframe id="youtubevideo" width="420" height="315"
-		src="">
+		src="assets/images/404error.jpg">
 		</iframe>
 
 		</div>
