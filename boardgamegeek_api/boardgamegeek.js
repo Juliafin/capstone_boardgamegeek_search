@@ -62,9 +62,10 @@ function xmlToJson(xml) {
 };
 
 // Enable CORS (bypass Bgg api CORS block)
+// 'crossorigin.me'
 // 'cors-anywhere.herokuapp.com'
 (function() {
-  var cors_api_host = 'crossorigin.me';
+  var cors_api_host = 'cors-anywhere.herokuapp.com';
   var cors_api_url = 'https://' + cors_api_host + '/';
   var slice = [].slice;
   var origin = window.location.protocol + '//' + window.location.host;
