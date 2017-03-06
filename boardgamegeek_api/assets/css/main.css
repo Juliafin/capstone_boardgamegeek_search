@@ -22,7 +22,6 @@ img.maintitle {
     opacity: 1;
 }
 
-
 h1.boardgamesearchtitle {
     font-family: Libre Franklin;
     position: absolute;
@@ -112,16 +111,19 @@ input#boardgameterm::-webkit-input-placeholder {
     color: #ffffff;
 }
 
-input#boardgameterm::-moz-placeholder { /* Firefox 19+ */
-  color: #ffffff;
+input#boardgameterm::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #ffffff;
 }
 
-input#boardgameterm::-ms-input-placeholder { /* IE 10+ */
-  color: #ffffff;
+input#boardgameterm::-ms-input-placeholder {
+    /* IE 10+ */
+    color: #ffffff;
 }
 
-input#boardgameterm::-moz-placeholder { /* Firefox 18- */
-  color: #ffffff;
+input#boardgameterm::-moz-placeholder {
+    /* Firefox 18- */
+    color: #ffffff;
 }
 
 button#submitbutton {
@@ -144,7 +146,6 @@ button#submitbutton {
     z-index: 900;
 }
 
-
 p.searchinstructions {
     text-align: center;
     position: relative;
@@ -153,7 +154,8 @@ p.searchinstructions {
     font-size: 1.8em;
 }
 
-.playersandplaytime, .rankandyearpublished {
+.playersandplaytime,
+.rankandyearpublished {
     font-family: Alegreya Sans;
     display: inline-block;
     width: 21%;
@@ -245,15 +247,17 @@ article:hover {
     float: right;
 }
 
-button#submitbutton:hover, button.backbutton:hover {
+button#submitbutton:hover,
+button.backbutton:hover {
     transform: scale(1.05);
     filter: brightness(115%);
 }
 
-button#submitbutton:active, button.backbutton:active {
-  filter: brightness(80%);
-  box-shadow: 0 0px # 600;
-  transform: translateY(1px);
+button#submitbutton:active,
+button.backbutton:active {
+    filter: brightness(80%);
+    box-shadow: 0 0px # 600;
+    transform: translateY(1px);
 }
 
 .hidden {
@@ -290,6 +294,7 @@ img.loading {
     margin: auto;
     border: 1px grey solid;
 }
+
 .lightbox {
     position: fixed;
     width: 100%;
@@ -362,12 +367,9 @@ section.hotlistcontainer {
     background-color: rgb(226, 179, 179);
 }
 
-div > .hotlistheader {
+div>.hotlistheader {
     text-align: center;
     font-family: Righteous;
     font-size: 3em;
 }
 
-.pagecontainer {
-  display:none;
-}
