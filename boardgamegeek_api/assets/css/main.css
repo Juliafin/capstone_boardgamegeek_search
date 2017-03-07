@@ -69,7 +69,6 @@ li.boardgamemechanics {
 
 form#boardgamesearch {
     z-index: 100;
-    /* margin-top: 100px; */
     width: 1000px;
 }
 
@@ -106,6 +105,7 @@ input[type="text"] {
     margin-left: auto;
     margin-right: auto;
 }
+
 input#boardgameterm:-webkit-autofill {
     background-color: #1c87ab;
     }
@@ -178,7 +178,6 @@ p.searchinstructions {
 .boardgameimage {
     display: inline-block;
     width: 131px;
-    /* float: right; */
     position: relative;
     height: 194px;
     padding-top: 23px;
@@ -396,19 +395,27 @@ iframe#youtubevideo {
     width: 70%;
 }
 
+
+
+/*Media Queries*/
+
 @media screen and (max-width: 750px) {
     p.subtitle {
         top: 80px;
         left: -160px
     }
+
     h1.boardgamesearchtitle {
         top: 70px;
         left: -40px
+
     }
+
     input[type="text"] {
         width: 70%;
         font-size: 1em;
     }
+
     button#submitbutton {
         width: 25%;
     }
@@ -434,47 +441,56 @@ iframe#youtubevideo {
         margin-bottom: 5%
     }
 
-    iframe{
+    iframe {
         margin-bottom:10%
     }
 }
+
 @media screen and (max-width: 650px) {
 
     p.subtitle {
         top: 60px;
         left: -70px;
         font-size: .7em;
+
     }
     h1.boardgamesearchtitle {
         font-size: 2.6em;
         top: 60px;
         left: -40px;
+
     }
     input[type="text"] {
         width: 70%;
         font-size: .8em;
+
     }
     button#submitbutton {
         width: 27%;
         font-size: .7em;
+
     }
     article {
         height: 140px;
     }
+
     .boardgameimage {
         width: 120px;
         height: 170px;
     }
+
     img.imagethumbnail {
         height: 170px;
         width: 100%;
     }
+
     .playersandplaytime, .rankandyearpublished {
         top: 2%;
         left: -7%;
         font-size: .7em;
         line-height: .9em;
     }
+
     p.searchinstructions {
         font-size: 1.5em;
         top: 6px;
@@ -487,10 +503,12 @@ iframe#youtubevideo {
         top: 60px;
         left: -40px
     }
+
     input[type="text"] {
         width: 60%;
         font-size: .6em;
     }
+
     p.searchinstructions {
         font-size: 1.2em;
         margin-bottom: 5%;
@@ -503,9 +521,11 @@ iframe#youtubevideo {
     h1.hotlistheader {
         font-size: 1.7em;
     }
+
     h2.boardgamename {
         font-size: 1em;
     }
+
     .playersandplaytime, .rankandyearpublished {
         font-size: .6em;
         top: -5px;
@@ -575,6 +595,7 @@ iframe#youtubevideo {
         width: 25%;
         height: 15%;
     }
+
     p.searchinstructions {
         font-size: 1.1em;
         margin-bottom: 8%;
@@ -752,6 +773,7 @@ iframe#youtubevideo {
           top:27%;
           height:5%;
       }
+
          button.backbutton {
           position:relative;
           margin-bottom:0;
@@ -766,7 +788,7 @@ iframe#youtubevideo {
   and (min-device-width: 768px)
   and (max-device-width: 1024px) {
 
-      input#boardgameterm{
+      input#boardgameterm {
           top: 33%;
       }
 
@@ -774,6 +796,7 @@ iframe#youtubevideo {
           top:37%;
           height:5%;
       }
+
          button.backbutton {
           position:relative;
           margin-bottom:0;
@@ -781,6 +804,7 @@ iframe#youtubevideo {
           width:23%;
           height:10%;
       }
+
     iframe#youtubevideo {
           height:370px;
           margin-bottom:200px;
