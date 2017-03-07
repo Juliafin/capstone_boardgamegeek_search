@@ -700,11 +700,11 @@ iframe#youtubevideo {
   and (max-device-width: 732px) {
 
       input#boardgameterm{
-          top: 23%;
+          top: 63%;
       }
 
       button#submitbutton {
-          top:27%;
+          top:77%;
           height:5%;
       }
 
