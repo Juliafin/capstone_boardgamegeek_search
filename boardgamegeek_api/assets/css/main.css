@@ -707,6 +707,11 @@ iframe#youtubevideo {
           top:27%;
           height:5%;
       }
+
+      iframe#youtubevideo {
+          height:170px;
+          margin-bottom:300px;
+      }
 }
 
 @media only screen
@@ -720,6 +725,18 @@ iframe#youtubevideo {
       button#submitbutton {
           top:27%;
           height:5%;
+      }
+
+      button.backbutton {
+          position:relative;
+          margin-bottom:0;
+          margin-top:25px;
+          width:23%;
+          height:10%
+      }
+
+      iframe {
+          height:50px;
       }
 }
 
@@ -735,6 +752,14 @@ iframe#youtubevideo {
           top:27%;
           height:5%;
       }
+         button.backbutton {
+          position:relative;
+          margin-bottom:0;
+          margin-top:25px;
+          width:23%;
+          height:10%
+      }
+
 }
 
 @media only screen
@@ -749,4 +774,33 @@ iframe#youtubevideo {
           top:37%;
           height:5%;
       }
+         button.backbutton {
+          position:relative;
+          margin-bottom:0;
+          margin-top:25px;
+          width:23%;
+          height:10%;
+      }
+    iframe#youtubevideo {
+          height:370px;
+          margin-bottom:200px;
+      }
+
+
 }
+
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px) {
+      button.backbutton {
+          position:relative;
+          margin-bottom:0;
+          margin-top:25px;
+          width:23%;
+          height:10%;
+      }
+
+      iframe#youtubevideo {
+          height:270px;
+      }
+  }
