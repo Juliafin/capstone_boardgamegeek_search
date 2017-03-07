@@ -395,3 +395,318 @@ iframe#youtubevideo {
     height: 90%;
     width: 70%;
 }
+
+@media screen and (max-width: 750px) {
+    p.subtitle {
+        top: 80px;
+        left: -160px
+    }
+    h1.boardgamesearchtitle {
+        top: 70px;
+        left: -40px
+    }
+    input[type="text"] {
+        width: 70%;
+        font-size: 1em;
+    }
+    button#submitbutton {
+        width: 25%;
+    }
+
+    h2.boardgamenameLB{
+        font-size: 3.3em;
+    }
+
+    .statsLB {
+        font-size:1em;
+    }
+
+    .description{
+        font-size: .9em;
+    }
+
+    .boardgamemechanicsLB {
+        font-size: 1em;
+    }
+
+    .boardgameawardsLB{
+        font-size: .7em;
+        margin-bottom: 5%
+    }
+
+    iframe{
+        margin-bottom:10%
+    }
+}
+@media screen and (max-width: 650px) {
+
+    p.subtitle {
+        top: 60px;
+        left: -70px;
+        font-size: .7em;
+    }
+    h1.boardgamesearchtitle {
+        font-size: 2.6em;
+        top: 60px;
+        left: -40px;
+    }
+    input[type="text"] {
+        width: 70%;
+        font-size: .8em;
+    }
+    button#submitbutton {
+        width: 27%;
+        font-size: .7em;
+    }
+    article {
+        height: 140px;
+    }
+    .boardgameimage {
+        width: 120px;
+        height: 170px;
+    }
+    img.imagethumbnail {
+        height: 170px;
+        width: 100%;
+    }
+    .playersandplaytime, .rankandyearpublished {
+        top: 2%;
+        left: -7%;
+        font-size: .7em;
+        line-height: .9em;
+    }
+    p.searchinstructions {
+        font-size: 1.5em;
+        top: 6px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    h1.boardgamesearchtitle {
+        font-size: 2.3em;
+        top: 60px;
+        left: -40px
+    }
+    input[type="text"] {
+        width: 60%;
+        font-size: .6em;
+    }
+    p.searchinstructions {
+        font-size: 1.2em;
+        margin-bottom: 5%;
+    }
+
+    input#boardgameterm:placeholder-shown {
+    border: 1px white solid
+    }
+
+    h1.hotlistheader {
+        font-size: 1.7em;
+    }
+    h2.boardgamename {
+        font-size: 1em;
+    }
+    .playersandplaytime, .rankandyearpublished {
+        font-size: .6em;
+        top: -5px;
+        margin-top: 3%;
+    }
+
+    article {
+        height: 110px;
+    }
+
+    .boardgameimage {
+        width: 100px;
+        height: 150px;
+        top: -26%
+    }
+
+    img.imagethumbnail {
+        height: 150px;
+        width: 100%;
+    }
+
+    h2.boardgamenameLB{
+        font-size: 2.9em;
+    }
+
+    .statsLB {
+        font-size: .8em;
+    }
+
+    .description{
+        font-size: .7em;
+    }
+
+    .boardgamemechanicsLB {
+        font-size: .8em;
+    }
+
+    .boardgameawardsLB{
+        font-size: .6em;
+        margin-bottom: 5%
+    }
+
+    iframe{
+        margin-bottom:10%
+    }
+}
+
+@media screen and (max-width: 450px) {
+    body {
+        background-color: lightgreen;
+    }
+    h1.boardgamesearchtitle {
+        font-size: 2.0em;
+        top: 55px;
+        left: -40px
+    }
+
+    p.subtitle {
+        font-size: .5em;
+    }
+
+    input[type="text"] {
+        width: 63%;
+        border: 1apx white solid;
+        font-size: .5em;
+        margin-top: -10%;
+        height: 20%
+    }
+
+    input#boardgameterm:placeholder-shown {
+    border: 1px white solid;
+    }
+
+    button#submitbutton {
+        width: 25%;
+        height: 15%;
+    }
+    p.searchinstructions {
+        font-size: 1.1em;
+        margin-bottom: 8%;
+    }
+
+    .playersandplaytime, .rankandyearpublished {
+        font-size: .5em;
+        top: -5px;
+        width: 40% margin-top:5%;
+    }
+
+    h2.boardgamenameLB{
+        font-size: 2.5em;
+    }
+
+    .statsLB {
+        font-size: .6em;
+    }
+
+    .description{
+        font-size: .5em;
+    }
+
+    .boardgamemechanicsLB {
+        font-size: .6em;
+    }
+
+    .boardgameawardsLB{
+        font-size: .4em;
+        margin-bottom: 5%
+    }
+
+    iframe{
+        margin-bottom:10%
+    }
+}
+
+
+@media screen and (max-width: 350px) {
+    body {
+        background-color: lightgreen;
+    }
+
+    h1.boardgamesearchtitle {
+        font-size: 1.4em;
+        top: 35px;
+        left: -40px
+    }
+
+    p.subtitle {
+        font-size: .4em;
+        top: 14%;
+        left: -16%;
+    }
+
+    input#boardgameterm:placeholder-shown {
+    border: 1px white solid;
+    }
+
+     input[type="text"] {
+        width: 63%;
+        font-size: .4em;
+        height: 18%;
+    }
+
+    button#submitbutton {
+        width:30%;
+        height:20%;
+    }
+
+    p.searchinstructions {
+        font-size: .8em;
+    }
+
+    .boardgameimage {
+        width: 70px;
+        height: 120px;
+        top: -20%
+    }
+
+    img.imagethumbnail {
+        height: 120px;
+        width: 100%;
+    }
+
+    article {
+        height:90px;
+    }
+
+    h2.boardgamename {
+        font-size: .6em;
+        top:-5%;
+    }
+
+    .playersandplaytime, .rankandyearpublished {
+        font-size: .4em;
+        top: -90px;
+        width: 60%;
+
+    }
+
+    h2.boardgamenameLB{
+        font-size: 2.1em;
+    }
+
+    .statsLB {
+        font-size: .4em;
+    }
+
+    .description{
+        font-size: .4em;
+    }
+
+    .boardgamemechanicsLB {
+        font-size: .4em;
+    }
+
+    .boardgameawardsLB{
+        font-size: .3em;
+        margin-bottom: 5%
+    }
+
+    iframe{
+        margin-bottom:10%
+    }
+
+  }

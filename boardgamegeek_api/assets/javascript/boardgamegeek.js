@@ -847,7 +847,7 @@ function renderAndDisplayFullBoardgame (index) {
 		        </ul>
 		    </div>
 		    <div class="description">
-		        <h3>description</h3>
+		        <h3>Description: </h3>
 		        <p>${description}</p>
 		    </div>
 		    <div class="boardgamemechanicsLB">
@@ -930,7 +930,7 @@ function renderAndDisplayHotlist () {
 
       } else {
       var hotlistYearPublished = "N/A"
-      
+
       }
 			var html =
 
