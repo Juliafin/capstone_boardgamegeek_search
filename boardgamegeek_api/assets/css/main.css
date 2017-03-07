@@ -554,9 +554,7 @@ iframe#youtubevideo {
 }
 
 @media screen and (max-width: 450px) {
-    body {
-        background-color: lightgreen;
-    }
+
     h1.boardgamesearchtitle {
         font-size: 2.0em;
         top: 55px;
@@ -622,9 +620,6 @@ iframe#youtubevideo {
 
 
 @media screen and (max-width: 350px) {
-    body {
-        background-color: lightgreen;
-    }
 
     h1.boardgamesearchtitle {
         font-size: 1.4em;
@@ -710,3 +705,59 @@ iframe#youtubevideo {
     }
 
   }
+
+  @media only screen
+  and (min-device-width: 412px)
+  and (max-device-width: 732px) {
+
+      input#boardgameterm{
+          top: 23%;
+      }
+
+      button#submitbutton {
+          top:27%;
+          height:5%;
+      }
+}
+
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px) {
+
+      input#boardgameterm{
+          top: 23%;
+      }
+
+      button#submitbutton {
+          top:27%;
+          height:5%;
+      }
+}
+
+@media only screen
+  and (min-device-width: 360px)
+  and (max-device-width: 640px) {
+
+      input#boardgameterm{
+          top: 23%;
+      }
+
+      button#submitbutton {
+          top:27%;
+          height:5%;
+      }
+}
+
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px) {
+
+      input#boardgameterm{
+          top: 33%;
+      }
+
+      button#submitbutton {
+          top:37%;
+          height:5%;
+      }
+}
