@@ -54,5 +54,5 @@ function y(p) {
     return (t > h || t < 0) ? y(p) : t
 }
 document.onclick = i
-document.ontouchstart = i
+// document.ontouchstart = i
 i()
