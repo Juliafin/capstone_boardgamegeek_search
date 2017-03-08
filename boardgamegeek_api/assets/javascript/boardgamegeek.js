@@ -2,24 +2,7 @@
 var BggData = {
   hotlist: [],
   mainData: [],
-}
-
-
-;
-//TODO remove test later
-var BggDataTest = [{
-    gameId: ''
-  },
-  {
-    gameId: ''
-  },
-  {
-    gameId: ''
-  },
-  {
-    gameId: ''
-  },
-];
+};
 
 
 // Changes XML to JSON
