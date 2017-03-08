@@ -342,7 +342,7 @@ function saveDataDeepSearch(data) {
 
       // corrects if image doesn't exist
       if ('image' in element) {
-        var image = 'http:' + element.image['#text'];
+        var image = 'https:' + element.image['#text'];
       };
 
       // correcting when players is zero
@@ -497,7 +497,7 @@ function saveDataDeepSearch(data) {
 
     // corrects if image doesn't exist
     if ('image' in element) {
-      var image = 'http:' + element.image['#text'];
+      var image = 'https:' + element.image['#text'];
     }
 
     // correcting when players is zero
@@ -923,7 +923,7 @@ function renderAndDisplayHotlist () {
 			var hotlistGameId = element.hotlistGameId;
 			var hotlistGameName = element.hotlistGameName;
 			var hotlistRank = element.hotlistRank;
-			var hotlistImage = "http://" + element.hotlistThumbnail;
+			var hotlistImage = "https://" + element.hotlistThumbnail;
 
       if('hotlistYearPublished' in element) {
 			var hotlistYearPublished = element.hotlistYearPublished;
