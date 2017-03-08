@@ -87,9 +87,9 @@ function xmlToJson(xml) {
 // 3rd api > BGG (gameid) more indepth on those particular games
 // 4th api > youtube (name) (+ "playthrough") > playthrough
 
-var BOARDGAMEGEEK_SEARCH_URL = "http://boardgamegeek.com/xmlapi/search/";
-var BOARDGAMEGEEK_GAMEID_URL = "http://boardgamegeek.com/xmlapi/boardgame/";
-var BOARDGAMEGEEK_HOTLIST_URL = "http://boardgamegeek.com/xmlapi2/hot?type=boardgame";
+var BOARDGAMEGEEK_SEARCH_URL = "https://boardgamegeek.com/xmlapi/search/";
+var BOARDGAMEGEEK_GAMEID_URL = "https://boardgamegeek.com/xmlapi/boardgame/";
+var BOARDGAMEGEEK_HOTLIST_URL = "https://boardgamegeek.com/xmlapi2/hot?type=boardgame";
 // search and gameID not provided, returns hot list
 // search provided, returns shallow search of games,
 // game id provided, returns deep search of games
