@@ -715,6 +715,11 @@ function renderSearchHtml() {
   // remove loader
   $('.loadingcontainer').remove();
 
+  // scroll to results
+  $('html, body').animate({
+		scrollTop: $('#searchresults').offset().top
+	},1000);
+
 	// starts listener listening for clicks on articles
 	boardgameArticleListener();
 
@@ -921,7 +926,7 @@ function renderAndDisplayHotlist () {
 			<article class="hotlist" id="index${index}" gameid="${hotlistGameId}">
 				<h2 class="boardgamename">${hotlistGameName}</h2>
 				<div class="boardgameimage hotlistimage" id="imageindex${index}">
-					<img class= "imagethumbnail" src="${hotlistImage}" alt="${hotlistGameName}">
+					<img class= "imagethumbnail" id= "innerimageindex${index}" src="${hotlistImage}" alt="${hotlistGameName}">
 				</div>
 				<div class="rankandyearpublished">
 					<ul>
@@ -937,11 +942,15 @@ function renderAndDisplayHotlist () {
 			$('.hotlistcontainer').append(html);
 
 			if (index % 2 === 0) {
-	      var evenSelector = "#imageindex" + index;
-	      $(evenSelector).addClass('even');
+	      var evenSelector1 = "#imageindex" + index;
+        var evenSelector2 = "#innerimageindex" + index;
+        $(evenSelector1).addClass('even');
+	      $(evenSelector2).addClass('even');
 	    } else {
-	      var oddSelector = "#imageindex" + index;
-	      $(oddSelector).addClass('odd');
+	      var oddSelector1 = "#imageindex" + index;
+        var oddSelector2 = "#innerimageindex" + index;
+        $(oddSelector1).addClass('odd');
+        $(oddSelector2).addClass('odd');
 	    };
 
 		});
