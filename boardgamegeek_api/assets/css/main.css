@@ -177,19 +177,20 @@ p.searchinstructions {
 
 .boardgameimage {
     display: inline-block;
-    width: 131px;
+    width: 15%;
     position: relative;
-    height: 194px;
+    height: 144px;
     padding-top: 23px;
     z-index: 1;
-    top: -15px;
+    top: -2px;
+    overflow: hidden;
 }
 
 img.imagethumbnail {
-    width: 103%;
+    /* width: 103%; */
     display: block;
     float: right;
-    height: 189px;
+    /* height: 189px; */
     border-radius: 3px;
     position: absolute;
     top: 2%;
@@ -411,6 +412,23 @@ iframe#youtubevideo {
 
     }
 
+      .boardgameimage {
+        width: 150px;
+        height: 170px;
+        top: -14%
+    }
+
+    img.imagethumbnail {
+        height: 170px;
+        width: 100%;
+    }
+
+    .playersandplaytime, .rankandyearpublished {
+        top: 3%;
+    }
+
+
+
     input[type="text"] {
         width: 70%;
         font-size: 1em;
@@ -475,7 +493,7 @@ iframe#youtubevideo {
     }
 
     .boardgameimage {
-        width: 120px;
+        width: 160px;
         height: 170px;
     }
 
@@ -537,15 +555,11 @@ iframe#youtubevideo {
     }
 
     .boardgameimage {
-        width: 100px;
-        height: 150px;
-        top: -26%
+        width: 30%;
+        height: 160px;
+        top: -26%;
     }
 
-    img.imagethumbnail {
-        height: 150px;
-        width: 100%;
-    }
 
     h2.boardgamenameLB{
         font-size: 2.9em;
@@ -604,7 +618,8 @@ iframe#youtubevideo {
     .playersandplaytime, .rankandyearpublished {
         font-size: .5em;
         top: -5px;
-        width: 40% margin-top:5%;
+        width: 40%;
+        margin-top:5%;
     }
 
     h2.boardgamenameLB{
@@ -663,9 +678,9 @@ iframe#youtubevideo {
     }
 
     .boardgameimage {
-        width: 70px;
+        width: 90px;
         height: 120px;
-        top: -20%
+        top: -30%
     }
 
     img.imagethumbnail {
@@ -678,14 +693,17 @@ iframe#youtubevideo {
     }
 
     h2.boardgamename {
-        font-size: .6em;
+        font-size: .5em;
         top:-5%;
+        width: 45%
     }
 
     .playersandplaytime, .rankandyearpublished {
-        font-size: .4em;
-        top: -90px;
-        width: 60%;
+        font-size: .35em;
+        top: -110px;
+        width: 50%;
+        left: -30%;
+        padding-left: 56px;
 
     }
 
@@ -729,6 +747,24 @@ iframe#youtubevideo {
           height:5%;
       }
 
+      h2.boardgamename {
+          margin-left: 4px;
+          margin-right: 14px;
+          padding-left: 10px;
+          margin-bottom: 10px;
+          font-size: .9em
+      }
+
+      article {
+          height: 210px;
+      }
+
+       .boardgameimage {
+          width:37%;
+          height:100%;
+          top: -4%;
+       }
+
       iframe#youtubevideo {
           height:170px;
           margin-bottom:300px;
@@ -736,7 +772,9 @@ iframe#youtubevideo {
 
       .playersandplaytime, .rankandyearpublished {
           font-size: .9em;
-          width:50%
+          width:50%;
+          padding:0;
+          margin:0;
       }
 }
 
@@ -764,6 +802,17 @@ iframe#youtubevideo {
       iframe {
           height:50px;
       }
+
+      .boardgameimage {
+          width:37%;
+          height:100%;
+          top: -8%;
+       }
+
+       article {
+           height: 200px
+       }
+
 }
 
 @media only screen
@@ -832,4 +881,20 @@ iframe#youtubevideo {
       iframe#youtubevideo {
           height:270px;
       }
+
+       input#boardgameterm{
+          top: 23%;
+      }
+
+      button#submitbutton {
+          top:27%;
+          height:5%;
+      }
+
+      .playersandplaytime, .rankandyearpublished {
+           padding-left: 78px;
+           font-size: .6em;
+           top: -140%
+      }
+
   }
