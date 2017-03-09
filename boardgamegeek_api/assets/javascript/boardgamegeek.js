@@ -951,7 +951,7 @@ if ('boardgameawards' in BggData.singleSearch) {
   $('html, body').css('overflow', 'hidden');
 
   // hide main body but not canvas keeps mouse position in the same place (instead of display:none)
-  $('.background, #boardgamesearch, #searchresults, .hotlist').css('opacity', 0);
+  $('.background, #boardgamesearch, #searchresults, .hotlist, h1.hotlistheader').css('opacity', 0);
 
   // disable submit clicks and clicks on additional elements
   $('#submitbutton, article').css("pointer-events", "none");
@@ -981,8 +981,11 @@ function backbuttonListener() {
     // Re-Allow scrolling on the body
     $('html, body').css('overflow', 'auto');
 
-    // hide main body but not canvas
-    $('.background, #boardgamesearch, #searchresults, .hotlist').css('opacity', 1);
+    // Show main body again
+    $('.background, #boardgamesearch, #searchresults, .hotlist, h1.hotlistheader').css('opacity', 1);
+
+    // clear state for singleSearch
+    BggData.singleSearch = {};
 
     // fade out lightbox
     $('.lightbox').fadeOut(300);
@@ -1066,9 +1069,6 @@ function hotlistListen() {
   $('.hotlist').click(function(event) {
 
     event.preventDefault();
-
-    // clear state for singleSearch
-    BggData.singleSearch = {};
 
     // get the game id from element clicked
     var gameid = $(this).attr('gameid');
