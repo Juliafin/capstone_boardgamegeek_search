@@ -635,23 +635,8 @@ function saveDataDeepSearch(data) {
     // write youtubeSearchterm based on the game name
     var youtubeSearchterm = boardgameName + " walkthrough";
 
-    var gameid = Bggdeepdata.boardgames.boardgame['@attributes'].objectid;
+    // var gameid = Bggdeepdata.boardgames.boardgame['@attributes'].objectid;
 
-    BggData.mainData[0].boardgameawards = boardgameawards;
-    BggData.mainData[0].boardgamefamily = boardgamefamily;
-    BggData.mainData[0].boardgameImage = image;
-    BggData.mainData[0].players = players;
-    BggData.mainData[0].playingtime = playingtime;
-    BggData.mainData[0].age = age;
-    BggData.mainData[0].boardgamepublisher = boardgamepublisher;
-    BggData.mainData[0].description = description;
-    BggData.mainData[0].boardgameAvgRating = boardgameAvgRating;
-    BggData.mainData[0].boardgamemechanics = boardgamemechanics;
-    BggData.mainData[0].boardgameRank = boardgameRank;
-    BggData.mainData[0].boardGameName = boardgameName;
-    BggData.mainData[0].yearpublished = yearpublished;
-    BggData.mainData[0].youtubeSearchterm = youtubeSearchterm;
-    BggData.mainData[0].gameid = gameid;
 
 
     BggData.singleSearch.boardgameawards = boardgameawards;
