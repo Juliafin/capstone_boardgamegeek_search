@@ -179,7 +179,7 @@ p.searchinstructions {
 
 .boardgameimage {
     display: inline-block;
-    width: 22%;
+    width: 16%;
     position: relative;
     height: 166px;
     padding-top: 23px;
@@ -232,8 +232,8 @@ article {
     border-radius: 2px;
     height: 151px;
     border-top: solid 1px grey;
-    margin-bottom: 80px;
-    margin-top: 34px;
+    margin-bottom: 116px;
+    margin-top: 56px;
     -webkit-transition: background-color 1s ease-out;
     -moz-transition: background-color 1s ease-out;
     -o-transition: background-color 1s ease-out;
@@ -528,18 +528,23 @@ iframe#youtubevideo {
     }
     .playersandplaytime, .rankandyearpublished {
         font-size: .7em;
-        top: -5px;
+        top: -54px;
         margin-top: 3%;
         width: auto;
+        right: -3%;
     }
     article {
         height: 110px;
+        margin-top: 203px;
     }
     .boardgameimage {
         width: 30%;
         height: 124px;
-        top: -7%;
-        right: 0%;
+        top: -143%;
+        left: 17%;
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
     }
     h2.boardgamenameLB {
         font-size: 2.9em;
@@ -586,10 +591,17 @@ iframe#youtubevideo {
     }
     .playersandplaytime, .rankandyearpublished {
         font-size: .7em;
-        top: -5px;
+        top: -59px;
         width: 40%;
         margin-top: 5%;
+        left: -15%;
     }
+
+    .boardgameimage {
+        left: 22%;
+        top: -149%;
+    }
+
     h2.boardgamenameLB {
         font-size: 2.5em;
     }
@@ -611,7 +623,8 @@ iframe#youtubevideo {
     }
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 350px)
+              and (min) {
     h1.boardgamesearchtitle {
         font-size: 1.4em;
         top: 35px;
@@ -637,7 +650,7 @@ iframe#youtubevideo {
     .boardgameimage {
         width: 90px;
         height: 120px;
-        top: -30%;
+        top: -20%;
     }
     img.imagethumbnail {
         height: 114px;
@@ -711,14 +724,14 @@ iframe#youtubevideo {
     iframe {
         height: 50px;
     }
-    .boardgameimage {
+/*     .boardgameimage {
         width: 37%;
         height: 93%;
         top: -8%;
     }
     article {
         height: 200px
-    }
+    } */
 }
 
 @media only screen and (min-device-width: 360px) and (max-device-width: 640px) {
