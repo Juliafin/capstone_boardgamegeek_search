@@ -3,6 +3,7 @@ var BggData = {
   hotlist: [],
   mainData: [],
   singleSearch: {},
+  singleResult: 0,
 };
 
 
@@ -292,7 +293,7 @@ function saveDataShallowSearch(data) {
     // Pushes the data from the single result into the state
     BggData.mainData.push(bgObj);
 
-
+    console.log("Bggmain data after shallow search", BggData.mainData);
   }
 
 }
@@ -634,6 +635,25 @@ function saveDataDeepSearch(data) {
     // write youtubeSearchterm based on the game name
     var youtubeSearchterm = boardgameName + " walkthrough";
 
+    var gameid = Bggdeepdata.boardgames.boardgame['@attributes'].objectid;
+
+    BggData.mainData[0].boardgameawards = boardgameawards;
+    BggData.mainData[0].boardgamefamily = boardgamefamily;
+    BggData.mainData[0].boardgameImage = image;
+    BggData.mainData[0].players = players;
+    BggData.mainData[0].playingtime = playingtime;
+    BggData.mainData[0].age = age;
+    BggData.mainData[0].boardgamepublisher = boardgamepublisher;
+    BggData.mainData[0].description = description;
+    BggData.mainData[0].boardgameAvgRating = boardgameAvgRating;
+    BggData.mainData[0].boardgamemechanics = boardgamemechanics;
+    BggData.mainData[0].boardgameRank = boardgameRank;
+    BggData.mainData[0].boardGameName = boardgameName;
+    BggData.mainData[0].yearpublished = yearpublished;
+    BggData.mainData[0].youtubeSearchterm = youtubeSearchterm;
+    BggData.mainData[0].gameid = gameid;
+
+
     BggData.singleSearch.boardgameawards = boardgameawards;
     BggData.singleSearch.boardgamefamily = boardgamefamily;
     BggData.singleSearch.boardgameImage = image;
@@ -781,7 +801,7 @@ function boardgameArticleListener() {
 
     // find index of currently clicked gameid
 
-if (BggData.mainData.length < 1) {
+
     var gameidIndex = BggData.mainData.map(function(element, index) {
       if (gameid == element.gameId) {
         return index
@@ -795,9 +815,7 @@ if (BggData.mainData.length < 1) {
     console.log("This is the index matching the gameid: ", gameidIndex);
     console.log(typeof(gameidIndex));
 
-  } else {
-    var gameidIndex = BggData.mainData[0].gameId;
-  }
+
 
     renderAndDisplayFullBoardgame(gameidIndex);
 
