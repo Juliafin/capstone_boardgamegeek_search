@@ -97,13 +97,13 @@ function getDataFromBGGApi(gameId, search) {
   if ((!search) && (!gameId)) {
 
     boardgamegeekSearchSetting.url = BOARDGAMEGEEK_HOTLIST_URL;
-    console.log("Ajax: Hotlist");
+    // console.log("Ajax: Hotlist");
   } else if (search !== undefined) {
     boardgamegeekSearchSetting.url = BOARDGAMEGEEK_SEARCH_URL;
-    console.log("Ajax: Bgg search")
+    // console.log("Ajax: Bgg search")
   } else {
     boardgamegeekSearchSetting.url = BOARDGAMEGEEK_GAMEID_URL + gameId;
-    console.log('Ajax: Bgg gameid ', boardgamegeekSearchSetting);
+    // console.log('Ajax: Bgg gameid ', boardgamegeekSearchSetting);
     boardgamegeekSearchSetting.data.stats = '1';
   };
   return boardgamegeekSearchSetting
@@ -146,10 +146,10 @@ function getDataFromYoutubeApi(callback, index) {
 
 function appendYTdata(data) {
   if (data.items.length === 0) {
-    console.log("This video does not exist on youtube");
+    // console.log("This video does not exist on youtube");
     return;
   }
-  console.log("youtube raw data", data.items);
+  // console.log("youtube raw data", data.items);
 
   // remove 404 error
   $('.error_image_container').remove();
@@ -171,7 +171,7 @@ src="">
 function printData(data) {
   // console.log("Youtube data: " , data);
   var Bggrawdata = xmlToJson(data);
-  console.log("This is the raw json conversion: ", Bggrawdata);
+  // console.log("This is the raw json conversion: ", Bggrawdata);
 }
 
 function saveDataHotlist(data) {
@@ -212,7 +212,7 @@ function saveDataHotlist(data) {
     // console.log(hotlistYearPublished);
 
   });
-  console.log("This is the hotlist in state: ", BggData.hotlist);
+  // console.log("This is the hotlist in state: ", BggData.hotlist);
 }
 
 // save data to State => BggData
@@ -223,16 +223,16 @@ function saveDataShallowSearch(data) {
 
   // convert from xml to JSON
   var Bggshallowdata = xmlToJson(data);
-  console.log("Bgg shallow data", Bggshallowdata);
+  // console.log("Bgg shallow data", Bggshallowdata);
 
   // error correction if the ajax data returned is bad (no results)
   if (!('boardgame' in Bggshallowdata.boardgames)) {
-    console.log("There are no search results!!");
+    // console.log("There are no search results!!");
 
     var errorhtml = `<div id="noresultserror">
 		<p>There are zero results for your search. Please try again. </p></div>`
 
-    $('#boardgamesearch').append(errorhtml);
+    $('.background').append(errorhtml);
 
     // restore pointer events on submit
     $('#submitbutton').css("pointer-events", "auto");
@@ -293,7 +293,7 @@ function saveDataShallowSearch(data) {
     // Pushes the data from the single result into the state
     BggData.mainData.push(bgObj);
 
-    console.log("Bggmain data after shallow search", BggData.mainData);
+    // console.log("Bggmain data after shallow search", BggData.mainData);
   }
 
 }
@@ -477,13 +477,13 @@ function saveDataDeepSearch(data) {
 
     }); //ends forEach function (iterating boardgame.boardgames)
 
-    console.log("Bgg main data written: ", BggData.mainData);
-    console.log("Bgg state object", BggData);
+    // console.log("Bgg main data written: ", BggData.mainData);
+    // console.log("Bgg state object", BggData);
 
 
   } else if ((typeof(Bggdeepdata.boardgames.boardgame) === 'object') && (Bggdeepdata.boardgames.boardgame !== null)) {
 
-    console.log(Bggdeepdata);
+    // console.log(Bggdeepdata);
 
     // top layer equivalent to "element" when boardgames.boardgame is an array
     var element = Bggdeepdata.boardgames.boardgame;
@@ -629,7 +629,7 @@ function saveDataDeepSearch(data) {
     // console.log("board game mechanics: " + boardgamemechanics)
     // console.log("board game avg rating: " + boardgameAvgRating);
     // console.log("boardgame awards: " + boardgameawards);
-    console.log("board game name:" + boardgameName);
+    // console.log("board game name:" + boardgameName);
     // This branch activates normally on hotlist deep queries
 
     // write youtubeSearchterm based on the game name
@@ -656,8 +656,8 @@ function saveDataDeepSearch(data) {
 
 
   }; // closes main else if
-  console.log("This is the bggdeepdata", Bggdeepdata);
-  console.log("This is the BggData", BggData);
+  // console.log("This is the bggdeepdata", Bggdeepdata);
+  // console.log("This is the BggData", BggData);
 
 } // closes deep search
 
@@ -670,7 +670,7 @@ function getSearchTerm() {
     event.preventDefault();
 
     var boardgamesearchterm = $('#boardgameterm').val();
-    console.log(boardgamesearchterm);
+    // console.log(boardgamesearchterm);
 
     // remove any previous zero reults errors
     $('#noresultserror').remove();
@@ -782,7 +782,7 @@ function boardgameArticleListener() {
 
     // get the game id from element clicked
     var gameid = $(this).attr('gameid');
-    console.log("The game id clicked is: " + gameid);
+    // console.log("The game id clicked is: " + gameid);
 
     // find index of currently clicked gameid
 
@@ -797,8 +797,8 @@ function boardgameArticleListener() {
 
     }).join().replace(/,+/g, '').replace(/\s+/g, '')
 
-    console.log("This is the index matching the gameid: ", gameidIndex);
-    console.log(typeof(gameidIndex));
+    // console.log("This is the index matching the gameid: ", gameidIndex);
+    // console.log(typeof(gameidIndex));
 
 
 
@@ -908,7 +908,7 @@ function renderAndDisplayFullBoardgame(index = 0) {
 
   }
 
-  console.log(boardgamemechanicshtml);
+  // console.log(boardgamemechanicshtml);
 
 if ('boardgameawards' in BggData.singleSearch) {
   // convert board game awards to a list
@@ -1032,7 +1032,7 @@ function backbuttonListener() {
 function renderAndDisplayHotlist() {
   $.ajax(getDataFromBGGApi()).then(function(response) {
     saveDataHotlist(response);
-    console.log("Hotlist data in state after save: ", BggData.hotlist);
+    // console.log("Hotlist data in state after save: ", BggData.hotlist);
 
     BggData.hotlist.forEach(function(element, index) {
 
@@ -1104,7 +1104,7 @@ function hotlistListen() {
 
     // get the game id from element clicked
     var gameid = $(this).attr('gameid');
-    console.log("The game id clicked is: " + gameid);
+    // console.log("The game id clicked is: " + gameid);
 
     $.ajax(getDataFromBGGApi(gameid)).then(function(response) {
 
