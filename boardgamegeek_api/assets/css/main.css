@@ -159,14 +159,14 @@ p.searchinstructions {
     text-align: center;
     position: relative;
     top: 22px;
-    font-family: Antic Slab;
+    font-family: Libre Franklin;
     font-size: 1.8em;
     font-weight: bold;
     color: #636161;
 }
 
 .playersandplaytime, .rankandyearpublished {
-    font-family: Alegreya Sans;
+    font-family: Libre Franklin;
     display: inline-block;
     width: auto;
     position: relative;
@@ -246,7 +246,7 @@ article {
 article:hover {
     filter: brightness(140%);
     transition-duration: 400ms;
-    background-color: #f79d9f;
+    background-color: rgba(77, 185, 91, 0.74);
     top: 100px;
     cursor: pointer;
 }
@@ -339,12 +339,12 @@ h2.boardgamenameLB {
     text-align: left;
     position: relative;
     margin-left: 40%;
-    font-family: Alegreya sans-serif;
+    font-family: Libre Franklin;
     font-size: 1.5em;
 }
 
 .description {
-    font-family: Alegreya sans-serif;
+    font-family: Libre Franklin;
     font-size: 1.2em;
 }
 
@@ -379,7 +379,7 @@ button.backbutton {
 
 section.hotlistcontainer {
     margin-top: 10%;
-    background-color: rgb(255,21,53);
+    background-color: rgba(255, 21, 53, 0.61);
 }
 
 div>.hotlistheader {
@@ -502,31 +502,45 @@ div#noresultserror {
     }
 
     article {
-        height: 140px;
+        height: 154px;
     }
 
     .boardgameimage {
         width: 160px;
         height: 164px;
-        top: -10%;
+        top: 1%;
     }
 
     img.imagethumbnail {
         height: 100%;
         width: 98%;
-        margin-top: 14px;
     }
 
     .playersandplaytime, .rankandyearpublished {
-        top: 2%;
-        left: -7%;
+        top: 6%;
+        /* left: -18%; */
         font-size: .8em;
         line-height: .9em;
+        width: 36%;
     }
 
     p.searchinstructions {
         font-size: 1.5em;
         top: 6px;
+    }
+
+    h2.boardgamename {
+        width: 45%
+    }
+
+    div#noresultserror {
+        height: 9%;
+        font-size: 1.3em;
+        margin-top: 3%;
+    }
+
+    div#noresultserror > p {
+        margin-top: 6px;
     }
 }
 
@@ -562,14 +576,16 @@ div#noresultserror {
 
     h2.boardgamename {
         font-size: 1em;
+        top: -73%;
+        left: 15%;
     }
 
     .playersandplaytime, .rankandyearpublished {
         font-size: .7em;
-        top: -54px;
+        top: -80%;
         margin-top: 3%;
-        width: auto;
-        right: -3%;
+        width: 38%;
+        right: -1%;
     }
 
     article {
@@ -578,10 +594,10 @@ div#noresultserror {
     }
 
     .boardgameimage {
-        width: 30%;
+        width: 25%;
         height: 124px;
-        top: -143%;
-        left: 17%;
+        top: -122%;
+        left: -23%;
         float: none;
         margin-left: auto;
         margin-right: auto;
@@ -610,6 +626,16 @@ div#noresultserror {
 
     iframe {
         margin-bottom: 10%
+    }
+
+    div#noresultserror {
+        height: 9%;
+        font-size: 1.3em;
+        margin-top: 3%;
+    }
+
+    div#noresultserror > p {
+        margin-top: 6px;
     }
 }
 
@@ -640,17 +666,27 @@ div#noresultserror {
         margin-bottom: 8%;
     }
 
+    article{
+        height: 120px
+    }
+
     .playersandplaytime, .rankandyearpublished {
         font-size: .7em;
-        top: -59px;
-        width: 40%;
+        top: -77%;
+        width: 57%;
         margin-top: 5%;
-        left: -15%;
+        left: -2%;
     }
 
     .boardgameimage {
-        left: 22%;
-        top: -149%;
+        left: -23%;
+        top: -109%;
+        width: 38%;
+    }
+
+    h2.boardgamename {
+        top: -59%;
+        font-size: .9em;
     }
 
     h2.boardgamenameLB {
@@ -676,6 +712,16 @@ div#noresultserror {
 
     iframe {
         margin-bottom: 10%
+    }
+
+    div#noresultserror {
+        height: 6%;
+        font-size: .7em;
+        margin-top: 2%;
+    }
+
+    div#noresultserror > p {
+        margin-top: 2px;
     }
 }
 
@@ -706,6 +752,10 @@ div#noresultserror {
 
     p.searchinstructions {
         font-size: .8em;
+    }
+
+    h2.boardgamename {
+        font-size: .3em;
     }
 
     .boardgameimage {
@@ -761,6 +811,7 @@ div#noresultserror {
     iframe {
         margin-bottom: 10%
     }
+
 }
 
 @media only screen and (min-device-width: 412px) and (max-device-width: 732px) {
