@@ -44,7 +44,7 @@ function xmlToJson(xml) {
     }
   }
   return obj;
-};
+}
 
 // Enable CORS (bypass Bgg api CORS block)
 // 'crossorigin.me'
@@ -105,8 +105,8 @@ function getDataFromBGGApi(gameId, search) {
     boardgamegeekSearchSetting.url = BOARDGAMEGEEK_GAMEID_URL + gameId;
     // console.log('Ajax: Bgg gameid ', boardgamegeekSearchSetting);
     boardgamegeekSearchSetting.data.stats = '1';
-  };
-  return boardgamegeekSearchSetting
+  }
+  return boardgamegeekSearchSetting;
   // $.ajax(boardgamegeekSearchSetting).then(function(){
   // console.log('This happens after the ajax call .then')
   // console.log(boardgamegeekSearchSetting.url);
@@ -116,7 +116,7 @@ function getDataFromBGGApi(gameId, search) {
 
 var _ = undefined;
 
-var YOUTUBE_BASE_URL = "https://www.googleapis.com/youtube/v3/search"
+var YOUTUBE_BASE_URL = "https://www.googleapis.com/youtube/v3/search";
 
 function getDataFromYoutubeApi(callback, index) {
 
@@ -158,7 +158,7 @@ function appendYTdata(data) {
   var youtubeUrl = "https://www.youtube.com/embed/" + data.items[0].id.videoId;
   var iframe = `<iframe id="youtubevideo" width="420" height="315"
 src="">
-</iframe>`
+</iframe>`;
 
   $('.lightbox').append(iframe);
   // console.log("This is the youtube url: ", youtubeUrl)
@@ -178,7 +178,7 @@ function saveDataHotlist(data) {
 
   // convert to JSON
   var hotlist = xmlToJson(data);
-  // console.log(hotlist);
+  console.log(hotlist);
 
   hotlist.items.item.forEach(function(element, index) {
     // create keys
@@ -191,7 +191,7 @@ function saveDataHotlist(data) {
     if ("yearpublished" in element) {
       hotlistData.hotlistYearPublished = element.yearpublished['@attributes'].value;
       // console.log(hotlistData.hotlistYearPublished);
-    };
+    }
 
 
     // push keys to object
@@ -230,7 +230,7 @@ function saveDataShallowSearch(data) {
     // console.log("There are no search results!!");
 
     var errorhtml = `<div id="noresultserror">
-		<p>There are zero results for your search. Please try again. </p></div>`
+		<p>There are zero results for your search. Please try again. </p></div>`;
 
     $('.background').append(errorhtml);
 
@@ -240,7 +240,7 @@ function saveDataShallowSearch(data) {
     // remove loader
     $('.loadingcontainer').remove();
 
-    return
+    return;
 
 
   } else if(Array.isArray(Bggshallowdata.boardgames.boardgame)) {
@@ -256,7 +256,7 @@ function saveDataShallowSearch(data) {
       if ('yearpublished' in element) {
         bgObj.yearpublished = element.yearpublished['#text'];
       } else {
-        bgObj.yearpublished = "N/A"
+        bgObj.yearpublished = "N/A";
       }
 
       // console.log(BggData.gameId);
@@ -265,9 +265,9 @@ function saveDataShallowSearch(data) {
       bgObj.youtubeSearchterm = element.name['#text'] + " walkthrough";
 
       // console.log(bgObj);
-      return bgObj
+      return bgObj;
 
-    })
+    });
     // console.log("Bgg data, shallow search done", BggData);
     // console.log("Youtube search terms: ", BggData.youtubeSearchterms)
   } else {
@@ -281,7 +281,7 @@ function saveDataShallowSearch(data) {
     if ('yearpublished' in Bggshallowdata.boardgames.boardgame) {
       bgObj.yearpublished = Bggshallowdata.boardgames.boardgame.yearpublished['#text'];
     } else {
-      bgObj.yearpublished = "N/A"
+      bgObj.yearpublished = "N/A";
     }
 
     // console.log(BggData.gameId);
@@ -312,7 +312,7 @@ function createGameIdString() {
     }
   });
   // console.log("Game id string: " + gameString);
-  return gameString
+  return gameString;
 }
 
 
@@ -320,7 +320,7 @@ function createGameIdString() {
 function saveDataDeepSearch(data) {
   // data is not cleared as it is being aggregated from the first api call
   // convert xml to json
-  var Bggdeepdata = xmlToJson(data)
+  var Bggdeepdata = xmlToJson(data);
   // console.log("Raw deep data:", Bggdeepdata);
 
   // if the first key of the raw data is an array!
@@ -332,8 +332,8 @@ function saveDataDeepSearch(data) {
 
       // corrects if image doesn't exist
       if ('image' in element) {
-        var image = 'https:' + element.image['#text'];
-      };
+        var image = element.image['#text'];
+      }
 
       // correcting when players is zero
       if ((element.maxplayers != 0) && (element.minplayers != 0)) {
@@ -344,30 +344,30 @@ function saveDataDeepSearch(data) {
 
       } else {
         var players = "N/A";
-      };
+      }
 
       // corrects playingtime if it doesn't exist
       if ('playingtime' in element) {
         var playingtime = element.playingtime['#text'] + ' minutes';
 
       } else {
-        var playingtime = "N/A"
-      };
+        var playingtime = "N/A";
+      }
 
       // corrects age if it doesn't exist
       if ('age' in element) {
         var age = element.age['#text'];
 
       } else {
-        var age = "N/A"
-      };
+        var age = "N/A";
+      }
 
       // corrects description if it doesn't exist
       if (('description' in element) && (element.description['#text'] !== undefined)) {
         var description = element.description['#text'];
 
       } else {
-        var description = "N/A"
+        var description = "N/A";
       }
 
       // corrects publisher if it doesn't exist
@@ -375,14 +375,14 @@ function saveDataDeepSearch(data) {
         var boardgamepublisher = element.boardgamepublisher['#text'];
 
       } else {
-        var boardgamepublisher = "N/A"
+        var boardgamepublisher = "N/A";
       }
 
       // corrects average if it doesn't exist
       if ('statistics.ratings.average' in element) {
         var boardgameAvgRating = element.statistics.ratings.average['#text'];
       } else {
-        var boardgameAvgRating = "N/A"
+        var boardgameAvgRating = "N/A";
       }
 
       // Inconsistent data handling for board game rank
@@ -408,21 +408,21 @@ function saveDataDeepSearch(data) {
 
       } else if ((typeof(element.boardgamemechanic) === 'object') && (element.boardgamemechanic !== null)) {
         //  object keys, iterate over keys, send into array
-        var boardgamemechanics = element.boardgamemechanic['#text']
+        var boardgamemechanics = element.boardgamemechanic['#text'];
         // console.log('elem is an object, and this is the mechanic: ' + boardgamemechanics);
 
       } else if (!element.boardgamemechanic) {
         var boardgamemechanics = 'N/A';
-      };
+      }
 
       // Corrections on description and playing time
       if (description === "This page does not exist. You can edit this page to create it.") {
         description = "This item does not have a description.";
-      };
+      }
 
       if (playingtime === "0 minutes") {
-        playingtime = "N/A"
-      };
+        playingtime = "N/A";
+      }
 
 
       // Corrections on board game family
@@ -433,13 +433,13 @@ function saveDataDeepSearch(data) {
         var boardgamefamily = element.boardgamefamily['#text'];
 
       } else {
-        var boardgamefamily = "N/A"
+        var boardgamefamily = "N/A";
       }
 
       // Corrections for board game Awards
       if (Array.isArray(element.boardgamehonor)) {
         var boardgameawards = element.boardgamehonor.map(function(element) {
-          return element['#text']
+          return element['#text'];
         });
 
       } else if (typeof(element.boardgamehonor) === 'object') {
@@ -490,7 +490,7 @@ function saveDataDeepSearch(data) {
 
     // corrects if image doesn't exist
     if ('image' in element) {
-      var image = 'https:' + element.image['#text'];
+      var image = element.image['#text'];
     }
 
     // correcting when players is zero
@@ -502,7 +502,7 @@ function saveDataDeepSearch(data) {
 
     } else {
       var players = "N/A";
-    };
+    }
 
     // Corrects playtime when it doesn't exist
     if ('playtime' in element) {
@@ -510,7 +510,7 @@ function saveDataDeepSearch(data) {
 
     } else {
       var playingtime = "N/A";
-    };
+    }
 
     // Corrects age when it doesn't exist
     if ('age' in element) {
@@ -518,29 +518,29 @@ function saveDataDeepSearch(data) {
 
     } else {
       var age = "N/A";
-    };
+    }
 
     // Corrects description when it doesn't exist
     if (('description' in element) && (element.description['#text'] !== undefined)) {
       var description = element.description['#text'];
 
     } else {
-      var description = "N/A"
-    };
+      var description = "N/A";
+    }
 
     // Corrects board game publisher when it doesn't exist
     if ('boardgamepublisher' in element) {
       var boardgamepublisher = element.boardgamepublisher['#text'];
 
     } else {
-      var boardgamepublisher = "N/A"
-    };
+      var boardgamepublisher = "N/A";
+    }
 
     if ('statistics.ratings.average' in element) {
       var boardgameAvgRating = element.statistics.ratings.average['#text'];
 
     } else {
-      var boardgameAvgRating = "N/A"
+      var boardgameAvgRating = "N/A";
     }
 
     // Inconsistent data handling for board game rank
@@ -565,19 +565,19 @@ function saveDataDeepSearch(data) {
       });
     } else if ((typeof(element.boardgamemechanic) === 'object') && (element.boardgamemechanic !== null)) {
       //  object keys, iterate over keys, send into array
-      var boardgamemechanics = element.boardgamemechanic['#text']
+      var boardgamemechanics = element.boardgamemechanic['#text'];
       // console.log('elem is an object, and this is the mechanic: ' + boardgamemechanics);
     } else if (!element.boardgamemechanic) {
       var boardgamemechanics = 'N/A';
-    };
+    }
 
     // Corrections on description and playing time
     if (description === "This page does not exist. You can edit this page to create it.") {
       description = "This item does not have a description.";
-    };
+    }
     if (playingtime === "0 minutes") {
-      playingtime = "N/A"
-    };
+      playingtime = "N/A";
+    }
 
     // Corrections on board game family
     if (Array.isArray(element.boardgamefamily)) {
@@ -587,13 +587,13 @@ function saveDataDeepSearch(data) {
       var boardgamefamily = element.boardgamefamily['#text'];
 
     } else {
-      var boardgamefamily = "N/A"
-    };
+      var boardgamefamily = "N/A";
+    }
 
     // Corrections for board game Awards
     if (Array.isArray(element.boardgamehonor)) {
       var boardgameawards = element.boardgamehonor.map(function(element) {
-        return element['#text']
+        return element['#text'];
       });
 
     } else if (typeof(element.boardgamehonor) === 'object') {
@@ -601,21 +601,21 @@ function saveDataDeepSearch(data) {
 
     } else {
       var boardgameawards = "N/A";
-    };
+    }
 
     // Year published (not grabbed from shallow search in single branch)
     if ('yearpublished' in element) {
       var yearpublished = element.yearpublished['#text'];
     } else {
-      var yearpublished = "N/A"
-    };
+      var yearpublished = "N/A";
+    }
 
     //Grab boardgame name (always should exist!)
     if (Array.isArray(element.name)) {
-      var boardgameName = element.name[0]['#text']
+      var boardgameName = element.name[0]['#text'];
     } else {
       var boardgameName = element.name['#text'];
-    };
+    }
 
 
     // console.logs to test keys
@@ -655,7 +655,7 @@ function saveDataDeepSearch(data) {
     BggData.singleSearch.youtubeSearchterm = youtubeSearchterm;
 
 
-  }; // closes main else if
+  } // closes main else if
   // console.log("This is the bggdeepdata", Bggdeepdata);
   // console.log("This is the BggData", BggData);
 
@@ -705,7 +705,7 @@ function renderSearchHtml() {
 
   // clear existing html
 
-  $('section#searchresults').empty()
+  $('section#searchresults').empty();
 
   BggData.mainData.forEach(function(element, index) {
 
@@ -734,7 +734,7 @@ function renderSearchHtml() {
     } else {
       var oddSelector = "#imageindex" + index;
       $(oddSelector).addClass('odd');
-    };
+    }
 
     // With a delay, reveal each element
     setTimeout(function() {
@@ -789,13 +789,13 @@ function boardgameArticleListener() {
 
     var gameidIndex = BggData.mainData.map(function(element, index) {
       if (gameid == element.gameId) {
-        return index
+        return index;
       } else {
         var emptystring = '';
-        return emptystring
+        return emptystring;
       }
 
-    }).join().replace(/,+/g, '').replace(/\s+/g, '')
+    }).join().replace(/,+/g, '').replace(/\s+/g, '');
 
     // console.log("This is the index matching the gameid: ", gameidIndex);
     // console.log(typeof(gameidIndex));
@@ -822,56 +822,56 @@ function renderAndDisplayFullBoardgame(index = 0) {
     var image = BggData.singleSearch.boardgameImage;
   } else {
     var image = BggData.mainData[index].boardGameImage;
-  };
+  }
 
   if ('boardgameAvgRating' in BggData.singleSearch) {
     var averagerating = BggData.singleSearch.boardgameAvgRating;
   } else {
     var averagerating = BggData.mainData[index].boardgameAvgRating;
-  };
+  }
 
   if ('boardgameRank' in BggData.singleSearch) {
     var rank = BggData.singleSearch.boardgameRank;
   } else {
     var rank = BggData.mainData[index].boardgameRank;
-  };
+  }
 
   if ('boardgameName' in BggData.singleSearch) {
     var gamename = BggData.singleSearch.boardgameName;
   } else {
     var gamename = BggData.mainData[index].boardGameName;
-  };
+  }
 
   if ('boardgamepublisher' in BggData.singleSearch) {
     var gamepublisher = BggData.singleSearch.boardgamepublisher;
   } else {
     var gamepublisher = BggData.mainData[index].boardgamepublisher;
-  };
+  }
 
   if ('description' in BggData.singleSearch) {
     var description = BggData.singleSearch.description;
   } else {
     var description = BggData.mainData[index].description;
-  };
+  }
 
   if ('players' in BggData.singleSearch) {
     var players = BggData.singleSearch.players;
   } else {
     var players = BggData.mainData[index].players;
-  };
+  }
 
   if ('playingTime' in BggData.singleSearch) {
     var playingTime = BggData.singleSearch.playingTime;
   } else {
     var playingTime = BggData.mainData[index].playingTime;
-  };
+  }
 
 
   if ('yearpublished' in BggData.singleSearch) {
     var yearpublished = BggData.singleSearch.yearpublished;
   } else {
     var yearpublished = BggData.mainData[index].yearpublished;
-  };
+  }
 
   if ('boardgamefamily' in BggData.singleSearch) {
     var boardgamefamily = BggData.singleSearch.boardgamefamily;
@@ -879,14 +879,17 @@ function renderAndDisplayFullBoardgame(index = 0) {
     var boardgamefamily = BggData.mainData[index].boardgamefamily;
   }
 
+  // If the key 'boardgamemechanics' exists in the JSON (as an object),
+  // Apply one set of conversions.
+  // If not, treat the key as an array.
   if ('boardgamemechanics' in BggData.singleSearch) {
     if (Array.isArray(BggData.singleSearch.boardgamemechanics)) {
       var boardgamemechanicshtml = BggData.singleSearch.boardgamemechanics.map(function(element) {
-        return `<li>${element}</li>`
+        return `<li>${element}</li>`;
       }).join().replace(/,/g, '');
 
     } else if (!('boardgamemechanics' in BggData.singleSearch)) {
-      return
+      return;
 
     } else {
       var boardgamemechanicshtml = BggData.singleSearch.boardgamemechanics;
@@ -896,11 +899,11 @@ function renderAndDisplayFullBoardgame(index = 0) {
     // convert board game mechanics to a list
     if (Array.isArray(BggData.mainData[index].boardgamemechanics)) {
       var boardgamemechanicshtml = BggData.mainData[index].boardgamemechanics.map(function(element) {
-        return `<li>${element}</li>`
+        return `<li>${element}</li>`;
       }).join().replace(/,/g, '');
 
     } else if (!('boardgamemechanics' in BggData.mainData[index])) {
-      return
+      return;
 
     } else {
       var boardgamemechanicshtml = BggData.mainData[index].boardgamemechanics;
@@ -914,11 +917,11 @@ if ('boardgameawards' in BggData.singleSearch) {
   // convert board game awards to a list
   if (Array.isArray(BggData.singleSearch.boardgameawards)) {
     var boardgameawardshtml = BggData.singleSearch.boardgameawards.map(function(element) {
-      return `<li>${element}</li>`
+      return `<li>${element}</li>`;
     }).join().replace(/,/g, '');
 
   } else if (!('boardgameawards' in BggData.singleSearch)) {
-    return
+    return;
 
   } else {
     var boardgameawardshtml = BggData.singleSearch.boardgameawards;
@@ -928,11 +931,11 @@ if ('boardgameawards' in BggData.singleSearch) {
   // convert board game awards to a list
   if (Array.isArray(BggData.mainData[index].boardgameawards)) {
     var boardgameawardshtml = BggData.mainData[index].boardgameawards.map(function(element) {
-      return `<li>${element}</li>`
+      return `<li>${element}</li>`;
     }).join().replace(/,/g, '');
 
   } else if (!('boardgameawards' in BggData.mainData[index])) {
-    return
+    return;
 
   } else {
     var boardgameawardshtml = BggData.mainData[index].boardgameawards;
@@ -1026,7 +1029,7 @@ function backbuttonListener() {
     // fade out lightbox
     $('.lightbox').fadeOut(300);
 
-  })
+  });
 }
 
 function renderAndDisplayHotlist() {
@@ -1040,13 +1043,13 @@ function renderAndDisplayHotlist() {
       var hotlistGameId = element.hotlistGameId;
       var hotlistGameName = element.hotlistGameName;
       var hotlistRank = element.hotlistRank;
-      var hotlistImage = "https://" + element.hotlistThumbnail;
+      var hotlistImage = element.hotlistThumbnail;
 
       if ('hotlistYearPublished' in element) {
         var hotlistYearPublished = element.hotlistYearPublished;
 
       } else {
-        var hotlistYearPublished = "N/A"
+        var hotlistYearPublished = "N/A";
 
       }
       var html =
@@ -1080,7 +1083,7 @@ function renderAndDisplayHotlist() {
         var oddSelector2 = "#innerimageindex" + index;
         $(oddSelector1).addClass('odd');
         $(oddSelector2).addClass('odd');
-      };
+      }
 
     });
 
@@ -1113,9 +1116,9 @@ function hotlistListen() {
 
       // TODO rewrite deepsearch specifically for
 
-    })
+    });
 
-  })
+  });
 
 }
 
